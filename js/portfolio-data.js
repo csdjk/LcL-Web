@@ -15,6 +15,7 @@ const PORTFOLIO = [
       { type: 'image', src: 'assets/images/genshin_night.png', label: '夜晚冷光' },
       { type: 'video', src: 'assets/videos/genshin_demo.mp4', label: '演示视频' },
     ],
+    webDemo: 'https://csdjk.github.io/LcLGenshinImpact/',
     links: [
       { label: 'Web Demo', url: 'https://csdjk.github.io/LcLGenshinImpact/', icon: 'globe' },
     ],
@@ -37,6 +38,7 @@ const PORTFOLIO = [
       { type: 'image', src: 'assets/images/hsr_yinyue2.png', label: '饮月2' },
       { type: 'video', src: 'assets/videos/hsr_demo.mp4', label: '演示视频' },
     ],
+    webDemo: 'https://csdjk.github.io/LcLStarRail.github.io/',
     links: [
       { label: 'Bilibili', url: 'https://b23.tv/328Rom5', icon: 'video' },
       { label: 'Web Demo', url: 'https://csdjk.github.io/LcLStarRail.github.io/', icon: 'globe' },
@@ -112,7 +114,8 @@ const PORTFOLIO = [
       { type: 'image', src: 'assets/images/water_3.png', label: 'Water 3' },
       { type: 'image', src: 'assets/images/water_4.png', label: 'Water 4' },
       { type: 'image', src: 'assets/images/water_5.png', label: 'Water 5' },
-      { type: 'video', src: 'assets/videos/water_demo.mp4', label: '演示视频' },
+      { type: 'video', src: 'assets/videos/water_demo.mp4', label: '演示视频 1' },
+      { type: 'video', src: 'assets/videos/water_demo2.mp4', label: '演示视频 2' },
     ],
     links: [],
     tags: ['URP', 'Water Shader', 'Stylized'],

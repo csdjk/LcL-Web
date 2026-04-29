@@ -69,6 +69,18 @@ function buildCard(project) {
   overlay.className = 'card__media-overlay';
   mediaWrap.appendChild(overlay);
 
+  // Live Demo badge (always visible)
+  if (project.webDemo) {
+    const liveBtn = document.createElement('a');
+    liveBtn.className = 'card__live-btn';
+    liveBtn.href = project.webDemo;
+    liveBtn.target = '_blank';
+    liveBtn.rel = 'noopener noreferrer';
+    liveBtn.textContent = 'LIVE DEMO';
+    liveBtn.addEventListener('click', e => e.stopPropagation());
+    mediaWrap.appendChild(liveBtn);
+  }
+
   // ── Body ──
   const body = document.createElement('div');
   body.className = 'card__body';

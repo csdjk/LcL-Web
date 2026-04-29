@@ -243,6 +243,49 @@
   stroke: currentColor;
 }
 
+/* ─── Live Demo badge (always visible on card) ─── */
+.card__live-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: #07070e;
+  background: var(--cyan);
+  padding: 5px 12px;
+  border-radius: 100px;
+  text-decoration: none;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.6);
+  transition: background var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+
+.card__live-btn::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #07070e;
+  animation: livePulse 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.card__live-btn:hover {
+  background: #fff;
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.9);
+  transform: scale(1.05);
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
 /* ─── Video card special ─── */
 .card--video .card__media-wrap {
   cursor: pointer;
