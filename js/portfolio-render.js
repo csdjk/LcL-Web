@@ -33,31 +33,38 @@ function buildCard(project) {
   mediaWrap.className = 'card__media-wrap';
 
   const firstGalleryItem = project.gallery?.[0];
-  const isVideo = !project.cover && firstGalleryItem?.type === 'video';
+  const hasVideo = project.primaryVideo || firstGalleryItem?.type === 'video';
 
-  if (project.cover) {
-    const img = document.createElement('img');
-    img.alt = project.title;
-    img.dataset.src = project.cover;
-    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // 1px placeholder
-    imgObserver.observe(img);
-    mediaWrap.appendChild(img);
-  } else if (isVideo) {
+  if (hasVideo) {
+    // ── Video card ──
+    const videoSrc = project.primaryVideo || firstGalleryItem.src;
     const vid = document.createElement('video');
-    vid.src = firstGalleryItem.src;
+    vid.src = videoSrc;
     vid.muted = true;
     vid.loop = true;
     vid.playsInline = true;
     vid.preload = 'metadata';
     mediaWrap.appendChild(vid);
 
+    // Play icon overlay (always visible)
     const playDiv = document.createElement('div');
     playDiv.className = 'play-icon';
     playDiv.innerHTML = PLAY_ICON;
     mediaWrap.appendChild(playDiv);
 
+    // Hover: muted preview autoplay
     card.addEventListener('mouseenter', () => vid.play().catch(() => {}));
     card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+
+  } else if (project.cover) {
+    // ── Image card ──
+    const img = document.createElement('img');
+    img.alt = project.title;
+    img.dataset.src = project.cover;
+    img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    imgObserver.observe(img);
+    mediaWrap.appendChild(img);
+
   } else {
     const ph = document.createElement('div');
     ph.className = 'card__media-placeholder';
@@ -149,7 +156,7 @@ function buildCard(project) {
   card.appendChild(mediaWrap);
   card.appendChild(body);
 
-  // Open lightbox on media click
+  // Click: open lightbox (video-first projects open at index 0 = the video)
   mediaWrap.addEventListener('click', () => {
     if (project.gallery && project.gallery.length > 0) {
       openLightbox(project.id, 0);
