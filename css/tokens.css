@@ -1,0 +1,53 @@
+:root {
+  /* ── Backgrounds ── */
+  --bg-0: #07070e;
+  --bg-1: #0c0c18;
+  --bg-2: #10101f;
+  --bg-card: rgba(255, 255, 255, 0.028);
+  --bg-card-hover: rgba(0, 212, 255, 0.05);
+
+  /* ── Accent Colors ── */
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0, 212, 255, 0.15);
+  --cyan-glow: rgba(0, 212, 255, 0.45);
+  --purple: #7b2fff;
+  --purple-dim: rgba(123, 47, 255, 0.15);
+  --purple-glow: rgba(123, 47, 255, 0.45);
+  --magenta: #ff2d78;
+
+  /* ── Text ── */
+  --text-primary: #e0e0f0;
+  --text-secondary: #8080a0;
+  --text-muted: #50506a;
+
+  /* ── Borders ── */
+  --border: 1px solid rgba(0, 212, 255, 0.12);
+  --border-hover: 1px solid rgba(0, 212, 255, 0.55);
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.06);
+
+  /* ── Shadows / Glows ── */
+  --glow-cyan: 0 0 30px rgba(0, 212, 255, 0.35), 0 0 60px rgba(0, 212, 255, 0.15);
+  --glow-card: 0 8px 40px rgba(0, 0, 0, 0.65);
+  --glow-text: 0 0 12px rgba(0, 212, 255, 0.7);
+
+  /* ── Typography ── */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Noto Sans SC', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Motion ── */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-med: 380ms;
+  --dur-slow: 700ms;
+
+  /* ── Layout ── */
+  --max-w: 1300px;
+  --gap: 20px;
+  --radius: 12px;
+  --radius-sm: 6px;
+
+  /* ── Nav height ── */
+  --nav-h: 68px;
+}

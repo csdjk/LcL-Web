@@ -1,0 +1,121 @@
+/* ─────────────────────────────────────────
+   LIGHTBOX OVERLAY
+───────────────────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.lb-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast);
+  z-index: 5;
+}
+
+.lb-close:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  transform: rotate(90deg);
+}
+
+.lb-media-wrap {
+  position: relative;
+  max-width: 90vw;
+  max-height: 82vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-media-wrap img,
+.lb-media-wrap video {
+  max-width: 90vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+
+.lb-prev,
+.lb-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(0, 212, 255, 0.08);
+  color: var(--cyan);
+  cursor: pointer;
+  transition: background var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
+  z-index: 5;
+}
+
+.lb-prev { left: -60px; }
+.lb-next { right: -60px; }
+
+.lb-prev:hover,
+.lb-next:hover {
+  background: rgba(0, 212, 255, 0.2);
+  box-shadow: var(--glow-cyan);
+}
+
+.lb-prev:hover { transform: translateY(-50%) translateX(-3px); }
+.lb-next:hover { transform: translateY(-50%) translateX(3px); }
+
+.lb-prev svg,
+.lb-next svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.lb-counter {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+}
+
+.lb-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .lb-prev { left: 8px; }
+  .lb-next { right: 8px; }
+
+  .lb-media-wrap img,
+  .lb-media-wrap video {
+    max-width: 95vw;
+  }
+}

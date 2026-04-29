@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="李长龙 — 游戏渲染技术美术作品集。角色渲染、URP效果集、Shader技术研究。">
+  <title>Li Changlong · 渲染向TA</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/portfolio.css">
+  <link rel="stylesheet" href="css/lightbox.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav id="nav" aria-label="主导航">
+  <a class="nav-logo" href="#hero">LCL</a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="菜单" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer (appended by nav.js if needed) -->
+<div id="nav-drawer" aria-hidden="true" style="display:none"></div>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-tag animate-float">Game Technical Artist</div>
+
+    <h1 class="hero-name-en" aria-label="Li Changlong">LI CHANGLONG</h1>
+    <p class="hero-name-zh" aria-hidden="true">李&nbsp;&nbsp;长&nbsp;&nbsp;龙</p>
+
+    <p class="hero-subtitle">
+      <span id="hero-subtitle-text"></span>
+      <span class="cursor" aria-hidden="true"></span>
+    </p>
+
+    <a href="#portfolio" class="hero-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      View My Works
+    </a>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>SCROLL</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<section id="about">
+  <div class="inner">
+    <p class="section-label">// 关于我</p>
+    <h2 class="section-title">About Me</h2>
+
+    <div class="about-grid">
+
+      <!-- Stats -->
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">年渲染技术研究经验</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Shader效果实现</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">角色渲染逆向复刻</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">URP</div>
+          <div class="stat-label">主要技术栈</div>
+        </div>
+      </div>
+
+      <!-- Bio + Skills -->
+      <div>
+        <p class="about-bio">
+          专注于<strong>实时渲染效果研究与实现</strong>的游戏技术美术。擅长角色渲染（NPR/写实）、屏幕空间效果、
+          后处理管线及Shader开发，有丰富的URP管线开发经验与游戏项目落地经验。
+          <br><br>
+          深入研究过《原神》《崩坏：星穹铁道》等知名游戏的角色渲染管线，并成功复刻了其核心着色技术。
+          同时持续探索<strong>软光栅化、PBR、程序化工具</strong>等图形学基础与工程实践。
+        </p>
+
+        <p class="skills-title">// 技术栈</p>
+        <div class="skills-tags">
+          <span class="skill-tag">URP</span>
+          <span class="skill-tag">HLSL / GLSL</span>
+          <span class="skill-tag">角色渲染 NPR</span>
+          <span class="skill-tag">PBR</span>
+          <span class="skill-tag">后处理效果</span>
+          <span class="skill-tag">SSR / SSPR</span>
+          <span class="skill-tag">HBAO / TAA</span>
+          <span class="skill-tag">VAT</span>
+          <span class="skill-tag">Unity</span>
+          <span class="skill-tag">Houdini</span>
+          <span class="skill-tag">C# / C++</span>
+          <span class="skill-tag">Substance Designer</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Blender</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PORTFOLIO
+════════════════════════════════════════ -->
+<section id="portfolio">
+  <div class="inner">
+    <p class="section-label">// 作品集</p>
+    <h2 class="section-title">Portfolio</h2>
+
+    <!-- Filter tabs -->
+    <div class="filter-bar" role="group" aria-label="作品分类过滤">
+      <button class="filter-tab active" data-category="all">全部</button>
+      <button class="filter-tab" data-category="character">角色渲染</button>
+      <button class="filter-tab" data-category="effects">效果集</button>
+      <button class="filter-tab" data-category="production">游戏实践</button>
+      <button class="filter-tab" data-category="tools">工具</button>
+      <button class="filter-tab" data-category="graphics">图形学</button>
+    </div>
+
+    <!-- Cards injected by portfolio-render.js -->
+    <div id="portfolio-grid" class="portfolio-grid"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<section id="contact">
+  <div class="inner">
+    <p class="section-label">// 联系我</p>
+    <h2 class="section-title">Get In Touch</h2>
+
+    <p class="contact-desc">
+      如果您对我的作品感兴趣，欢迎通过以下方式联系我 :)
+    </p>
+
+    <div class="contact-links">
+
+      <a class="contact-link" href="mailto:1076984375@qq.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        1076984375@qq.com
+      </a>
+
+      <a class="contact-link" href="https://github.com/csdjk" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+        GitHub · csdjk
+      </a>
+
+      <a class="contact-link" href="https://www.zhihu.com/people/zhihulzzz/posts" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        知乎 · 渲染文章
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <span>Li Changlong</span> &nbsp;·&nbsp; 游戏渲染技术美术 &nbsp;·&nbsp; Built with ♥ &amp; HLSL
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     LIGHTBOX
+════════════════════════════════════════ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <button class="lb-close" id="lb-close" aria-label="关闭">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div style="position:relative; display:flex; align-items:center; justify-content:center;">
+    <button class="lb-prev" id="lb-prev" aria-label="上一张">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <div class="lb-media-wrap" id="lb-media-wrap"></div>
+
+    <button class="lb-next" id="lb-next" aria-label="下一张">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="lb-counter" id="lb-counter"></div>
+  <div class="lb-title" id="lb-title"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- App scripts (order matters) -->
+<script src="js/portfolio-data.js"></script>
+<script src="js/text-scramble.js"></script>
+<script src="js/portfolio-render.js"></script>
+<script src="js/lightbox.js"></script>
+<script src="js/scroll-anim.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/hero-bg.js"></script>
+
+</body>
+</html>

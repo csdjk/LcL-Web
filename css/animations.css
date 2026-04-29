@@ -1,0 +1,54 @@
+/* ─────────────────────────────────────────
+   KEYFRAME DEFINITIONS
+───────────────────────────────────────── */
+
+/* Hero scroll chevron bounce */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+  50%       { transform: translateX(-50%) translateY(9px); opacity: 1; }
+}
+
+/* Blinking cursor */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* CTA button border gradient rotate */
+@keyframes borderRotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Subtle floating (hero tag pill) */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* Scanline shimmer on section labels */
+@keyframes labelGlow {
+  0%, 100% { text-shadow: 0 0 6px rgba(0, 212, 255, 0.4); }
+  50%       { text-shadow: 0 0 14px rgba(0, 212, 255, 0.9); }
+}
+
+/* Pulse ring (for hero CTA) */
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Applied classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-label-glow {
+  animation: labelGlow 2.5s ease-in-out infinite;
+}
+
+/* Global transition helper */
+.no-transition * {
+  transition: none !important;
+}

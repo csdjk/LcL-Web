@@ -1,0 +1,290 @@
+/* ─────────────────────────────────────────
+   PORTFOLIO CARD BASE
+───────────────────────────────────────── */
+.portfolio-card {
+  position: relative;
+  background: var(--bg-card);
+  border: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    transform var(--dur-med) var(--ease-expo),
+    box-shadow var(--dur-med) var(--ease-smooth),
+    border-color var(--dur-med);
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--glow-card), var(--glow-cyan);
+  border-color: rgba(0, 212, 255, 0.5);
+}
+
+/* Corner accents */
+.portfolio-card::before,
+.portfolio-card::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  z-index: 3;
+  pointer-events: none;
+  transition: width 0.4s var(--ease-expo), height 0.4s var(--ease-expo);
+}
+
+.portfolio-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--cyan);
+  border-left: 2px solid var(--cyan);
+  border-radius: var(--radius) 0 0 0;
+}
+
+.portfolio-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.portfolio-card:hover::before,
+.portfolio-card:hover::after {
+  width: 40px;
+  height: 40px;
+}
+
+/* ─── Grid sizes ─── */
+.card--featured  { grid-column: span 6; }
+.card--large     { grid-column: span 4; }
+.card--standard  { grid-column: span 4; }
+.card--video     { grid-column: span 4; }
+
+@media (max-width: 1100px) {
+  .card--featured { grid-column: span 12; }
+  .card--large    { grid-column: span 6; }
+  .card--standard { grid-column: span 6; }
+  .card--video    { grid-column: span 6; }
+}
+
+@media (max-width: 700px) {
+  .card--featured,
+  .card--large,
+  .card--standard,
+  .card--video    { grid-column: span 12; }
+}
+
+/* ─── Media wrapper ─── */
+.card__media-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-2);
+  aspect-ratio: 16/9;
+}
+
+.card--featured .card__media-wrap {
+  aspect-ratio: 16/9;
+}
+
+.card__media-wrap img,
+.card__media-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-expo),
+              filter 0.4s;
+}
+
+.portfolio-card:hover .card__media-wrap img,
+.portfolio-card:hover .card__media-wrap video {
+  transform: scale(1.07);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+/* Media overlay gradient */
+.card__media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(7, 7, 14, 0.65) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--dur-med);
+  z-index: 1;
+}
+
+.portfolio-card:hover .card__media-overlay {
+  opacity: 1;
+}
+
+/* Media placeholder */
+.card__media-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-2), var(--purple-dim));
+}
+
+.card__media-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.2;
+  stroke: var(--cyan);
+}
+
+/* ─── Card body ─── */
+.card__body {
+  padding: 18px 20px 20px;
+}
+
+.card__tags-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  padding: 3px 9px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
+
+.tag--category {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+}
+
+.tag--featured {
+  background: rgba(255, 45, 120, 0.12);
+  color: var(--magenta);
+  border: 1px solid rgba(255, 45, 120, 0.3);
+}
+
+.tag--tech {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card__title {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  transition: color var(--dur-fast), text-shadow var(--dur-fast);
+}
+
+.portfolio-card:hover .card__title {
+  color: var(--cyan);
+  text-shadow: var(--glow-text);
+}
+
+.card__desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* ─── Card links (slide up on hover) ─── */
+.card__links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  transform: translateY(12px);
+  opacity: 0;
+  transition:
+    transform var(--dur-med) var(--ease-expo),
+    opacity var(--dur-fast);
+  transition-delay: 0.04s;
+}
+
+.portfolio-card:hover .card__links {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card__link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  padding: 5px 12px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 4px;
+  background: var(--cyan-dim);
+  transition: background var(--dur-fast), box-shadow var(--dur-fast);
+}
+
+.card__link-btn:hover {
+  background: rgba(0, 212, 255, 0.18);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+}
+
+.card__link-btn svg {
+  width: 11px;
+  height: 11px;
+  stroke: currentColor;
+}
+
+/* ─── Video card special ─── */
+.card--video .card__media-wrap {
+  cursor: pointer;
+}
+
+.card--video .card__media-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 212, 255, 0.15);
+  border: 2px solid rgba(0, 212, 255, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+  pointer-events: none;
+}
+
+.play-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--cyan);
+  margin-left: 3px;
+}
+
+.portfolio-card:hover .play-icon {
+  background: rgba(0, 212, 255, 0.28);
+  transform: translate(-50%, -50%) scale(1.1);
+}
