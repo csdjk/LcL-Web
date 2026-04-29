@@ -323,6 +323,12 @@ body {
   color: var(--text-primary);
 }
 
+.bio-cyan {
+  color: var(--cyan);
+  text-shadow: var(--glow-text);
+  font-weight: 700;
+}
+
 /* Skills 2×2 grid */
 .skills-grid {
   display: grid;
@@ -367,6 +373,13 @@ body {
   color: var(--cyan);
   border-color: var(--cyan);
   background: rgba(0, 212, 255, 0.1);
+}
+
+.skill-tag--highlight {
+  color: var(--cyan);
+  border-color: rgba(0, 212, 255, 0.6);
+  background: rgba(0, 212, 255, 0.12);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
 }
 
 /* ─────────────────────────────────────────

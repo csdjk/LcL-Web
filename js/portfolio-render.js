@@ -188,15 +188,14 @@ function initFilters() {
       document.querySelectorAll('.portfolio-card').forEach(card => {
         const match = cat === 'all' || card.dataset.category === cat;
         if (typeof gsap !== 'undefined') {
-          gsap.to(card, {
-            opacity: match ? 1 : 0.15,
-            scale: match ? 1 : 0.94,
-            duration: 0.3,
-            ease: 'power2.out',
-            pointerEvents: match ? 'auto' : 'none',
-          });
+          if (match) {
+            card.style.display = '';
+            gsap.fromTo(card, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
+          } else {
+            gsap.to(card, { opacity: 0, y: 10, duration: 0.2, ease: 'power2.in', onComplete: () => { card.style.display = 'none'; }, pointerEvents: 'none' });
+          }
         } else {
-          card.style.opacity = match ? '1' : '0.15';
+          card.style.display = match ? '' : 'none';
         }
       });
     });
