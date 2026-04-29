@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.stat-item').forEach((el, i) => {
     gsap.to(el, {
       opacity: 1,
-      x: 0,
+      y: 0,
       duration: 0.7,
       delay: i * 0.12,
       ease: 'power3.out',
@@ -109,24 +109,28 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTrigger: { trigger: '.about-bio', start: 'top 88%' },
   });
 
-  gsap.to('.skills-title', {
-    opacity: 1,
-    duration: 0.6,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.skills-title', start: 'top 92%' },
-  });
-
-  gsap.to('.skill-tag', {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 0.5,
-    stagger: 0.055,
-    ease: 'back.out(1.4)',
-    scrollTrigger: {
-      trigger: '.skills-tags',
-      start: 'top 88%',
-    },
+  document.querySelectorAll('.skills-group').forEach(group => {
+    const title = group.querySelector('.skills-title');
+    const tags  = group.querySelectorAll('.skill-tag');
+    if (title) {
+      gsap.to(title, {
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: group, start: 'top 90%' },
+      });
+    }
+    if (tags.length) {
+      gsap.to(tags, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.045,
+        ease: 'back.out(1.4)',
+        scrollTrigger: { trigger: group, start: 'top 88%' },
+      });
+    }
   });
 
   // ── Portfolio filter bar ──────────────────────────────────
