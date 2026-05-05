@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!heroSubWrap) return;
     gsap.to(heroSubWrap, { opacity: 1, duration: 0.4 });
     if (!heroSub) return;
-    const full = 'Game Technical Artist · 渲染向TA';
+    const full = 'Game Technical Artist · 游戏技术美术';
     let i = 0;
     heroSub.textContent = '';
 
