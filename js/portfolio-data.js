@@ -882,13 +882,12 @@ const PORTFOLIO = [
   },
 
   // ══════════════════════════════════════════════
-  //  游戏实践
+  //  图形学
   // ══════════════════════════════════════════════
-
   {
     id: 'g136',
-    category: 'production',
-    categoryLabel: '游戏实践',
+    category: 'character',
+    categoryLabel: '角色渲染',
     size: 'video',
     title: 'G136 游戏材质实践',
     titleEn: 'In-Game Material Production',

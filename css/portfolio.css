@@ -10,16 +10,30 @@
   cursor: pointer;
   opacity: 0;
   transform: translateY(60px);
+  /* Note: transform is driven by card-tilt.js on hover; CSS transition only
+     for non-JS fallback (initial load animation via GSAP). */
   transition:
-    transform var(--dur-med) var(--ease-expo),
     box-shadow var(--dur-med) var(--ease-smooth),
     border-color var(--dur-med);
+  will-change: transform;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-10px);
+  /* translateY lift is now handled by card-tilt.js via translateZ */
   box-shadow: var(--glow-card), var(--glow-cyan);
   border-color: rgba(0, 212, 255, 0.5);
+}
+
+/* ─── Holographic glare overlay (injected by card-tilt.js) ─── */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  mix-blend-mode: screen;
 }
 
 /* Corner accents */
