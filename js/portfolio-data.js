@@ -587,7 +587,7 @@ const PORTFOLIO = [
     "size": "standard",
     "title": "薄膜干涉",
     "titleEn": "Thin-Film Interference",
-    "desc": "基于光程差计算的薄膜干涉效果，模拟肥皂泡、镭射布料、彩虹油膜等多彩渐变光学现象。",
+    "desc": "薄膜干涉效果，模拟肥皂泡、镭射布料、彩虹油膜等多彩渐变光学现象。",
     "gallery": [
       {
         "type": "grid",
