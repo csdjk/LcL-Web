@@ -30,7 +30,14 @@
   }
 
   function loadPort() {
-    return JSON.parse(JSON.stringify(PORTFOLIO));
+    const data  = JSON.parse(JSON.stringify(PORTFOLIO));
+    const order = typeof PORTFOLIO_ORDER !== 'undefined' ? PORTFOLIO_ORDER : [];
+    const indexMap = new Map(order.map((id, i) => [id, i]));
+    return data.sort((a, b) => {
+      const ia = indexMap.has(a.id) ? indexMap.get(a.id) : 9999;
+      const ib = indexMap.has(b.id) ? indexMap.get(b.id) : 9999;
+      return ia - ib;
+    });
   }
 
   // ── File System Access (upload to assets/) ───────────────────────────────
@@ -137,19 +144,25 @@
       const assetsH = await root.getDirectoryHandle('assets');
       const dirs = filterType === 'video'
         ? [{ name: 'videos', type: 'video' }]
-        : filterType === 'image'
-          ? [{ name: 'images', type: 'image' }]
-          : [{ name: 'images', type: 'image' }, { name: 'videos', type: 'video' }];
+        : filterType === 'image-animated'
+          ? [{ name: 'images-animated', type: 'image' }]
+          : filterType === 'image-static'
+            ? [{ name: 'images', type: 'image' }]
+            : filterType === 'image'
+              ? [{ name: 'images', type: 'image' }, { name: 'images-animated', type: 'image' }]
+              : [{ name: 'images', type: 'image' }, { name: 'images-animated', type: 'image' }, { name: 'videos', type: 'video' }];
       for (const { name, type } of dirs) {
         try {
           const dirH = await assetsH.getDirectoryHandle(name);
           for await (const [fname, fh] of dirH.entries()) {
             if (fh.kind !== 'file') continue;
             const ext = fname.split('.').pop().toLowerCase();
-            const isImg = /^(png|jpg|jpeg|gif|webp|svg)$/.test(ext);
-            const isVid = /^(mp4|webm|mov|avi)$/.test(ext);
-            if (!isImg && !isVid) continue;
-            result.push({ name: fname, path: `assets/${name}/${fname}`, type: isVid ? 'video' : 'image' });
+            const isVid     = /^(mp4|webm|mov|avi)$/.test(ext);
+            const isAnimImg = /^(gif|avif)$/.test(ext);
+            const isStatImg = /^(png|jpg|jpeg|webp|svg)$/.test(ext);
+            if (!isVid && !isAnimImg && !isStatImg) continue;
+            const subtype = isVid ? 'video' : isAnimImg ? 'image-animated' : 'image-static';
+            result.push({ name: fname, path: `assets/${name}/${fname}`, type: isVid ? 'video' : 'image', subtype, ext });
           }
         } catch(e) { /* subdir may not exist */ }
       }
@@ -173,18 +186,26 @@
           <span class="ab-title">📂 选择资源</span>
           <div class="ab-tabs">
             <button class="ab-tab" data-type="all">全部</button>
-            <button class="ab-tab" data-type="image">图片</button>
+            <button class="ab-tab" data-type="image-static">静态图</button>
+            <button class="ab-tab" data-type="image-animated">动态图</button>
             <button class="ab-tab" data-type="video">视频</button>
           </div>
           <button class="ab-close">✕</button>
+        </div>
+        <div class="ab-search-wrap">
+          <input class="ab-search" type="text" placeholder="搜索文件名…">
         </div>
         <div class="ab-body"><div class="ab-loading">正在扫描 assets/ 目录…</div></div>
       </div>`;
     ov.classList.add('open');
 
     const abBody = ov.querySelector('.ab-body');
-    let activeType = filterType;
+    const abSearch = ov.querySelector('.ab-search');
+    let activeType = filterType === 'image' ? 'image-static' : filterType;
     let allItems = [];
+    let searchQ = '';
+
+    abSearch.addEventListener('input', () => { searchQ = abSearch.value.toLowerCase(); renderGrid(); });
 
     ov.querySelectorAll('.ab-tab').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.type === activeType);
@@ -198,7 +219,11 @@
     ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
 
     function renderGrid() {
-      const list = allItems.filter(it => activeType === 'all' || it.type === activeType);
+      const list = allItems.filter(it => {
+        const typeMatch = activeType === 'all' || it.subtype === activeType;
+        const nameMatch = !searchQ || it.name.toLowerCase().includes(searchQ);
+        return typeMatch && nameMatch;
+      });
       abBody.innerHTML = '';
       if (!list.length) {
         abBody.innerHTML = '<div class="ab-empty">该目录下暂无资源文件<br><small>请先通过拖拽上传文件后刷新</small></div>';
@@ -217,12 +242,12 @@
           card.appendChild(v);
         } else {
           const img = document.createElement('img');
-          img.src = item.path; img.alt = item.name;
+          img.src = item.path; img.alt = item.name; img.decoding = 'async';
           card.appendChild(img);
         }
         const badge = document.createElement('span');
         badge.className = 'ab-type-badge';
-        badge.textContent = item.type === 'video' ? '▶' : '■';
+        badge.textContent = item.subtype === 'video' ? '▶' : item.subtype === 'image-animated' ? 'GIF' : item.ext?.toUpperCase() || '■';
         card.appendChild(badge);
         const nm = document.createElement('span');
         nm.className = 'ab-card-name';
@@ -463,12 +488,19 @@
 
   // ── Portfolio list ────────────────────────────────────────────────────────
   function renderPortfolioList(filter = '') {
+    const _t0 = performance.now();
     const c = document.getElementById('portfolio-list');
     c.innerHTML = '';
     const q = filter.toLowerCase();
 
+    // Track drag state at container level to avoid per-card querySelectorAll
     let dragSrcIdx = null;
+    let dragOverCard = null;
 
+    // Build visible index map: visibleCards[vi] = { portIdx, cardEl }
+    const visibleCards = [];
+
+    const _tDomStart = performance.now();
     port.forEach((p, i) => {
       if (q && !p.title.toLowerCase().includes(q) && !(p.id||'').toLowerCase().includes(q)) return;
       const catLabel = CAT_OPTIONS.find(o => o.value === p.category)?.label || p.category;
@@ -476,18 +508,27 @@
       const card = document.createElement('div');
       card.className = 'p-item';
       card.draggable = true;
+      const vi = visibleCards.length; // visible index for this card
+      visibleCards.push({ portIdx: i, cardEl: card });
 
-      // Thumbnail
-      const thumbSrc = p.cover || p.gallery?.find(g => g.type === 'image')?.src || null;
+      // Thumbnail — prefer static image; fall back to video (load on hover to avoid scroll jank)
+      const thumbSrc = p.gallery?.find(g => g.type === 'image')?.src
+                    || p.gallery?.find(g => g.type === 'compare')?.before?.src
+                    || null;
       const thumbVideoSrc = !thumbSrc ? (p.gallery?.find(g => g.type === 'video')?.src || null) : null;
       if (thumbSrc) {
         const img = document.createElement('img');
-        img.className = 'p-item-thumb'; img.src = thumbSrc; img.alt = ''; img.loading = 'lazy';
+        img.className = 'p-item-thumb'; img.alt = ''; img.decoding = 'async';
         img.onerror = () => { img.style.opacity = '0.15'; };
+        // Use 1px placeholder + IntersectionObserver — same as index.html
+        // Prevents all avif files from decoding simultaneously on load
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        img.dataset.src = thumbSrc;
         card.appendChild(img);
       } else if (thumbVideoSrc) {
         const v = document.createElement('video');
-        v.className = 'p-item-thumb'; v.src = thumbVideoSrc; v.muted = true; v.preload = 'metadata';
+        v.className = 'p-item-thumb'; v.muted = true; v.preload = 'metadata';
+        v.src = thumbVideoSrc;
         card.appendChild(v);
       } else {
         const nd = document.createElement('div');
@@ -517,40 +558,73 @@
       body.appendChild(actions);
       card.appendChild(body);
 
-      // Drag-and-drop
+      // Drag-and-drop (use vi for visible-list reorder, then rebuild port order)
       card.addEventListener('dragstart', e => {
-        dragSrcIdx = i;
+        dragSrcIdx = vi;
         card.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
       });
       card.addEventListener('dragend', () => {
         dragSrcIdx = null;
         card.classList.remove('dragging');
-        c.querySelectorAll('.p-item').forEach(el => el.classList.remove('drag-over'));
+        if (dragOverCard) { dragOverCard.classList.remove('drag-over'); dragOverCard = null; }
       });
       card.addEventListener('dragover', e => {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
-        if (dragSrcIdx !== null && dragSrcIdx !== i) {
-          c.querySelectorAll('.p-item').forEach(el => el.classList.remove('drag-over'));
+        if (dragSrcIdx !== null && dragSrcIdx !== vi) {
+          if (dragOverCard && dragOverCard !== card) dragOverCard.classList.remove('drag-over');
+          dragOverCard = card;
           card.classList.add('drag-over');
         }
       });
-      card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+      card.addEventListener('dragleave', e => {
+        // Only remove if truly leaving this card (not entering a child)
+        if (!card.contains(e.relatedTarget)) {
+          card.classList.remove('drag-over');
+          if (dragOverCard === card) dragOverCard = null;
+        }
+      });
       card.addEventListener('drop', e => {
         e.preventDefault();
-        if (dragSrcIdx === null || dragSrcIdx === i) return;
-        const item = port.splice(dragSrcIdx, 1)[0];
-        port.splice(i, 0, item);
+        card.classList.remove('drag-over');
+        if (dragOverCard === card) dragOverCard = null;
+        if (dragSrcIdx === null || dragSrcIdx === vi) return;
+        // Reorder port[] using the visible card mapping
+        const srcPortIdx  = visibleCards[dragSrcIdx].portIdx;
+        const dstPortIdx  = visibleCards[vi].portIdx;
+        const item = port.splice(srcPortIdx, 1)[0];
+        const newDst = srcPortIdx < dstPortIdx ? dstPortIdx - 1 : dstPortIdx;
+        port.splice(newDst, 0, item);
         renderPortfolioList(filter);
       });
 
       c.appendChild(card);
     });
+    console.log(`[perf] renderPortfolioList — DOM build: ${(performance.now()-_tDomStart).toFixed(1)}ms | total items: ${port.length} | visible: ${visibleCards.length}`);
 
     if (!c.children.length) {
       c.innerHTML = '<div style="color:var(--text3);padding:20px;text-align:center;grid-column:1/-1;">暂无匹配作品</div>';
+      console.log(`[perf] renderPortfolioList — total (no results): ${(performance.now()-_t0).toFixed(1)}ms`);
+      return;
     }
+
+    // Lazy-load thumbnails via IntersectionObserver (same strategy as index.html)
+    // Prevents all avif animations from decoding simultaneously
+    const lazyImgs = c.querySelectorAll('img[data-src]');
+    if (lazyImgs.length) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const img = entry.target;
+          img.src = img.dataset.src;
+          delete img.dataset.src;
+          obs.unobserve(img);
+        });
+      }, { rootMargin: '120px' });
+      lazyImgs.forEach(img => obs.observe(img));
+    }
+    console.log(`[perf] renderPortfolioList — TOTAL: ${(performance.now()-_t0).toFixed(1)}ms`);
   }
 
   document.getElementById('portfolio-search').addEventListener('input', e => renderPortfolioList(e.target.value));
@@ -558,15 +632,18 @@
 
   // ── Portfolio modal ────────────────────────────────────────────────────────
   function openModal(idx) {
+    const _t0 = performance.now();
     editingIdx = idx;
     const p = idx >= 0 ? JSON.parse(JSON.stringify(port[idx])) : {
       id: '', category: 'character', categoryLabel: '角色渲染', size: 'standard',
-      title: '', titleEn: '', desc: '', cover: null, primaryVideo: '',
+      title: '', titleEn: '', desc: '', primaryVideo: '',
       webDemo: '', gallery: [], links: [], tags: [], featured: false,
     };
+    console.log(`[perf] openModal(${idx}) — deepClone: ${(performance.now()-_t0).toFixed(1)}ms | gallery items: ${p.gallery?.length ?? 0}`);
     document.getElementById('modal-title').textContent = idx >= 0 ? '编辑作品' : '新建作品';
     buildModalForm(p);
     document.getElementById('edit-modal').classList.add('open');
+    console.log(`[perf] openModal(${idx}) — TOTAL: ${(performance.now()-_t0).toFixed(1)}ms`);
   }
 
   function closeModal() { document.getElementById('edit-modal').classList.remove('open'); }
@@ -575,6 +652,7 @@
   document.getElementById('edit-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
 
   function buildModalForm(p) {
+    const _t0 = performance.now();
     const body = document.getElementById('modal-body');
     body.innerHTML = '';
 
@@ -618,14 +696,19 @@
       badge.textContent = type === 'video' ? '▶' : '■';
       if (type === 'video') {
         const v = document.createElement('video');
-        v.src = src; v.muted = true; v.loop = true; v.preload = 'metadata';
+        // Defer src until first hover to avoid loading all videos upfront
+        v.muted = true; v.loop = true; v.preload = 'none';
         v.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
-        v.addEventListener('mouseenter', () => v.play().catch(() => {}));
+        let srcLoaded = false;
+        v.addEventListener('mouseenter', () => {
+          if (!srcLoaded) { v.src = src; srcLoaded = true; }
+          v.play().catch(() => {});
+        });
         v.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
         div.appendChild(v);
       } else {
         const img = document.createElement('img');
-        img.src = src; img.alt = label;
+        img.src = src; img.alt = label; img.decoding = 'async';
         img.onerror = () => { img.style.opacity = '0.15'; };
         div.appendChild(img);
       }
@@ -685,17 +768,9 @@
     });
 
     function refreshPreview() {
+      const _tp = performance.now();
       strip.innerHTML = '';
-      const coverVal = document.getElementById('f-cover')?.value || p.cover || '';
       const gRows = galleryListRef ? galleryListRef.getRows() : (p.gallery || []);
-
-      if (coverVal) {
-        strip.appendChild(makeThumb(coverVal, 'image', '封面', () => {
-          const inp = document.getElementById('f-cover');
-          if (inp) inp.value = '';
-          refreshPreview();
-        }));
-      }
 
       gRows.forEach((item, idx) => {
         if (item.type === 'grid') {
@@ -724,6 +799,7 @@
       });
 
       strip.appendChild(dropSlot);
+      console.log(`[perf] refreshPreview — ${gRows.length} items: ${(performance.now()-_tp).toFixed(1)}ms`);
     }
 
     // Basic info
@@ -748,17 +824,14 @@
 
     // Assets
     addSep(body, '资源路径');
-    const r5 = addRow(body, 'cols2');
-    const coverField = addField(r5, '封面图片 (cover)', 'f-cover', 'text', p.cover || '');
-    addFieldBrowseBtn(coverField, 'f-cover', 'image', () => refreshPreview());
-    const videoField = addField(r5, '主视频 (primaryVideo)', 'f-video', 'text', p.primaryVideo || '');
-    addFieldBrowseBtn(videoField, 'f-video', 'video', () => {});
     const r6 = addRow(body, '');
     addField(r6, 'Web Demo 链接', 'f-web-demo', 'text', p.webDemo || '');
 
-    // Gallery
-    addSep(body, '图库 (gallery)');
+    // Gallery → 资源库
+    addSep(body, '资源库 (gallery)');
+    const _tGallery = performance.now();
     galleryListRef = buildGalleryList(body, p.gallery || []);
+    console.log(`[perf] buildModalForm — buildGalleryList (${(p.gallery||[]).length} items): ${(performance.now()-_tGallery).toFixed(1)}ms`);
     const galleryList = () => galleryListRef.getRows();
 
     // Links
@@ -814,8 +887,7 @@
         title:         document.getElementById('f-title').value,
         titleEn:       document.getElementById('f-title-en').value,
         desc:          document.getElementById('f-desc').value,
-        cover:         document.getElementById('f-cover').value || null,
-        primaryVideo:  document.getElementById('f-video').value || undefined,
+        primaryVideo:  p.primaryVideo || undefined,
         webDemo:       document.getElementById('f-web-demo').value || undefined,
         gallery:       galleryList(),
         links:         linksList(),
@@ -835,7 +907,10 @@
     };
 
     // Initial preview (build after galleryListRef is set)
+    const _tPreview = performance.now();
     refreshPreview();
+    console.log(`[perf] buildModalForm — refreshPreview: ${(performance.now()-_tPreview).toFixed(1)}ms`);
+    console.log(`[perf] buildModalForm — TOTAL: ${(performance.now()-_t0).toFixed(1)}ms`);
   }
 
   // ── Modal form helpers ────────────────────────────────────────────────────
@@ -975,7 +1050,7 @@
         div.appendChild(v);
       } else {
         const img = document.createElement('img');
-        img.src = src; img.alt = '';
+        img.src = src; img.alt = ''; img.decoding = 'async';
         img.onerror = () => { img.style.opacity = '0.15'; };
         div.appendChild(img);
       }
@@ -1433,7 +1508,7 @@
     });
     body.appendChild(saveBtn);
 
-    // ── Live preview iframe ───────────────────────────────────────
+    // ── Live preview iframe (lazy-loaded on demand) ───────────────────
     const pvLabel = document.createElement('div');
     pvLabel.className = 'bg-section-label';
     pvLabel.style.marginTop = '24px';
@@ -1442,15 +1517,27 @@
 
     const pvWrap = document.createElement('div');
     pvWrap.style.cssText = 'position:relative;width:100%;height:260px;border-radius:12px;overflow:hidden;' +
-      'border:1px solid var(--border);background:#050510;';
+      'border:1px solid var(--border);background:#050510;display:flex;align-items:center;justify-content:center;';
 
-    const pvIframe = document.createElement('iframe');
-    pvIframe.src = 'index.html';
-    pvIframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;display:block;';
-    pvIframe.setAttribute('scrolling', 'no');
-    pvWrap.appendChild(pvIframe);
+    // Placeholder until user clicks load
+    const pvPlaceholder = document.createElement('button');
+    pvPlaceholder.className = 'btn-secondary';
+    pvPlaceholder.textContent = '▶ 点击加载预览';
+    pvPlaceholder.style.cssText = 'font-size:12px;padding:8px 20px;cursor:pointer;';
+    pvWrap.appendChild(pvPlaceholder);
 
-    // translucent label strip over the preview
+    let pvIframe = null;
+
+    pvPlaceholder.addEventListener('click', () => {
+      pvPlaceholder.remove();
+      pvIframe = document.createElement('iframe');
+      pvIframe.src = 'index.html';
+      pvIframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;pointer-events:none;display:block;';
+      pvIframe.setAttribute('scrolling', 'no');
+      pvWrap.appendChild(pvIframe);
+      pvIframe.addEventListener('load', () => { setTimeout(syncPreview, 700); });
+    });
+
     const pvHint = document.createElement('div');
     pvHint.style.cssText = 'position:absolute;bottom:0;left:0;right:0;padding:6px 12px;' +
       'background:rgba(0,0,0,0.55);backdrop-filter:blur(6px);' +
@@ -1461,13 +1548,14 @@
 
     // Define the real syncPreview after iframe is created
     syncPreview = () => {
+      if (!pvIframe) return;
       try {
         pvIframe.contentWindow.postMessage(
           { type: 'lcl-bg-preview', cfg: JSON.parse(JSON.stringify(bgCfg)) }, '*'
         );
       } catch(e) {}
     };
-    pvIframe.addEventListener('load', () => { setTimeout(syncPreview, 700); });
+    // No auto-load: user triggers it
   }
 
   // ── Security / change password ────────────────────────────────────────────
@@ -1578,5 +1666,40 @@
   initSecurity();
   initBgSettings();
   renderPortfolioList();
+
+  // ── Scroll perf probe ─────────────────────────────────────────────────────
+  // Detects long frames during scroll; remove after diagnosis
+  (function installScrollProbe() {
+    const scroller = document.querySelector('.content') || document.documentElement;
+    let scrollRafId = null;
+    let lastScrollT = 0;
+    scroller.addEventListener('scroll', () => {
+      const now = performance.now();
+      if (now - lastScrollT > 16) {
+        // Gap > 16ms between scroll events → frame drop
+        console.log(`[perf] scroll frame gap: ${(now - lastScrollT).toFixed(1)}ms`);
+      }
+      lastScrollT = now;
+
+      if (scrollRafId) return;
+      scrollRafId = requestAnimationFrame(() => {
+        scrollRafId = null;
+        // Use PerformanceObserver for long tasks (> 50ms)
+      });
+    }, { passive: true });
+
+    // Long task observer — fires whenever JS blocks >50ms
+    if (window.PerformanceObserver) {
+      try {
+        const po = new PerformanceObserver(list => {
+          list.getEntries().forEach(e => {
+            console.warn(`[perf] ⚠ LONG TASK: ${e.duration.toFixed(1)}ms @ ${e.startTime.toFixed(0)}ms — attribution:`, e.attribution?.[0]?.name || 'unknown');
+          });
+        });
+        po.observe({ type: 'longtask', buffered: true });
+        console.log('[perf] PerformanceObserver (longtask) installed');
+      } catch(e) { /* not supported */ }
+    }
+  })();
 
 })();

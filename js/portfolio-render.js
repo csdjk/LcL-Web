@@ -61,10 +61,7 @@ function buildCard(project) {
   if (project.primaryVideo && !allMedia.find(m => m.src === project.primaryVideo)) {
     allMedia.unshift({ type: 'video', src: project.primaryVideo, label: project.title });
   }
-  // Fallback: cover as last resort
-  if (allMedia.length === 0 && project.cover) {
-    allMedia.push({ type: 'image', src: project.cover, label: project.title });
-  }
+  // No cover fallback needed — gallery is the sole source
 
   // Find first compare item for card preview
   const firstCompare = !hasVideo && gallery.find(item => item.type === 'compare');
@@ -116,11 +113,11 @@ function buildCard(project) {
     }
     mediaWrap.appendChild(mosaicDiv);
 
-  } else if (project.cover) {
+  } else if (allImages.length === 1) {
     // ── Single image card ──
     const img = document.createElement('img');
     img.alt = project.title;
-    img.dataset.src = project.cover;
+    img.dataset.src = allImages[0].src;
     img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     imgObserver.observe(img);
     mediaWrap.appendChild(img);
@@ -216,15 +213,22 @@ function buildCard(project) {
   return card;
 }
 
-// ── Render all cards ──────────────────────────────────────
-function getPortfolioData() {
-  return typeof PORTFOLIO !== 'undefined' ? PORTFOLIO : [];
+// ── Portfolio sort order ──────────────────────────────────
+function getSortedPortfolioData() {
+  const data  = typeof PORTFOLIO       !== 'undefined' ? PORTFOLIO       : [];
+  const order = typeof PORTFOLIO_ORDER !== 'undefined' ? PORTFOLIO_ORDER : [];
+  const indexMap = new Map(order.map((id, i) => [id, i]));
+  return [...data].sort((a, b) => {
+    const ia = indexMap.has(a.id) ? indexMap.get(a.id) : 9999;
+    const ib = indexMap.has(b.id) ? indexMap.get(b.id) : 9999;
+    return ia - ib;
+  });
 }
 
 function renderPortfolio() {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
-  getPortfolioData().forEach(project => {
+  getSortedPortfolioData().forEach(project => {
     const card = buildCard(project);
     grid.appendChild(card);
   });
