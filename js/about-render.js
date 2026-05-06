@@ -1,11 +1,7 @@
-/* about-render.js — Apply localStorage site-config overrides to the About section.
-   Runs BEFORE scroll-anim.js so animations target the updated DOM. */
+/* about-render.js — Apply SITE_CONFIG to the About / Hero / Contact section. */
 (function () {
-  const raw = localStorage.getItem('lcl_site_config');
-  if (!raw) return; // no override, keep hardcoded HTML
-
-  let cfg;
-  try { cfg = JSON.parse(raw); } catch (e) { return; }
+  const cfg = typeof SITE_CONFIG !== 'undefined' ? SITE_CONFIG : null;
+  if (!cfg) return;
 
   // ── Hero ──────────────────────────────────────────────────
   const heroTag = document.querySelector('.hero-tag');

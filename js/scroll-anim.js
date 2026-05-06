@@ -4,16 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // ── Read hero config (localStorage override → SITE_CONFIG fallback) ────────
-  let _heroCfg = {};
-  try {
-    const _s = localStorage.getItem('lcl_site_config');
-    if (_s) _heroCfg = (JSON.parse(_s).hero) || {};
-  } catch(e) {}
+  // ── Read hero config from SITE_CONFIG ─────────────────────────────────────
   const _sc = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hero) || {};
-  const HERO_NAME_EN  = (_heroCfg.nameEn  || _sc.nameEn  || 'LI CHANGLONG').toUpperCase();
-  const HERO_NAME_ZH  = _heroCfg.nameZh   || _sc.nameZh  || '李　长　龙';
-  const HERO_TAG_TEXT = _heroCfg.tag      || _sc.tag      || 'Game Technical Artist';
+  const HERO_NAME_EN  = (_sc.nameEn  || 'LI CHANGLONG').toUpperCase();
+  const HERO_NAME_ZH  = _sc.nameZh   || '李　长　龙';
+  const HERO_TAG_TEXT = _sc.tag      || 'Game Technical Artist';
 
   // ── Hero entrance sequence ────────────────────────────────
   const heroNameEn  = document.querySelector('.hero-name-en');

@@ -119,3 +119,118 @@
     max-width: 95vw;
   }
 }
+
+/* ─────────────────────────────────────────
+   COMPARISON GRID (type: grid)
+───────────────────────────────────────── */
+.lb-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 4px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,212,255,0.3) transparent;
+}
+
+.lb-compare-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 70vw;
+}
+
+.lb-compare-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .lb-compare-grid,
+  .lb-compare-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 92vw;
+  }
+  .lb-compare-grid--2 {
+    max-width: 92vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .lb-compare-grid,
+  .lb-compare-grid--2,
+  .lb-compare-grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lb-compare-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lb-compare-item:hover {
+  border-color: rgba(0,212,255,0.35);
+  box-shadow: 0 0 14px rgba(0,212,255,0.12);
+}
+
+.lb-compare-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 0.25s, opacity 0.2s;
+  display: block;
+}
+
+.lb-compare-item img:hover {
+  transform: scale(1.03);
+  opacity: 0.92;
+}
+
+.lb-compare-label {
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  background: rgba(0,0,0,0.25);
+}
+
+/* Back button when zoomed into single image */
+.lb-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 6px;
+  background: rgba(0,212,255,0.07);
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.lb-back-btn:hover {
+  background: rgba(0,212,255,0.16);
+  box-shadow: var(--glow-cyan);
+}
+
+.lb-back-btn svg {
+  stroke: currentColor;
+}

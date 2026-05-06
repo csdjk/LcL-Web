@@ -26,19 +26,11 @@
   let editingIdx = -1; // index into port[] being edited in modal
 
   function loadCfg() {
-    try {
-      const s = localStorage.getItem('lcl_site_config');
-      if (s) return JSON.parse(s);
-    } catch(e) {}
-    return JSON.parse(JSON.stringify(SITE_CONFIG)); // deep clone default
+    return JSON.parse(JSON.stringify(SITE_CONFIG));
   }
 
   function loadPort() {
-    try {
-      const s = localStorage.getItem('lcl_portfolio');
-      if (s) return JSON.parse(s);
-    } catch(e) {}
-    return JSON.parse(JSON.stringify(PORTFOLIO)); // deep clone default
+    return JSON.parse(JSON.stringify(PORTFOLIO));
   }
 
   // ── File System Access (upload to assets/) ───────────────────────────────
@@ -305,8 +297,7 @@
   function setStatus(msg) {
     document.getElementById('status-text').textContent = msg;
   }
-  const hasOverride = localStorage.getItem('lcl_site_config') || localStorage.getItem('lcl_portfolio');
-  if (hasOverride) setStatus('⚡ 当前使用 localStorage 数据');
+  const hasOverride = false;
 
   // ── Hero page ─────────────────────────────────────────────────────────────
   function initHero() {
@@ -707,11 +698,29 @@
       }
 
       gRows.forEach((item, idx) => {
-        if (!item.src) return;
-        strip.appendChild(makeThumb(item.src, item.type || 'image', item.label || `#${idx + 1}`, () => {
-          galleryListRef.removeRow(idx);
-          refreshPreview();
-        }));
+        if (item.type === 'grid') {
+          // For grid items, show first image as thumb with grid badge
+          const firstImg = item.images && item.images[0];
+          if (!firstImg || !firstImg.src) return;
+          const thumb = makeThumb(firstImg.src, 'image', item.label || `对比组 #${idx + 1}`, () => {
+            galleryListRef.removeRow(idx);
+            refreshPreview();
+          });
+          // Add a small "grid" badge overlay
+          const gridBadge = document.createElement('span');
+          gridBadge.className = 'pt-type';
+          gridBadge.style.cssText = 'background:rgba(180,100,255,0.85);right:20px;left:auto;';
+          gridBadge.textContent = '⊞';
+          gridBadge.title = `对比图组 — ${item.images.length} 张`;
+          thumb.appendChild(gridBadge);
+          strip.appendChild(thumb);
+        } else {
+          if (!item.src) return;
+          strip.appendChild(makeThumb(item.src, item.type || 'image', item.label || `#${idx + 1}`, () => {
+            galleryListRef.removeRow(idx);
+            refreshPreview();
+          }));
+        }
       });
 
       strip.appendChild(dropSlot);
@@ -945,7 +954,11 @@
     const wrap = document.createElement('div');
     wrap.className = 'dyn-list';
     parent.appendChild(wrap);
-    let rows = items.map(item => Object.assign({}, item));
+    let rows = items.map(item => {
+      const r = Object.assign({}, item);
+      if (r.type === 'grid') r.images = (r.images || []).map(img => Object.assign({}, img));
+      return r;
+    });
 
     function makeMiniPreview(src, type) {
       const div = document.createElement('div');
@@ -969,57 +982,116 @@
       return div;
     }
 
+    // Render a sub-list of images inside a grid row
+    function buildGridImages(gridRow, imagesWrap) {
+      imagesWrap.innerHTML = '';
+      (gridRow.images || []).forEach((imgData, ii) => {
+        const imgRow = document.createElement('div');
+        imgRow.className = 'dyn-row dyn-grid-img-row';
+
+        const srcInp = document.createElement('input');
+        srcInp.type = 'text'; srcInp.value = imgData.src || '';
+        srcInp.placeholder = '图片路径'; srcInp.style.flex = '1'; srcInp.style.minWidth = '0';
+        srcInp.addEventListener('input', () => { gridRow.images[ii].src = srcInp.value; });
+        srcInp.addEventListener('blur', () => {
+          miniPv.innerHTML = '';
+          miniPv.appendChild(makeMiniPreview(imgData.src, 'image'));
+        });
+
+        const browseBtn = document.createElement('button');
+        browseBtn.type = 'button';
+        browseBtn.className = 'btn-field-browse';
+        browseBtn.style.cssText = 'position:static;width:26px;height:26px;flex-shrink:0;';
+        browseBtn.title = '从 assets 选取图片';
+        browseBtn.textContent = '📂';
+        browseBtn.addEventListener('click', () => {
+          openAssetBrowser((path) => {
+            srcInp.value = path; gridRow.images[ii].src = path;
+            miniPv.innerHTML = '';
+            miniPv.appendChild(makeMiniPreview(path, 'image'));
+          }, 'image');
+        });
+
+        const lblInp = document.createElement('input');
+        lblInp.type = 'text'; lblInp.value = imgData.label || '';
+        lblInp.placeholder = '标签名'; lblInp.style.width = '100px';
+        lblInp.addEventListener('input', () => { gridRow.images[ii].label = lblInp.value; });
+
+        const miniPv = document.createElement('div');
+        miniPv.style.cssText = 'display:flex;align-items:center;';
+        miniPv.appendChild(makeMiniPreview(imgData.src, 'image'));
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'btn-icon del';
+        delBtn.textContent = '✕';
+        delBtn.addEventListener('click', () => { gridRow.images.splice(ii, 1); buildGridImages(gridRow, imagesWrap); });
+
+        imgRow.appendChild(srcInp);
+        imgRow.appendChild(browseBtn);
+        imgRow.appendChild(lblInp);
+        imgRow.appendChild(miniPv);
+        imgRow.appendChild(delBtn);
+        imagesWrap.appendChild(imgRow);
+      });
+
+      const addImgEl = document.createElement('div');
+      addImgEl.className = 'dyn-add dyn-add-sm';
+      addImgEl.textContent = '+ 添加图片';
+      addImgEl.addEventListener('click', () => {
+        gridRow.images.push({ src: '', label: '' });
+        buildGridImages(gridRow, imagesWrap);
+      });
+      imagesWrap.appendChild(addImgEl);
+    }
+
     function render() {
       wrap.innerHTML = '';
       rows.forEach((row, ri) => {
+        const isGrid = row.type === 'grid';
         const rowEl = document.createElement('div');
-        rowEl.className = 'dyn-row';
+        rowEl.className = isGrid ? 'dyn-row dyn-row--grid-parent' : 'dyn-row';
+
+        const topLine = document.createElement('div');
+        topLine.className = 'dyn-row-topline';
 
         // Type select
         const typeSelect = document.createElement('select');
         typeSelect.style.width = '76px';
-        ['image', 'video'].forEach(v => {
+        ['image', 'video', 'grid'].forEach(v => {
           const opt = document.createElement('option');
           opt.value = v; opt.textContent = v;
           if (v === (row.type || 'image')) opt.selected = true;
           typeSelect.appendChild(opt);
         });
-        typeSelect.addEventListener('change', () => {
-          rows[ri].type = typeSelect.value;
-          preview.innerHTML = '';
-          preview.appendChild(makeMiniPreview(rows[ri].src, rows[ri].type));
-          // re-clone to refresh video
-          const clone = makeMiniPreview(rows[ri].src, rows[ri].type);
-          preview.innerHTML = '';
-          preview.appendChild(clone);
-        });
 
-        // Src input
+        // Grid-specific label input (shown for all types, but more prominent for grid)
+        const lblInp = document.createElement('input');
+        lblInp.type = 'text'; lblInp.value = row.label || '';
+        lblInp.placeholder = isGrid ? '对比组标题' : '标题'; lblInp.style.width = '110px';
+        lblInp.addEventListener('input', () => { rows[ri].label = lblInp.value; });
+
+        // Src input (hidden for grid)
         const srcInp = document.createElement('input');
         srcInp.type = 'text'; srcInp.value = row.src || '';
         srcInp.placeholder = '路径 / URL'; srcInp.style.flex = '1'; srcInp.style.minWidth = '0';
+        srcInp.style.display = isGrid ? 'none' : '';
         srcInp.addEventListener('input', () => { rows[ri].src = srcInp.value; });
-        srcInp.addEventListener('blur', () => {
-          preview.innerHTML = '';
-          preview.appendChild(makeMiniPreview(rows[ri].src, rows[ri].type));
-        });
 
-        // Label input
-        const lblInp = document.createElement('input');
-        lblInp.type = 'text'; lblInp.value = row.label || '';
-        lblInp.placeholder = '标题'; lblInp.style.width = '110px';
-        lblInp.addEventListener('input', () => { rows[ri].label = lblInp.value; });
-
-        // Mini preview
         const preview = document.createElement('div');
         preview.style.cssText = 'display:flex;align-items:center;';
-        preview.appendChild(makeMiniPreview(row.src, row.type));
+        if (!isGrid) {
+          srcInp.addEventListener('blur', () => {
+            preview.innerHTML = '';
+            preview.appendChild(makeMiniPreview(rows[ri].src, rows[ri].type));
+          });
+          preview.appendChild(makeMiniPreview(row.src, row.type));
+        }
 
-        // Browse from assets
+        // Browse from assets (hidden for grid)
         const browseBtn = document.createElement('button');
         browseBtn.type = 'button';
         browseBtn.className = 'btn-field-browse';
-        browseBtn.style.cssText = 'position:static;width:26px;height:26px;flex-shrink:0;';
+        browseBtn.style.cssText = `position:static;width:26px;height:26px;flex-shrink:0;${isGrid ? 'display:none;' : ''}`;
         browseBtn.title = '从 assets 目录中选取';
         browseBtn.textContent = '📂';
         browseBtn.addEventListener('click', () => {
@@ -1037,25 +1109,62 @@
         delBtn.textContent = '✕';
         delBtn.addEventListener('click', () => { rows.splice(ri, 1); render(); });
 
-        rowEl.appendChild(typeSelect);
-        rowEl.appendChild(srcInp);
-        rowEl.appendChild(browseBtn);
-        rowEl.appendChild(lblInp);
-        rowEl.appendChild(preview);
-        rowEl.appendChild(delBtn);
+        // Type change handler
+        typeSelect.addEventListener('change', () => {
+          const newType = typeSelect.value;
+          const wasGrid = rows[ri].type === 'grid';
+          rows[ri].type = newType;
+          if (newType === 'grid') {
+            if (!rows[ri].images) rows[ri].images = [];
+            delete rows[ri].src;
+          } else {
+            if (wasGrid) delete rows[ri].images;
+            if (!rows[ri].src) rows[ri].src = '';
+          }
+          render();
+        });
+
+        topLine.appendChild(typeSelect);
+        topLine.appendChild(srcInp);
+        topLine.appendChild(browseBtn);
+        topLine.appendChild(lblInp);
+        topLine.appendChild(preview);
+        topLine.appendChild(delBtn);
+        rowEl.appendChild(topLine);
+
+        // Images sub-list for grid type
+        if (isGrid) {
+          const imagesWrap = document.createElement('div');
+          imagesWrap.className = 'dyn-grid-images';
+          buildGridImages(rows[ri], imagesWrap);
+          rowEl.appendChild(imagesWrap);
+        }
+
         wrap.appendChild(rowEl);
       });
 
       const addEl = document.createElement('div');
       addEl.className = 'dyn-add';
-      addEl.textContent = '+ 添加图库项';
-      addEl.addEventListener('click', () => { rows.push({ type: 'image', src: '', label: '' }); render(); });
+      addEl.innerHTML = `
+        <span class="dyn-add-opt" data-type="image">+ 图片/视频</span>
+        <span class="dyn-add-sep">·</span>
+        <span class="dyn-add-opt" data-type="grid">⊞ 对比图组</span>`;
+      addEl.querySelector('[data-type="image"]').addEventListener('click', () => {
+        rows.push({ type: 'image', src: '', label: '' }); render();
+      });
+      addEl.querySelector('[data-type="grid"]').addEventListener('click', () => {
+        rows.push({ type: 'grid', label: '对比', images: [{ src: '', label: '' }] }); render();
+      });
       wrap.appendChild(addEl);
     }
 
     render();
     return {
-      getRows:   () => rows.map(r => Object.assign({}, r)),
+      getRows:   () => rows.map(r => {
+        const copy = Object.assign({}, r);
+        if (copy.type === 'grid') copy.images = (copy.images || []).map(img => Object.assign({}, img));
+        return copy;
+      }),
       addRow:    (row) => { rows.push(Object.assign({}, row)); render(); },
       removeRow: (idx) => { rows.splice(idx, 1); render(); },
     };
@@ -1328,59 +1437,62 @@
     });
   }
 
-  // ── Save to localStorage ──────────────────────────────────────────────────
-  document.getElementById('btn-save').addEventListener('click', () => {
-    collectHero();
-    collectAbout();
-    collectContact();
-    localStorage.setItem('lcl_site_config', JSON.stringify(cfg));
-    localStorage.setItem('lcl_portfolio', JSON.stringify(port));
-    setStatus('⚡ 已保存到 localStorage');
+  // ── Save JS + Preview ────────────────────────────────────────────────────
+  document.getElementById('btn-save').addEventListener('click', async () => {
+    if (!rootDirHandle) {
+      toast('请先点击顶栏「📁 授权项目目录」按钮，选择 LcL-Web 根目录', '#ff9944');
+      return;
+    }
+    collectHero(); collectAbout(); collectContact();
+    await Promise.all([
+      exportJsFile('site-config.js', `const SITE_CONFIG = ${JSON.stringify(cfg, null, 2)};\n`),
+      exportJsFile('portfolio-data.js', `const PORTFOLIO = ${JSON.stringify(port, null, 2)};\n`),
+    ]);
     toast('✓ 已保存！正在打开预览…');
     window.open('index.html', '_blank');
   });
 
-  // ── Reset localStorage ────────────────────────────────────────────────────
+  // ── Reset to defaults ─────────────────────────────────────────────────────
   document.getElementById('btn-reset').addEventListener('click', () => {
-    if (!confirm('清除所有 localStorage 覆盖数据？主页将恢复为 JS 文件内容。')) return;
-    localStorage.removeItem('lcl_site_config');
-    localStorage.removeItem('lcl_portfolio');
+    if (!confirm('重置所有内容为 JS 默认值？')) return;
     cfg  = loadCfg();
     port = loadPort();
     initHero(); initAbout(); initContact();
     renderPortfolioList();
-    setStatus('已清除，使用默认 JS 数据');
-    toast('已清除覆盖', '#ff9944');
+    setStatus('已重置为默认数据');
+    toast('已重置', '#ff9944');
   });
 
-  // ── Export JS files ───────────────────────────────────────────────────────
-  async function exportFile(filename, content) {
-    // Try writing directly to project root if authorized
+  // ── Export JS files to js/ ────────────────────────────────────────────────
+  async function exportJsFile(filename, content) {
     if (rootDirHandle) {
       try {
-        const fh = await rootDirHandle.getFileHandle(filename, { create: true });
+        const jsDir = await rootDirHandle.getDirectoryHandle('js', { create: false });
+        const fh = await jsDir.getFileHandle(filename, { create: true });
         const writable = await fh.createWritable();
         await writable.write(content);
         await writable.close();
-        toast(`✓ 已直接写入 ${filename}`);
+        toast(`✓ 已写入 js/${filename}`);
         return;
       } catch(e) {
         toast(`写入失败，改为下载: ${e.message}`, '#ff9944');
       }
     }
-    // Fallback: browser download
-    downloadFile(filename, content);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([content], { type: 'text/javascript' }));
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast(`↓ 已下载 ${filename}，上传到服务器 js/ 目录覆盖即可`);
   }
 
   document.getElementById('btn-export-site').addEventListener('click', () => {
     collectHero(); collectAbout(); collectContact();
-    const content = `/* site-config.js — generated by Admin Panel */\n\nconst SITE_CONFIG = ${JSON.stringify(cfg, null, 2)};\n`;
-    exportFile('site-config.js', content);
+    exportJsFile('site-config.js', `const SITE_CONFIG = ${JSON.stringify(cfg, null, 2)};\n`);
   });
 
   document.getElementById('btn-export-portfolio').addEventListener('click', () => {
-    const content = `/* portfolio-data.js — generated by Admin Panel */\n\nconst PORTFOLIO = ${JSON.stringify(port, null, 2)};\n`;
-    exportFile('portfolio-data.js', content);
+    exportJsFile('portfolio-data.js', `const PORTFOLIO = ${JSON.stringify(port, null, 2)};\n`);
   });
 
   function downloadFile(filename, content) {

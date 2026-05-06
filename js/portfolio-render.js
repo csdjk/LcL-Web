@@ -34,6 +34,7 @@ function buildCard(project) {
 
   const firstGalleryItem = project.gallery?.[0];
   const hasVideo = project.primaryVideo || firstGalleryItem?.type === 'video';
+  const hasCompareGrid = !hasVideo && firstGalleryItem?.type === 'grid';
 
   if (hasVideo) {
     // ── Video card ──
@@ -55,6 +56,26 @@ function buildCard(project) {
     // Hover: muted preview autoplay
     card.addEventListener('mouseenter', () => vid.play().catch(() => {}));
     card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+
+  } else if (hasCompareGrid) {
+    // ── Mosaic preview for compare-grid projects ──
+    const mosaicDiv = document.createElement('div');
+    mosaicDiv.className = 'card__mosaic';
+    const previewImgs = firstGalleryItem.images.slice(0, 4);
+    previewImgs.forEach(imgData => {
+      const img = document.createElement('img');
+      img.alt = imgData.label || '';
+      img.dataset.src = imgData.src;
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+      imgObserver.observe(img);
+      mosaicDiv.appendChild(img);
+    });
+    // Badge showing image count
+    const badge = document.createElement('div');
+    badge.className = 'card__mosaic-badge';
+    badge.textContent = `${firstGalleryItem.images.length} 张对比`;
+    mosaicDiv.appendChild(badge);
+    mediaWrap.appendChild(mosaicDiv);
 
   } else if (project.cover) {
     // ── Image card ──
@@ -168,30 +189,12 @@ function buildCard(project) {
 
 // ── Render all cards ──────────────────────────────────────
 function getPortfolioData() {
-  try {
-    const s = localStorage.getItem('lcl_portfolio');
-    if (s) {
-      const saved = JSON.parse(s);
-      // Merge webDemo + links from source PORTFOLIO (edited in portfolio-data.js)
-      // so local file changes always take effect even with a localStorage override.
-      if (typeof PORTFOLIO !== 'undefined') {
-        saved.forEach(item => {
-          const src = PORTFOLIO.find(p => p.id === item.id);
-          if (!src) return;
-          if (src.webDemo !== undefined) item.webDemo = src.webDemo;
-          if (src.links   !== undefined) item.links   = src.links;
-        });
-      }
-      return saved;
-    }
-  } catch(e) {}
   return typeof PORTFOLIO !== 'undefined' ? PORTFOLIO : [];
 }
 
 function renderPortfolio() {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
-
   getPortfolioData().forEach(project => {
     const card = buildCard(project);
     grid.appendChild(card);

@@ -183,6 +183,45 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
   transition: color .15s;
 }
 .dyn-add:hover { color: var(--cyan); }
+.dyn-add-opt { cursor: pointer; transition: color .15s; }
+.dyn-add-opt:hover { color: var(--cyan); }
+.dyn-add-sep { color: var(--text3); pointer-events: none; }
+.dyn-add-sm {
+  padding: 5px 10px; font-size: 10px; color: var(--text3);
+  cursor: pointer; border-top: 1px dashed var(--border);
+}
+.dyn-add-sm:hover { color: var(--cyan); }
+
+/* ── Grid-type gallery row ── */
+.dyn-row--grid-parent {
+  flex-direction: column; align-items: stretch; padding: 0;
+  background: rgba(140,80,255,0.04); border-left: 2px solid rgba(140,80,255,0.35);
+}
+.dyn-row-topline {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+}
+.dyn-row-topline input, .dyn-row-topline select {
+  background: var(--bg1); border: 1px solid var(--border);
+  color: var(--text); border-radius: 4px; padding: 5px 8px;
+  font-size: 12px; outline: none;
+}
+.dyn-row-topline input:focus, .dyn-row-topline select:focus { border-color: var(--border-h); }
+.dyn-grid-images {
+  border-top: 1px dashed rgba(140,80,255,0.25);
+  padding: 4px 10px 4px 28px;
+  background: rgba(0,0,0,0.15);
+}
+.dyn-grid-img-row {
+  display: flex; align-items: center; gap: 6px; padding: 5px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.04); background: transparent;
+}
+.dyn-grid-img-row:last-of-type { border-bottom: none; }
+.dyn-grid-img-row input {
+  background: var(--bg1); border: 1px solid var(--border);
+  color: var(--text); border-radius: 4px; padding: 4px 7px;
+  font-size: 11px; outline: none;
+}
+.dyn-grid-img-row input:focus { border-color: var(--border-h); }
 
 /* ── Misc ── */
 .section-sep { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .1em; margin: 20px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }

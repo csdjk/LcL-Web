@@ -1,998 +1,1965 @@
 const PORTFOLIO = [
-
-  // ══════════════════════════════════════════════
-  //  角色渲染
-  // ══════════════════════════════════════════════
   {
-    id: 'genshin',
-    category: 'character',
-    categoryLabel: '角色渲染',
-    size: 'featured',
-    title: '原神角色渲染',
-    titleEn: 'Genshin Impact Character Rendering',
-    desc: '逆向分析并复刻《原神》角色渲染绿植，实现SDF面部阴影、多pass描边、各向异性头发、Ramp光照等效果。',
-    cover: 'assets/images/genshin_front.png',
-    primaryVideo: 'assets/videos/genshin_demo.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/genshin_demo.mp4', label: '演示视频' },
-      { type: 'image', src: 'assets/images/genshin_front.png', label: '正面' },
-      { type: 'image', src: 'assets/images/genshin_noon.png', label: '中午暖光' },
-      { type: 'image', src: 'assets/images/genshin_backlight.png', label: '背光' },
-      { type: 'image', src: 'assets/images/genshin_night.png', label: '夜晚冷光' },
+    "id": "genshin",
+    "category": "character",
+    "categoryLabel": "角色渲染",
+    "size": "featured",
+    "title": "原神角色渲染",
+    "titleEn": "Genshin Impact Character Rendering",
+    "desc": "逆向分析并复刻《原神》角色渲染绿植，实现SDF面部阴影、多pass描边、各向异性头发、Ramp光照等效果。",
+    "cover": "assets/images/genshin_front.png",
+    "primaryVideo": "assets/videos/genshin_demo.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/genshin_demo.mp4",
+        "label": "演示视频"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/genshin_front.png",
+        "label": "正面"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/genshin_noon.png",
+        "label": "中午暖光"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/genshin_backlight.png",
+        "label": "背光"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/genshin_night.png",
+        "label": "夜晚冷光"
+      }
     ],
-    webDemo: 'demos/genshin/',
-    links: [
-      { label: 'Web Demo', url: 'demos/genshin/', icon: 'globe' },
+    "webDemo": "demos/genshin/",
+    "links": [
+      {
+        "label": "Web Demo",
+        "url": "demos/genshin/",
+        "icon": "globe"
+      }
     ],
-    tags: ['Unity', 'URP', 'HLSL', 'NPR', 'SDF阴影'],
-    featured: true,
+    "tags": [
+      "Unity",
+      "URP",
+      "HLSL",
+      "NPR",
+      "SDF阴影"
+    ],
+    "featured": true
   },
   {
-    id: 'hsr',
-    category: 'character',
-    categoryLabel: '角色渲染',
-    size: 'featured',
-    title: '崩坏·星穹铁道角色渲染',
-    titleEn: 'Honkai Star Rail Character Rendering',
-    desc: '逆向复刻《崩坏：星穹铁道》角色渲染，含镜浅、银狼、饮月等角色的金属、皮肤、头发材质及丰富后处理效果。',
-    cover: 'assets/images/hsr_yinyue.png',
-    primaryVideo: 'assets/videos/hsr_demo.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/hsr_demo.mp4', label: '演示视频' },
-      { type: 'image', src: 'assets/images/hsr_yinyue.png', label: '饮月' },
-      { type: 'image', src: 'assets/images/hsr_jingliu.png', label: '镜浅' },
-      { type: 'image', src: 'assets/images/hsr_huangquan.png', label: '黄泉' },
-      { type: 'image', src: 'assets/images/hsr_yinyue2.png', label: '饮月2' },
+    "id": "hsr",
+    "category": "character",
+    "categoryLabel": "角色渲染",
+    "size": "featured",
+    "title": "崩坏·星穹铁道角色渲染",
+    "titleEn": "Honkai Star Rail Character Rendering",
+    "desc": "逆向复刻《崩坏：星穹铁道》角色渲染，含镜浅、银狼、饮月等角色的金属、皮肤、头发材质及丰富后处理效果。",
+    "cover": "assets/images/hsr_yinyue.png",
+    "primaryVideo": "assets/videos/hsr_demo.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/hsr_demo.mp4",
+        "label": "演示视频"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/hsr_yinyue.png",
+        "label": "饮月"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/hsr_jingliu.png",
+        "label": "镜浅"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/hsr_huangquan.png",
+        "label": "黄泉"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/hsr_yinyue2.png",
+        "label": "饮月2"
+      }
     ],
-    webDemo: 'demos/starrail/',
-    links: [
-      { label: 'Bilibili', url: 'https://b23.tv/328Rom5', icon: 'video' },
-      { label: 'Web Demo', url: 'demos/starrail/', icon: 'globe' },
-      { label: '知乎分析', url: 'https://zhuanlan.zhihu.com/p/693831511', icon: 'article' },
+    "webDemo": "demos/starrail/",
+    "links": [
+      {
+        "label": "Bilibili",
+        "url": "https://b23.tv/328Rom5",
+        "icon": "video"
+      },
+      {
+        "label": "Web Demo",
+        "url": "demos/starrail/",
+        "icon": "globe"
+      },
+      {
+        "label": "知乎分析",
+        "url": "https://zhuanlan.zhihu.com/p/693831511",
+        "icon": "article"
+      }
     ],
-    tags: ['Unity', 'URP', 'HLSL', 'NPR', '角色渲染'],
-    featured: true,
-  },
-
-  // ══════════════════════════════════════════════
-  //  普通材质
-  // ══════════════════════════════════════════════
-
-  {
-    id: 'water',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '风格化水渲染',
-    titleEn: 'Stylized Water Rendering',
-    desc: '实现风格化水面着色，含法线扰动、深浅水色渐变、焦散、泡沫线、水下折射及动态交互。',
-    cover: 'assets/images/water_1.png',
-    primaryVideo: 'assets/videos/water_demo.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/water_demo.mp4', label: '演示视频 1' },
-      { type: 'video', src: 'assets/videos/water_demo2.mp4', label: '演示视频 2' },
-      { type: 'image', src: 'assets/images/water_1.png', label: 'Water 1' },
-      { type: 'image', src: 'assets/images/water_2.png', label: 'Water 2' },
-      { type: 'image', src: 'assets/images/water_3.png', label: 'Water 3' },
-      { type: 'image', src: 'assets/images/water_4.png', label: 'Water 4' },
-      { type: 'image', src: 'assets/images/water_5.png', label: 'Water 5' },
+    "tags": [
+      "Unity",
+      "URP",
+      "HLSL",
+      "NPR",
+      "角色渲染"
     ],
-    links: [],
-    tags: ['URP', 'Water Shader', 'Stylized'],
-  },
-  {
-    id: 'shader-cartoonwater',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '卡通水面',
-    titleEn: 'Cartoon Water Shader',
-    desc: '风格化卡通水面材质，含程序化水波、深浅水色渐变、岸边泡沫线、涟漪扰动等NPR水面要素。',
-    cover: 'assets/images/shader_cartoonwater.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_cartoonwater.gif', label: 'Cartoon Water' },
-      { type: 'image', src: 'assets/images/shader_water_interact.gif', label: '水面交互' },
-      { type: 'image', src: 'assets/images/shader_wave.gif', label: '波浪效果' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
-    ],
-    tags: ['Unity', 'NPR', 'Water', 'FlowMap'],
+    "featured": true
   },
   {
-    id: 'urp-rain',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '雨水涟漪效果',
-    titleEn: 'Rain Ripple Effect',
-    desc: '基于FlowMap与法线扰动的雨水涟漪材质，模拟水面动态波纹与表面湿润反射，适配场景湿天氛围。',
-    cover: 'assets/images/urp_rain.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_rain.gif', label: '雨效' },
-      { type: 'image', src: 'assets/images/shader_flowmap.gif', label: 'FlowMap' },
+    "id": "water",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "风格化水渲染",
+    "titleEn": "Stylized Water Rendering",
+    "desc": "实现风格化水面着色，含法线扰动、深浅水色渐变、焦散、泡沫线、水下折射及动态交互。",
+    "cover": "assets/images/water_1.png",
+    "primaryVideo": "assets/videos/water_demo.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/water_demo.mp4",
+        "label": "演示视频 1"
+      },
+      {
+        "type": "video",
+        "src": "assets/videos/water_demo2.mp4",
+        "label": "演示视频 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/water_1.png",
+        "label": "Water 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/water_2.png",
+        "label": "Water 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/water_3.png",
+        "label": "Water 3"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/water_4.png",
+        "label": "Water 4"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/water_5.png",
+        "label": "Water 5"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
-    ],
-    tags: ['URP', 'FlowMap', '雨水'],
+    "links": [],
+    "tags": [
+      "URP",
+      "Water Shader",
+      "Stylized"
+    ]
   },
   {
-    id: 'shader-gpu-grass',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'GPU 风格化草地',
-    titleEn: 'GPU Stylized Grass',
-    desc: '基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、交互压倒及LOD分级，性能高效。',
-    cover: 'assets/images/shader_gpu_grass.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_gpu_grass.gif', label: 'GPU Grass' },
-      { type: 'image', src: 'assets/images/shader_snow_interact.gif', label: '雪地交互' },
+    "id": "shader-cartoonwater",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "卡通水面",
+    "titleEn": "Cartoon Water Shader",
+    "desc": "风格化卡通水面材质，含程序化水波、深浅水色渐变、岸边泡沫线、涟漪扰动等NPR水面要素。",
+    "cover": "assets/images/shader_cartoonwater.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_cartoonwater.avif",
+        "label": "Cartoon Water"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_water_interact.avif",
+        "label": "水面交互"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_wave.avif",
+        "label": "波浪效果"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'GPU Instancing', 'Grass', '风格化'],
+    "tags": [
+      "Unity",
+      "NPR",
+      "Water",
+      "FlowMap"
+    ]
   },
   {
-    id: 'urp-cloud',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '模型云',
-    titleEn: 'Model-based Cloud',
-    desc: '基于体积/Mesh模型的卡通风格云朵渲染，模拟次表面散射与边缘光，适合写实/二次元天空场景。',
-    cover: 'assets/images/urp_cloud.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_cloud.gif', label: '模型云' },
+    "id": "urp-rain",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "雨水涟漪效果",
+    "titleEn": "Rain Ripple Effect",
+    "desc": "雨水涟漪材质",
+    "cover": "assets/images/urp_rain.avif",
+    "gallery": [],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "tags": [
+      "URP",
+      "雨水"
     ],
-    tags: ['URP', 'Cloud', 'NPR'],
+    "featured": false
   },
   {
-    id: 'shader-pbr',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'Custom PBR',
-    titleEn: 'Custom Physically-Based Rendering',
-    desc: '从零实现基于Cook-Torrance BRDF的物理着色，含GGX分布、Smith几何遮蔽、Fresnel-Schlick，并扩展各向异性与皮肤次表面散射。',
-    cover: 'assets/images/shader_pbr.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_pbr.png', label: 'PBR' },
-      { type: 'image', src: 'assets/images/shader_pbr_aniso.png', label: '各向异性PBR' },
-      { type: 'image', src: 'assets/images/shader_pbr_skin.png', label: '皮肤PBR' },
-      { type: 'image', src: 'assets/images/shader_aniso.png', label: '各向异性高光' },
+    "id": "shader-gpu-grass",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "GPU 风格化草地",
+    "titleEn": "GPU Stylized Grass",
+    "desc": "基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、交互压倒及LOD分级，性能高效。",
+    "cover": "assets/images/shader_gpu_grass.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_gpu_grass.avif",
+        "label": "GPU Grass"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_snow_interact.avif",
+        "label": "雪地交互"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'PBR', 'BRDF', '各向异性', 'Skin'],
+    "tags": [
+      "Unity",
+      "GPU Instancing",
+      "Grass",
+      "风格化"
+    ]
   },
   {
-    id: 'shader-sss',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '次表面散射 SSS',
-    titleEn: 'Sub-Surface Scattering',
-    desc: '多种SSS实现方案：预积分皮肤SSS、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。',
-    cover: 'assets/images/shader_sss.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_sss.png', label: 'SSS' },
-      { type: 'image', src: 'assets/images/shader_sss2.png', label: 'SSS 2' },
-      { type: 'image', src: 'assets/images/shader_sg_sss.png', label: 'Shader Graph SSS' },
+    "id": "urp-cloud",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "模型云",
+    "titleEn": "Model-based Cloud",
+    "desc": "基于体积/Mesh模型的卡通风格云朵渲染，模拟次表面散射与边缘光，适合写实/二次元天空场景。",
+    "cover": "assets/images/urp_cloud.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_cloud.avif",
+        "label": "模型云"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'SSS', '皮肤', '次表面散射'],
+    "tags": [
+      "URP",
+      "Cloud",
+      "NPR"
+    ]
   },
   {
-    id: 'shader-toon',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '卡通渲染 Toon Shading',
-    titleEn: 'Toon Shading',
-    desc: 'NPR卡通着色实现，含阶梯化漫反射、Rim光、描边等要素，可与角色渲染管线灵活组合。',
-    cover: 'assets/images/shader_toon.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_toon.png', label: 'Toon Shading' },
-      { type: 'image', src: 'assets/images/shader_character.png', label: '角色着色' },
-      { type: 'image', src: 'assets/images/shader_character.gif', label: '角色着色动画' },
-      { type: 'image', src: 'assets/images/shader_original2.png', label: '参考对比' },
+    "id": "shader-pbr",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Custom PBR",
+    "titleEn": "Custom Physically-Based Rendering",
+    "desc": "从零实现基于Cook-Torrance BRDF的物理着色，含GGX分布、Smith几何遮蔽、Fresnel-Schlick，并扩展各向异性与皮肤次表面散射。",
+    "cover": "assets/images/shader_pbr.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_pbr.png",
+        "label": "PBR"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_pbr_aniso.png",
+        "label": "各向异性PBR"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_pbr_skin.png",
+        "label": "皮肤PBR"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_aniso.png",
+        "label": "各向异性高光"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'NPR', 'Toon', '卡通渲染'],
+    "tags": [
+      "Unity",
+      "PBR",
+      "BRDF",
+      "各向异性",
+      "Skin"
+    ]
   },
   {
-    id: 'shader-film-interference',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '薄膜干涉',
-    titleEn: 'Thin-Film Interference',
-    desc: '基于光程差计算的薄膜干涉效果，模拟肥皂泡、镭射布料、彩虹油膜等多彩渐变光学现象。',
-    cover: 'assets/images/shader_film_interference1.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_film_interference1.png', label: '薄膜干涉 1' },
-      { type: 'image', src: 'assets/images/shader_film_interference2.png', label: '薄膜干涉 2' },
+    "id": "shader-sss",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "次表面散射 SSS",
+    "titleEn": "Sub-Surface Scattering",
+    "desc": "多种SSS实现方案：预积分皮肤SSS、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
+    "cover": "assets/images/shader_sss.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_sss.png",
+        "label": "SSS"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_sss2.png",
+        "label": "SSS 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_sg_sss.png",
+        "label": "Shader Graph SSS"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', '薄膜干涉', '镭射', '物理光学'],
+    "tags": [
+      "Unity",
+      "SSS",
+      "皮肤",
+      "次表面散射"
+    ]
   },
   {
-    id: 'shader-reflection',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '反射与折射',
-    titleEn: 'Reflection & Refraction',
-    desc: '基于Cubemap与GrabPass的反射/折射效果，含Snell定律折射、菲涅尔混合，模拟玻璃球与水晶质感。',
-    cover: 'assets/images/shader_reflection.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_reflection.png', label: 'Reflection' },
-      { type: 'image', src: 'assets/images/shader_reflection2.png', label: 'Refraction' },
+    "id": "shader-toon",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "卡通渲染 Toon Shading",
+    "titleEn": "Toon Shading",
+    "desc": "NPR卡通着色实现，含阶梯化漫反射、Rim光、描边等要素，可与角色渲染管线灵活组合。",
+    "cover": "assets/images/shader_toon.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_toon.png",
+        "label": "Toon Shading"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_character.png",
+        "label": "角色着色"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_character.avif",
+        "label": "角色着色动画"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_original2.png",
+        "label": "参考对比"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Reflection', 'Refraction', 'Fresnel'],
+    "tags": [
+      "Unity",
+      "NPR",
+      "Toon",
+      "卡通渲染"
+    ]
   },
   {
-    id: 'shader-glass',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '玻璃 & 液体瓶',
-    titleEn: 'Stylized Glass & Liquid Bottle',
-    desc: '风格化玻璃Shader含背景扭曲、菲涅尔边缘与高光叠加；液体瓶材质模拟晃动时液面变化与气泡漂浮。',
-    cover: 'assets/images/shader_glass.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_glass.png', label: 'Glass' },
-      { type: 'image', src: 'assets/images/shader_liquid_bottle.gif', label: '液体瓶' },
+    "id": "shader-film-interference",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "薄膜干涉",
+    "titleEn": "Thin-Film Interference",
+    "desc": "基于光程差计算的薄膜干涉效果，模拟肥皂泡、镭射布料、彩虹油膜等多彩渐变光学现象。",
+    "cover": "assets/images/shader_film_interference1.png",
+    "gallery": [
+      {
+        "type": "grid",
+        "label": "薄膜干涉 1",
+        "images": [
+          {
+            "src": "assets/images/shader_film_interference2.png",
+            "label": ""
+          },
+          {
+            "src": "assets/images/shader_film_interference1.png",
+            "label": ""
+          }
+        ]
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Glass', 'Liquid', 'GrabPass'],
+    "tags": [
+      "Unity",
+      "薄膜干涉",
+      "镭射",
+      "物理光学"
+    ],
+    "featured": false
   },
   {
-    id: 'shader-interior',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'Interior Mapping 室内映射',
-    titleEn: 'Interior Mapping',
-    desc: '通过Cube贴图与切线空间运算在单平面上模拟室内房间，无需建模即可营造大量楼宇内饰，并扩展2D视角室内版本。',
-    cover: 'assets/images/shader_interior.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_interior.gif', label: 'Interior (Cubemap)' },
-      { type: 'image', src: 'assets/images/shader_interior_cubemap.gif', label: 'Interior Cubemap' },
-      { type: 'image', src: 'assets/images/shader_interior_2d.gif', label: 'Interior 2D' },
-      { type: 'image', src: 'assets/images/shader_interior_2dview1.png', label: '2D视角 1' },
-      { type: 'image', src: 'assets/images/shader_interior_2dview2.png', label: '2D视角 2' },
+    "id": "shader-reflection",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "反射与折射",
+    "titleEn": "Reflection & Refraction",
+    "desc": "基于Cubemap与GrabPass的反射/折射效果，含Snell定律折射、菲涅尔混合，模拟玻璃球与水晶质感。",
+    "cover": "assets/images/shader_reflection.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_reflection.png",
+        "label": "Reflection"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_reflection2.png",
+        "label": "Refraction"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Interior Mapping', '城市场景'],
+    "tags": [
+      "Unity",
+      "Reflection",
+      "Refraction",
+      "Fresnel"
+    ]
   },
   {
-    id: 'urp-parallax',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'Parallax & Triplanar',
-    titleEn: 'Parallax Occlusion Mapping & Triplanar',
-    desc: '通过高度图与视线步进模拟表面凹凸感的视差映射，以及三向投影贴图——无需UV即可在任意地形表面贴合纹理。',
-    cover: 'assets/images/urp_parallax.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_parallax.png', label: 'Parallax Mapping' },
-      { type: 'image', src: 'assets/images/shader_triplanar1.png', label: 'Triplanar 1' },
-      { type: 'image', src: 'assets/images/shader_triplanar2.png', label: 'Triplanar 2' },
+    "id": "shader-glass",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "玻璃 & 液体瓶",
+    "titleEn": "Stylized Glass & Liquid Bottle",
+    "desc": "风格化玻璃Shader含背景扭曲、菲涅尔边缘与高光叠加；液体瓶材质模拟晃动时液面变化与气泡漂浮。",
+    "cover": "assets/images/shader_glass.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_glass.png",
+        "label": "Glass"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_liquid_bottle.avif",
+        "label": "液体瓶"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'Parallax', 'Triplanar', '高度图'],
+    "tags": [
+      "Unity",
+      "Glass",
+      "Liquid",
+      "GrabPass"
+    ]
   },
   {
-    id: 'urp-ice',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '冰冻效果',
-    titleEn: 'Ice Freezing Effect',
-    desc: '动态冰冻覆盖效果，基于World Position与噪声渐变控制冰层生长，搭配菲涅尔与法线扰动表现冰晶质感。',
-    cover: 'assets/images/urp_ice2.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_ice2.gif', label: '冰冻动态' },
-      { type: 'image', src: 'assets/images/urp_ice.png', label: '冰晶静态' },
+    "id": "shader-interior",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Interior Mapping 室内映射",
+    "titleEn": "Interior Mapping",
+    "desc": "通过Cube贴图与切线空间运算在单平面上模拟室内房间，无需建模即可营造大量楼宇内饰，并扩展2D视角室内版本。",
+    "cover": "assets/images/shader_interior.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_interior.avif",
+        "label": "Interior (Cubemap)"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_interior_cubemap.avif",
+        "label": "Interior Cubemap"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_interior_2d.avif",
+        "label": "Interior 2D"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_interior_2dview1.png",
+        "label": "2D视角 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_interior_2dview2.png",
+        "label": "2D视角 2"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'Ice', 'Fresnel'],
+    "tags": [
+      "Unity",
+      "Interior Mapping",
+      "城市场景"
+    ]
   },
   {
-    id: 'shader-dissolve',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '溶解效果',
-    titleEn: 'Dissolve Effect',
-    desc: '基于噪声贴图的动态溶解Shader，支持溶解边缘发光、方向性溶解与UI溶解，广泛用于角色死亡、技能释放等场景。',
-    cover: 'assets/images/shader_dissolve.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_dissolve.gif', label: '溶解 1' },
-      { type: 'image', src: 'assets/images/shader_dissolve2.gif', label: '溶解 2' },
-      { type: 'image', src: 'assets/images/shader_ui_dissolve.gif', label: 'UI溶解' },
+    "id": "urp-parallax",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Parallax & Triplanar",
+    "titleEn": "Parallax Occlusion Mapping & Triplanar",
+    "desc": "通过高度图与视线步进模拟表面凹凸感的视差映射，以及三向投影贴图——无需UV即可在任意地形表面贴合纹理。",
+    "cover": "assets/images/urp_parallax.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_parallax.png",
+        "label": "Parallax Mapping"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_triplanar1.png",
+        "label": "Triplanar 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_triplanar2.png",
+        "label": "Triplanar 2"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Dissolve', 'UI', 'Noise'],
+    "tags": [
+      "URP",
+      "Parallax",
+      "Triplanar",
+      "高度图"
+    ]
   },
   {
-    id: 'urp-fur',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '毛发渲染 Shell Fur',
-    titleEn: 'Shell-based Fur Rendering',
-    desc: '基于Shell层叠技术的毛发渲染方案，多Pass剥离毛皮层级，模拟真实毛发体积与各向异性高光。',
-    cover: 'assets/images/urp_fur.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_fur.png', label: '毛发' },
+    "id": "urp-ice",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "冰冻效果",
+    "titleEn": "Ice Freezing Effect",
+    "desc": "动态冰冻覆盖效果，基于World Position与噪声渐变控制冰层生长，搭配菲涅尔与法线扰动表现冰晶质感。",
+    "cover": "assets/images/urp_ice2.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_ice2.avif",
+        "label": "冰冻动态"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/urp_ice.png",
+        "label": "冰晶静态"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'Fur', 'Shell'],
+    "tags": [
+      "URP",
+      "Ice",
+      "Fresnel"
+    ]
   },
   {
-    id: 'shader-energyball',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '能量球特效',
-    titleEn: 'Energy Ball VFX',
-    desc: '科幻风格能量球Shader，结合菲涅尔轮廓光、噪声扰动UV、内部流动纹理，呈现脉动能量感。',
-    cover: 'assets/images/shader_energyball.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_energyball.gif', label: 'Energy Ball' },
+    "id": "shader-dissolve",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "溶解效果",
+    "titleEn": "Dissolve Effect",
+    "desc": "基于噪声贴图的动态溶解Shader，支持溶解边缘发光、方向性溶解与UI溶解，广泛用于角色死亡、技能释放等场景。",
+    "cover": "assets/images/shader_dissolve.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_dissolve.avif",
+        "label": "溶解 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_dissolve2.avif",
+        "label": "溶解 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_ui_dissolve.avif",
+        "label": "UI溶解"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'VFX', '能量球'],
+    "tags": [
+      "Unity",
+      "Dissolve",
+      "UI",
+      "Noise"
+    ]
   },
   {
-    id: 'shader-outlines',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '多种描边方案',
-    titleEn: 'Outline Techniques',
-    desc: '汇集菲涅尔描边、法线扩展描边（含遮挡处理）等多种描边实现，覆盖NPR渲染中常见的轮廓线需求。',
-    cover: 'assets/images/shader_fresnel_outline.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_fresnel_outline.gif', label: '菲涅尔描边' },
-      { type: 'image', src: 'assets/images/shader_normal_outline.gif', label: '法线描边' },
-      { type: 'image', src: 'assets/images/shader_normal_outline_occ.gif', label: '法线描边(遮挡)' },
+    "id": "urp-fur",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "毛发渲染 Shell Fur",
+    "titleEn": "Shell-based Fur Rendering",
+    "desc": "基于Shell层叠技术的毛发渲染方案，多Pass剥离毛皮层级，模拟真实毛发体积与各向异性高光。",
+    "cover": "assets/images/urp_fur.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_fur.png",
+        "label": "毛发"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'NPR', 'Outline', '描边'],
+    "tags": [
+      "URP",
+      "Fur",
+      "Shell"
+    ]
   },
   {
-    id: 'shader-cloth',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '布料物理模拟',
-    titleEn: 'Cloth Physics Simulation',
-    desc: '基于质点-弹簧模型的布料物理模拟，结合GPU计算并行求解约束，实时表现风力与碰撞响应。',
-    cover: 'assets/images/shader_cloth.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_cloth.gif', label: '布料模拟' },
+    "id": "shader-energyball",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "能量球特效",
+    "titleEn": "Energy Ball VFX",
+    "desc": "科幻风格能量球Shader，结合菲涅尔轮廓光、噪声扰动UV、内部流动纹理，呈现脉动能量感。",
+    "cover": "assets/images/shader_energyball.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_energyball.avif",
+        "label": "Energy Ball"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', '物理模拟', 'GPU'],
+    "tags": [
+      "Unity",
+      "VFX",
+      "能量球"
+    ]
   },
   {
-    id: 'urp-vat',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'VAT-RBD 顶点动画贴图',
-    titleEn: 'Vertex Animation Texture (Rigid Body)',
-    desc: '将Houdini RBD刚体破碎动画烘焙至贴图，运行时通过顶点采样还原动画，实现海量动态破碎而无需骨骼。',
-    cover: 'assets/images/urp_vat.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_vat.gif', label: 'VAT-RBD' },
+    "id": "shader-outlines",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "多种描边方案",
+    "titleEn": "Outline Techniques",
+    "desc": "汇集菲涅尔描边、法线扩展描边（含遮挡处理）等多种描边实现，覆盖NPR渲染中常见的轮廓线需求。",
+    "cover": "assets/images/shader_fresnel_outline.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_fresnel_outline.avif",
+        "label": "菲涅尔描边"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_normal_outline.avif",
+        "label": "法线描边"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_normal_outline_occ.avif",
+        "label": "法线描边(遮挡)"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'VAT', 'Houdini', 'RBD'],
+    "tags": [
+      "Unity",
+      "NPR",
+      "Outline",
+      "描边"
+    ]
   },
   {
-    id: 'shader-rope',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'Bezier 绳索 & 曲线网格',
-    titleEn: 'Bezier Rope & Curve Mesh',
-    desc: '基于贝塞尔曲线的程序化Mesh生成，沿曲线挤出几何体，支持绳索、轨道、流光等动态形态。',
-    cover: 'assets/images/shader_rope.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_rope.gif', label: '绳索' },
-      { type: 'image', src: 'assets/images/shader_bezier.gif', label: 'Bezier Mesh' },
-      { type: 'image', src: 'assets/images/shader_bezier_new.gif', label: 'Bezier New' },
+    "id": "shader-cloth",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "布料物理模拟",
+    "titleEn": "Cloth Physics Simulation",
+    "desc": "基于质点-弹簧模型的布料物理模拟，结合GPU计算并行求解约束，实时表现风力与碰撞响应。",
+    "cover": "assets/images/shader_cloth.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_cloth.avif",
+        "label": "布料模拟"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Bezier', 'Procedural', '绳索'],
+    "tags": [
+      "Unity",
+      "物理模拟",
+      "GPU"
+    ]
   },
   {
-    id: 'shader-uv-anim',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'UV动画 & 序列帧',
-    titleEn: 'UV Animation & Flipbook',
-    desc: '多种UV动画技术集合：基础UV滚动、Flipbook序列帧、刷子世界空间/切线空间绘制及公告板。',
-    cover: 'assets/images/shader_uv_anim.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_uv_anim.gif', label: 'UV Animation' },
-      { type: 'image', src: 'assets/images/shader_flipbook.gif', label: 'Flipbook' },
-      { type: 'image', src: 'assets/images/shader_seq_anim.gif', label: '序列帧动画' },
-      { type: 'image', src: 'assets/images/shader_brush_uv.gif', label: '笔刷UV' },
-      { type: 'image', src: 'assets/images/shader_brush_world.gif', label: '笔刷世界空间' },
-      { type: 'image', src: 'assets/images/shader_billboard.gif', label: 'Billboard' },
+    "id": "urp-vat",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "VAT-RBD 顶点动画贴图",
+    "titleEn": "Vertex Animation Texture (Rigid Body)",
+    "desc": "将Houdini RBD刚体破碎动画烘焙至贴图，运行时通过顶点采样还原动画，实现海量动态破碎而无需骨骼。",
+    "cover": "assets/images/urp_vat.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_vat.avif",
+        "label": "VAT-RBD"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'UV', 'Flipbook', 'Billboard', '序列帧'],
+    "tags": [
+      "URP",
+      "VAT",
+      "Houdini",
+      "RBD"
+    ]
   },
   {
-    id: 'shader-mask',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '遮罩效果集',
-    titleEn: 'Mask Effects',
-    desc: '汇集球形遮罩、2D遮罩、Box遮罩等多种遮罩工具，用于光照区域限定、交互区域可视化等效果。',
-    cover: 'assets/images/shader_mask.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_mask.gif', label: 'Mask' },
-      { type: 'image', src: 'assets/images/shader_mask2.gif', label: 'Mask 2' },
-      { type: 'image', src: 'assets/images/shader_sphere_mask.png', label: '球形遮罩' },
-      { type: 'image', src: 'assets/images/shader_2d_mask.png', label: '2D遮罩' },
-      { type: 'image', src: 'assets/images/shader_box_mask.png', label: 'Box遮罩' },
+    "id": "shader-rope",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Bezier 绳索 & 曲线网格",
+    "titleEn": "Bezier Rope & Curve Mesh",
+    "desc": "基于贝塞尔曲线的程序化Mesh生成，沿曲线挤出几何体，支持绳索、轨道、流光等动态形态。",
+    "cover": "assets/images/shader_rope.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_rope.avif",
+        "label": "绳索"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_bezier.avif",
+        "label": "Bezier Mesh"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_bezier_new.avif",
+        "label": "Bezier New"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Mask', '遮罩'],
+    "tags": [
+      "Unity",
+      "Bezier",
+      "Procedural",
+      "绳索"
+    ]
   },
   {
-    id: 'shader-geo',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '几何着色器效果',
-    titleEn: 'Geometry Shader Effects',
-    desc: '利用Geometry Shader生成程序化几何体和粒子，含自定义基元生成与GPU粒子系统，展示几何管线扩展能力。',
-    cover: 'assets/images/shader_geo_particle.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_geo_particle.gif', label: '几何粒子' },
-      { type: 'image', src: 'assets/images/shader_geo_primitive.png', label: '几何基元' },
+    "id": "shader-uv-anim",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "UV动画 & 序列帧",
+    "titleEn": "UV Animation & Flipbook",
+    "desc": "多种UV动画技术集合：基础UV滚动、Flipbook序列帧、刷子世界空间/切线空间绘制及公告板。",
+    "cover": "assets/images/shader_uv_anim.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_uv_anim.avif",
+        "label": "UV Animation"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_flipbook.avif",
+        "label": "Flipbook"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_seq_anim.avif",
+        "label": "序列帧动画"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_brush_uv.avif",
+        "label": "笔刷UV"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_brush_world.avif",
+        "label": "笔刷世界空间"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_billboard.avif",
+        "label": "Billboard"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Geometry Shader', 'Particle'],
+    "tags": [
+      "Unity",
+      "UV",
+      "Flipbook",
+      "Billboard",
+      "序列帧"
+    ]
   },
   {
-    id: 'shader-shadow',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '阴影算法集',
-    titleEn: 'Shadow Algorithms',
-    desc: 'ShadowMap基础、PCF软化、Poisson盘采样、PCSS接触硬化及Alpha透明阴影等多种阴影技术实现与对比。',
-    cover: 'assets/images/shader_pcss.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_shadowmap.png', label: 'Shadow Map' },
-      { type: 'image', src: 'assets/images/shader_pcf.png', label: 'PCF' },
-      { type: 'image', src: 'assets/images/shader_pcf_poisson.png', label: 'PCF Poisson' },
-      { type: 'image', src: 'assets/images/shader_pcss.png', label: 'PCSS' },
-      { type: 'image', src: 'assets/images/shader_alpha_shadow.png', label: 'Alpha透明阴影' },
+    "id": "shader-mask",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "遮罩效果集",
+    "titleEn": "Mask Effects",
+    "desc": "汇集球形遮罩、2D遮罩、Box遮罩等多种遮罩工具，用于光照区域限定、交互区域可视化等效果。",
+    "cover": "assets/images/shader_mask.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_mask.avif",
+        "label": "Mask"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_mask2.avif",
+        "label": "Mask 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_sphere_mask.png",
+        "label": "球形遮罩"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_2d_mask.png",
+        "label": "2D遮罩"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_box_mask.png",
+        "label": "Box遮罩"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Shadow', 'PCF', 'PCSS', 'ShadowMap'],
+    "tags": [
+      "Unity",
+      "Mask",
+      "遮罩"
+    ]
   },
   {
-    id: 'shader-water-wave',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: '屏幕波纹效果',
-    titleEn: 'Screen Water Wave Effect',
-    desc: '基于GrabPass的屏幕空间水面波纹后处理，通过法线扰动折射背景，模拟水面晃动的折光涟漪感。',
-    cover: 'assets/images/shader_water_wave.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_water_wave.gif', label: '水面波纹' },
+    "id": "shader-geo",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "几何着色器效果",
+    "titleEn": "Geometry Shader Effects",
+    "desc": "利用Geometry Shader生成程序化几何体和粒子，含自定义基元生成与GPU粒子系统，展示几何管线扩展能力。",
+    "cover": "assets/images/shader_geo_particle.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_geo_particle.avif",
+        "label": "几何粒子"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_geo_primitive.png",
+        "label": "几何基元"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'GrabPass', 'Wave', '波纹'],
+    "tags": [
+      "Unity",
+      "Geometry Shader",
+      "Particle"
+    ]
   },
   {
-    id: 'shader-ui',
-    category: 'material',
-    categoryLabel: '普通材质',
-    size: 'standard',
-    title: 'UI 特效',
-    titleEn: 'UI Shader Effects',
-    desc: 'UI层Shader效果集，含旧照片滤镜（噪点、褪色、划痕）、UI溶解特效等，为HUD界面增添艺术表现力。',
-    cover: 'assets/images/shader_ui_oldphoto.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_ui_oldphoto.png', label: '旧照片' },
+    "id": "shader-shadow",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "阴影算法集",
+    "titleEn": "Shadow Algorithms",
+    "desc": "ShadowMap基础、PCF软化、Poisson盘采样、PCSS接触硬化及Alpha透明阴影等多种阴影技术实现与对比。",
+    "cover": "assets/images/shader_pcss.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_shadowmap.png",
+        "label": "Shadow Map"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_pcf.png",
+        "label": "PCF"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_pcf_poisson.png",
+        "label": "PCF Poisson"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_pcss.png",
+        "label": "PCSS"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_alpha_shadow.png",
+        "label": "Alpha透明阴影"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'UI', 'Shader', '旧照片'],
-  },
-
-  // ══════════════════════════════════════════════
-  //  后处理
-  // ══════════════════════════════════════════════
-
-  {
-    id: 'urp-ssr',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'SSR 屏幕空间反射',
-    titleEn: 'Screen Space Reflection',
-    desc: '基于屏幕空间的反射技术，通过深度图与法线图实时计算反射结果，适用于水面、湿润地面等场景。',
-    cover: 'assets/images/urp_ssr.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_ssr.gif', label: 'SSR' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
-    ],
-    tags: ['URP', 'SSR', '后处理'],
-  },
-  {
-    id: 'urp-sspr',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'SSPR 平面反射',
-    titleEn: 'Screen Space Planar Reflection',
-    desc: '基于Compute Shader的屏幕空间平面反射，性能优于传统镜面相机方案，常用于水面/地面镜面反射。',
-    cover: 'assets/images/urp_sspr.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_sspr.gif', label: 'SSPR' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
-    ],
-    tags: ['URP', 'SSPR', 'Compute Shader'],
+    "tags": [
+      "Unity",
+      "Shadow",
+      "PCF",
+      "PCSS",
+      "ShadowMap"
+    ]
   },
   {
-    id: 'urp-hbao',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'HBAO 环境光遮蔽',
-    titleEn: 'Horizon-Based Ambient Occlusion',
-    desc: 'Horizon-Based AO实现屏幕空间环境光遮蔽，相比SSAO更精确还原物体接触阴影，提升画面层次感。',
-    cover: 'assets/images/urp_hbao.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_hbao.png', label: 'HBAO' },
+    "id": "shader-water-wave",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "屏幕波纹效果",
+    "titleEn": "Screen Water Wave Effect",
+    "desc": "基于GrabPass的屏幕空间水面波纹后处理，通过法线扰动折射背景，模拟水面晃动的折光涟漪感。",
+    "cover": "assets/images/shader_water_wave.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_water_wave.avif",
+        "label": "水面波纹"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'HBAO', '后处理'],
+    "tags": [
+      "Unity",
+      "GrabPass",
+      "Wave",
+      "波纹"
+    ]
   },
   {
-    id: 'urp-taa',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'TAA 时间抗锯齿',
-    titleEn: 'Temporal Anti-Aliasing',
-    desc: '基于历史帧重投影的时间抗锯齿方案，通过Jitter与速度缓冲消除锯齿，画面平滑稳定。',
-    cover: 'assets/images/urp_taa.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_taa.png', label: 'TAA' },
+    "id": "shader-ui",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "UI 特效",
+    "titleEn": "UI Shader Effects",
+    "desc": "UI层Shader效果集，含旧照片滤镜（噪点、褪色、划痕）、UI溶解特效等，为HUD界面增添艺术表现力。",
+    "cover": "assets/images/shader_ui_oldphoto.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_ui_oldphoto.png",
+        "label": "旧照片"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'TAA', '抗锯齿'],
+    "tags": [
+      "Unity",
+      "UI",
+      "Shader",
+      "旧照片"
+    ]
   },
   {
-    id: 'urp-decal',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'Screen Decal 屏幕贴花',
-    titleEn: 'Screen Space Decal',
-    desc: '基于深度重建的屏幕空间贴花系统，将弹孔、血迹、涂鸦等贴花精准投射到任意几何表面。',
-    cover: 'assets/images/urp_decal.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_decal.png', label: 'Screen Decal' },
+    "id": "urp-ssr",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "SSR 屏幕空间反射",
+    "titleEn": "Screen Space Reflection",
+    "desc": "基于屏幕空间的反射技术，通过深度图与法线图实时计算反射结果，适用于水面、湿润地面等场景。",
+    "cover": "assets/images/urp_ssr.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_ssr.avif",
+        "label": "SSR"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'Decal', '深度重建'],
+    "tags": [
+      "URP",
+      "SSR",
+      "后处理"
+    ]
   },
   {
-    id: 'shader-bloom',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'Bloom 泛光',
-    titleEn: 'Bloom Post-Processing',
-    desc: '自定义Bloom泛光后处理，基于亮度阈值提取发光区域后多级降采样再混合，还原高亮溢出的光晕感。',
-    cover: 'assets/images/shader_bloom.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_bloom.png', label: 'Bloom' },
-      { type: 'image', src: 'assets/images/shader_bloom2.png', label: 'Bloom 2' },
+    "id": "urp-sspr",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "SSPR 平面反射",
+    "titleEn": "Screen Space Planar Reflection",
+    "desc": "基于Compute Shader的屏幕空间平面反射，性能优于传统镜面相机方案，常用于水面/地面镜面反射。",
+    "cover": "assets/images/urp_sspr.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_sspr.avif",
+        "label": "SSPR"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Bloom', '后处理'],
+    "tags": [
+      "URP",
+      "SSPR",
+      "Compute Shader"
+    ]
   },
   {
-    id: 'shader-blur',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '模糊效果集',
-    titleEn: 'Blur Effects',
-    desc: '汇集Box Blur、Gaussian Blur、Radial Blur、Motion Blur四种模糊算法，覆盖从背景虚化到运动残影的全场景需求。',
-    cover: 'assets/images/shader_gauss_blur.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_box_blur.png', label: 'Box Blur' },
-      { type: 'image', src: 'assets/images/shader_gauss_blur.png', label: 'Gaussian Blur' },
-      { type: 'image', src: 'assets/images/shader_gauss_blur2.png', label: 'Gaussian Blur 2' },
-      { type: 'image', src: 'assets/images/shader_radial_blur.png', label: 'Radial Blur' },
-      { type: 'image', src: 'assets/images/shader_motion_blur.gif', label: 'Motion Blur' },
+    "id": "urp-hbao",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "HBAO 环境光遮蔽",
+    "titleEn": "Horizon-Based Ambient Occlusion",
+    "desc": "Horizon-Based AO实现屏幕空间环境光遮蔽，相比SSAO更精确还原物体接触阴影，提升画面层次感。",
+    "cover": "assets/images/urp_hbao.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_hbao.png",
+        "label": "HBAO"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Blur', 'Gaussian', 'Motion Blur', '后处理'],
+    "tags": [
+      "URP",
+      "HBAO",
+      "后处理"
+    ]
   },
   {
-    id: 'shader-edge-detect',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '边缘检测',
-    titleEn: 'Edge Detection',
-    desc: '基于Sobel/Roberts算子的屏幕空间边缘检测，可生成卡通轮廓线或水墨风描边，并支持遮挡信息融合。',
-    cover: 'assets/images/shader_edge_detection.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_edge_detection.gif', label: '边缘检测动态' },
-      { type: 'image', src: 'assets/images/shader_edge_detect.png', label: '边缘检测' },
-      { type: 'image', src: 'assets/images/shader_edge_extract.png', label: '边缘提取' },
+    "id": "urp-taa",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "TAA 时间抗锯齿",
+    "titleEn": "Temporal Anti-Aliasing",
+    "desc": "基于历史帧重投影的时间抗锯齿方案，通过Jitter与速度缓冲消除锯齿，画面平滑稳定。",
+    "cover": "assets/images/urp_taa.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_taa.png",
+        "label": "TAA"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Edge Detection', 'Sobel', '后处理'],
+    "tags": [
+      "URP",
+      "TAA",
+      "抗锯齿"
+    ]
   },
   {
-    id: 'shader-pp-outline',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '后处理描边',
-    titleEn: 'Post-Process Outline',
-    desc: '基于深度/法线不连续性的全屏后处理描边方案，无需修改模型即可为场景中所有物体添加统一轮廓线。',
-    cover: 'assets/images/shader_pp_outline.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_pp_outline.gif', label: '后处理描边' },
-      { type: 'image', src: 'assets/images/shader_pp_outline_occ.gif', label: '后处理描边(遮挡)' },
-      { type: 'image', src: 'assets/images/shader_screen_outline.gif', label: '屏幕描边' },
+    "id": "urp-decal",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Screen Decal 屏幕贴花",
+    "titleEn": "Screen Space Decal",
+    "desc": "基于深度重建的屏幕空间贴花系统，将弹孔、血迹、涂鸦等贴花精准投射到任意几何表面。",
+    "cover": "assets/images/urp_decal.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_decal.png",
+        "label": "Screen Decal"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Outline', '后处理', 'NPR'],
+    "tags": [
+      "URP",
+      "Decal",
+      "深度重建"
+    ]
   },
   {
-    id: 'shader-depth-fx',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '深度图效果',
-    titleEn: 'Depth Buffer Effects',
-    desc: '利用深度缓冲实现深度图可视化、深度扫描波（科幻雷达感）及放大镜/变焦后处理等效果。',
-    cover: 'assets/images/shader_depth_scan.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_depth_scan.gif', label: '深度扫描' },
-      { type: 'image', src: 'assets/images/shader_depth_map.png', label: '深度图' },
-      { type: 'image', src: 'assets/images/shader_zoom.gif', label: '变焦效果' },
+    "id": "shader-bloom",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Bloom 泛光",
+    "titleEn": "Bloom Post-Processing",
+    "desc": "自定义Bloom泛光后处理，基于亮度阈值提取发光区域后多级降采样再混合，还原高亮溢出的光晕感。",
+    "cover": "assets/images/shader_bloom.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_bloom.png",
+        "label": "Bloom"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_bloom2.png",
+        "label": "Bloom 2"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Depth', '深度图', '后处理'],
+    "tags": [
+      "Unity",
+      "Bloom",
+      "后处理"
+    ]
   },
   {
-    id: 'shader-bad-tv',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '故障艺术 Glitch',
-    titleEn: 'Bad TV / Glitch Effect',
-    desc: '模拟信号干扰的故障艺术后处理，含扫描线噪波、色差分离、块状错位等多重叠加，营造赛博朋克屏幕感。',
-    cover: 'assets/images/shader_bad_tv.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_bad_tv.gif', label: 'Bad TV' },
-      { type: 'image', src: 'assets/images/shader_bad_tv2.gif', label: 'Bad TV 2' },
+    "id": "shader-blur",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "模糊效果集",
+    "titleEn": "Blur Effects",
+    "desc": "汇集Box Blur、Gaussian Blur、Radial Blur、Motion Blur四种模糊算法，覆盖从背景虚化到运动残影的全场景需求。",
+    "cover": "assets/images/shader_gauss_blur.png",
+    "gallery": [
+      {
+        "type": "grid",
+        "label": "模糊效果对比",
+        "images": [
+          {
+            "src": "assets/images/shader_box_blur.png",
+            "label": "Box Blur"
+          },
+          {
+            "src": "assets/images/shader_gauss_blur.png",
+            "label": "Gaussian Blur"
+          },
+          {
+            "src": "assets/images/shader_gauss_blur2.png",
+            "label": "Gaussian Blur 2"
+          },
+          {
+            "src": "assets/images/shader_radial_blur.png",
+            "label": "Radial Blur"
+          },
+          {
+            "src": "assets/images/shader_motion_blur.avif",
+            "label": "Motion Blur"
+          }
+        ]
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'Glitch', '故障艺术', '后处理'],
+    "tags": [
+      "Unity",
+      "Blur",
+      "Gaussian",
+      "Motion Blur",
+      "后处理"
+    ]
   },
   {
-    id: 'shader-screen-sss',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '屏幕空间 SSS & 亮度调节',
-    titleEn: 'Screen Space SSS & Brightness',
-    desc: '屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤添加散射晕染；附亮度/对比度调节效果。',
-    cover: 'assets/images/shader_screen_sss.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_screen_sss.png', label: '屏幕空间SSS' },
-      { type: 'image', src: 'assets/images/shader_brightness.png', label: '亮度/对比度' },
+    "id": "shader-edge-detect",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "边缘检测",
+    "titleEn": "Edge Detection",
+    "desc": "基于Sobel/Roberts算子的屏幕空间边缘检测，可生成卡通轮廓线或水墨风描边，并支持遮挡信息融合。",
+    "cover": "assets/images/shader_edge_detection.avif",
+    "gallery": [
+      {
+        "type": "grid",
+        "label": "边缘检测对比",
+        "images": [
+          {
+            "src": "assets/images/shader_edge_detection.avif",
+            "label": "边缘检测动态"
+          },
+          {
+            "src": "assets/images/shader_edge_detect.png",
+            "label": "边缘检测"
+          },
+          {
+            "src": "assets/images/shader_edge_extract.png",
+            "label": "边缘提取"
+          }
+        ]
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'SSS', '后处理', '亮度'],
+    "tags": [
+      "Unity",
+      "Edge Detection",
+      "Sobel",
+      "后处理"
+    ]
   },
   {
-    id: 'shader-cmd-pass',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: '自定义渲染 Pass',
-    titleEn: 'Custom Command Buffer Pass',
-    desc: '利用CommandBuffer自定义渲染Pass，实现烘焙RT、景深DOF、局部后处理等高级渲染流程扩展。',
-    cover: 'assets/images/shader_cmd_dof.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/shader_cmd_dof.png', label: 'DOF 景深' },
-      { type: 'image', src: 'assets/images/shader_cmd_bake1.png', label: '烘焙RT 1' },
-      { type: 'image', src: 'assets/images/shader_cmd_bake2.png', label: '烘焙RT 2' },
-      { type: 'image', src: 'assets/images/shader_cmd_local_pp.png', label: '局部后处理' },
+    "id": "shader-pp-outline",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "后处理描边",
+    "titleEn": "Post-Process Outline",
+    "desc": "基于深度/法线不连续性的全屏后处理描边方案，无需修改模型即可为场景中所有物体添加统一轮廓线。",
+    "cover": "assets/images/shader_pp_outline.avif",
+    "gallery": [
+      {
+        "type": "grid",
+        "label": "描边效果对比",
+        "images": [
+          {
+            "src": "assets/images/shader_pp_outline.avif",
+            "label": "后处理描边"
+          },
+          {
+            "src": "assets/images/shader_pp_outline_occ.avif",
+            "label": "后处理描边(遮挡)"
+          },
+          {
+            "src": "assets/images/shader_screen_outline.avif",
+            "label": "屏幕描边"
+          }
+        ]
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnUnityShader', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity', 'CommandBuffer', 'DOF', '后处理'],
-  },
-
-  {
-    id: 'urp-rain-tiandao',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'Rain 天刀方案',
-    titleEn: 'Rain - Tiandao Style',
-    desc: '参考《天涯明月刀》的雨效实现方案，结合屏幕空间涟漪与粒子降雨，在移动端高效呈现真实感雨天氛围。',
-    cover: 'assets/images/urp_rain_tiandao.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_rain_tiandao.gif', label: 'Rain 天刀方案' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
-    ],
-    tags: ['URP', 'Rain', '天刀', '后处理'],
-  },
-  {
-    id: 'urp-volume-light',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'Fast Volume Light 体积光',
-    titleEn: 'Fast Volumetric Light',
-    desc: '后处理实现的快速体积光方案，适合移动端性能预算，通过射线步进与散射积分模拟丁达尔光效。',
-    cover: 'assets/images/urp_volume_light.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_volume_light.gif', label: '体积光' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
-    ],
-    tags: ['URP', 'Volume Light', '体积光', '移动端'],
+    "tags": [
+      "Unity",
+      "Outline",
+      "后处理",
+      "NPR"
+    ]
   },
   {
-    id: 'urp-oit',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'standard',
-    title: 'OIT 顺序无关透明',
-    titleEn: 'Order Independent Transparency',
-    desc: '对比Alpha Blend、Depth Peeling与Weighted Blend三种OIT方案，解决透明物体排序问题，实现正确的透明度叠加。',
-    cover: 'assets/images/urp_oit_depthpeeling.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/urp_oit_alphablend.png', label: 'Alpha Blend' },
-      { type: 'image', src: 'assets/images/urp_oit_depthpeeling.png', label: 'Depth Peeling' },
-      { type: 'image', src: 'assets/images/urp_oit_weightedbend.png', label: 'Weighted Blend' },
-      { type: 'image', src: 'assets/images/urp_oit_scene_alphablend.png', label: '场景 Alpha Blend' },
-      { type: 'image', src: 'assets/images/urp_oit_scene_depthpeeling.png', label: '场景 Depth Peeling' },
-      { type: 'image', src: 'assets/images/urp_oit_scene_weighted.png', label: '场景 Weighted Blend' },
+    "id": "shader-depth-fx",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "深度图效果",
+    "titleEn": "Depth Buffer Effects",
+    "desc": "利用深度缓冲实现深度图可视化、深度扫描波（科幻雷达感）及放大镜/变焦后处理等效果。",
+    "cover": "assets/images/shader_depth_scan.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_depth_scan.avif",
+        "label": "深度扫描"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_depth_map.png",
+        "label": "深度图"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_zoom.avif",
+        "label": "变焦效果"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'OIT', '透明', 'Depth Peeling'],
+    "tags": [
+      "Unity",
+      "Depth",
+      "深度图",
+      "后处理"
+    ]
   },
   {
-    id: 'urp-starfield-crack',
-    category: 'postprocess',
-    categoryLabel: '后处理',
-    size: 'video',
-    title: '星空裂缝',
-    titleEn: 'Starfield Crack Effect',
-    desc: '科幻风格星空裂缝特效，结合噪声扰动、程序化裂纹生长与粒子光晕，营造宇宙撕裂的震撼视觉。',
-    cover: null,
-    gallery: [
-      { type: 'video', src: 'assets/videos/urp_starfield_crack.mp4', label: '星空裂缝演示' },
+    "id": "shader-bad-tv",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "故障艺术 Glitch",
+    "titleEn": "Bad TV / Glitch Effect",
+    "desc": "模拟信号干扰的故障艺术后处理，含扫描线噪波、色差分离、块状错位等多重叠加，营造赛博朋克屏幕感。",
+    "cover": "assets/images/shader_bad_tv.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_bad_tv.avif",
+        "label": "Bad TV"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_bad_tv2.avif",
+        "label": "Bad TV 2"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LearnURP', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    tags: ['URP', 'VFX', '星空', '裂缝'],
-  },
-
-  // ══════════════════════════════════════════════
-  //  图形学
-  // ══════════════════════════════════════════════
-  {
-    id: 'g136_jiuxiao',
-    category: 'character',
-    categoryLabel: '角色渲染',
-    size: 'video',
-    title: 'G136 · 九霄龙吟武器特效',
-    titleEn: 'G136 In-Game — Jiuxiao Dragon Weapon FX',
-    desc: '游戏项目实际落地，九霄龙吟武器材质与特效制作录屏。含剑身流光、龙纹动态描边等复合材质效果。',
-    cover: null,
-    primaryVideo: 'assets/videos/g136_jiuxiao.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/g136_jiuxiao.mp4', label: '九霄龙吟演示' },
-    ],
-    links: [],
-    tags: ['Game', 'Production', '武器', '特效材质', 'NeoX'],
+    "tags": [
+      "Unity",
+      "Glitch",
+      "故障艺术",
+      "后处理"
+    ]
   },
   {
-    id: 'g136_kongque',
-    category: 'character',
-    categoryLabel: '角色渲染',
-    size: 'video',
-    title: 'G136 · 孔雀时装材质',
-    titleEn: 'G136 In-Game — Peacock Costume Material',
-    desc: '游戏项目实际落地，孔雀时装角色材质制作录屏。含虹彩羽毛各向异性、镭射布料、薄膜干涉等效果。',
-    cover: null,
-    primaryVideo: 'assets/videos/g136_kongque.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/g136_kongque.mp4', label: '孔雀时装演示' },
+    "id": "shader-screen-sss",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "屏幕空间 SSS & 亮度调节",
+    "titleEn": "Screen Space SSS & Brightness",
+    "desc": "屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤添加散射晕染；附亮度/对比度调节效果。",
+    "cover": "assets/images/shader_screen_sss.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_screen_sss.png",
+        "label": "屏幕空间SSS"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_brightness.png",
+        "label": "亮度/对比度"
+      }
     ],
-    links: [],
-    tags: ['Game', 'Production', '时装', '各向异性', '镭射', 'NeoX'],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "SSS",
+      "后处理",
+      "亮度"
+    ]
   },
   {
-    id: 'g136_jinyuhu',
-    category: 'character',
-    categoryLabel: '角色渲染',
-    size: 'video',
-    title: 'G136 · 金玉葫芦材质',
-    titleEn: 'G136 In-Game — Golden Jade Gourd Material',
-    desc: '游戏项目实际落地，金玉葫芦道具材质制作录屏。含金属质感、玉石次表面散射、流光动态纹理等效果。',
-    cover: null,
-    primaryVideo: 'assets/videos/g136_jinyuhu.mp4',
-    gallery: [
-      { type: 'video', src: 'assets/videos/g136_jinyuhu.mp4', label: '金玉葫芦演示' },
+    "id": "shader-cmd-pass",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "自定义渲染 Pass",
+    "titleEn": "Custom Command Buffer Pass",
+    "desc": "利用CommandBuffer自定义渲染Pass，实现烘焙RT、景深DOF、局部后处理等高级渲染流程扩展。",
+    "cover": "assets/images/shader_cmd_dof.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_cmd_dof.png",
+        "label": "DOF 景深"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_cmd_bake1.png",
+        "label": "烘焙RT 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_cmd_bake2.png",
+        "label": "烘焙RT 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_cmd_local_pp.png",
+        "label": "局部后处理"
+      }
     ],
-    links: [],
-    tags: ['Game', 'Production', '道具', '金属', '玉石', 'NeoX'],
-  },
-
-  // ══════════════════════════════════════════════
-  //  图形学
-  // ══════════════════════════════════════════════
-  {
-    id: 'softraster',
-    category: 'graphics',
-    categoryLabel: '图形学',
-    size: 'standard',
-    title: '软光栅化渲染器',
-    titleEn: 'Software Rasterizer',
-    desc: '基于Unity实现的自定义软光栅化渲染器，涵盖背面剔除、视锥裁剪、透视纠正插值、MSAA等核心图形算法。',
-    cover: 'assets/images/softraster_1.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/softraster_1.png', label: '渲染结果' },
-      { type: 'image', src: 'assets/images/softraster_2.png', label: '线框模式' },
-      { type: 'image', src: 'assets/images/softraster_3.png', label: '深度测试' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LcL-Soft-Render', icon: 'github' },
-    ],
-    tags: ['C#', '光栅化', 'MSAA', '图形学基础'],
-  },
-
-  // ══════════════════════════════════════════════
-  //  工具
-  // ══════════════════════════════════════════════
-  {
-    id: 'houdini',
-    category: 'tools',
-    categoryLabel: '工具',
-    size: 'standard',
-    title: 'Houdini 工具集',
-    titleEn: 'Custom Houdini HDA Library',
-    desc: '封装常用Houdini HDA节点库，含地形处理、植被生成、RBD破碎动画等程序化工具，大幅提升内容制作效率。',
-    cover: 'assets/images/houdini_1.gif',
-    gallery: [
-      { type: 'image', src: 'assets/images/houdini_1.gif', label: 'Houdini Tool 1' },
-      { type: 'image', src: 'assets/images/houdini_2.png', label: 'Houdini Tool 2' },
-    ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LcLLib-for-Houdini', icon: 'github' },
-    ],
-    tags: ['Houdini', 'HDA', 'VEX', 'Procedural'],
+    "tags": [
+      "Unity",
+      "CommandBuffer",
+      "DOF",
+      "后处理"
+    ]
   },
   {
-    id: 'unitytools',
-    category: 'tools',
-    categoryLabel: '工具',
-    size: 'standard',
-    title: 'Unity Editor 工具集',
-    titleEn: 'Unity Editor Tools',
-    desc: '自定义ShaderGUI扩展、Shader变体收集与剔除工具、LcLProfiler性能分析器等实用Editor扩展工具集。',
-    cover: 'assets/images/unitytools_shadergui.png',
-    gallery: [
-      { type: 'image', src: 'assets/images/unitytools_shadergui.png', label: 'ShaderGUI' },
-      { type: 'image', src: 'assets/images/unitytools_snap.gif', label: 'Snap Tools' },
+    "id": "urp-rain-tiandao",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Rain 天刀方案",
+    "titleEn": "Rain - Tiandao Style",
+    "desc": "参考《天涯明月刀》的雨效实现方案，结合屏幕空间涟漪与粒子降雨，在移动端高效呈现真实感雨天氛围。",
+    "cover": "assets/images/urp_rain_tiandao.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_rain_tiandao.avif",
+        "label": "Rain 天刀方案"
+      }
     ],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/csdjk/LcL-Tools-Unity', icon: 'github' },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
     ],
-    tags: ['Unity Editor', 'C#', 'ShaderGUI', 'Profiler'],
+    "tags": [
+      "URP",
+      "Rain",
+      "天刀",
+      "后处理"
+    ]
   },
+  {
+    "id": "urp-volume-light",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Fast Volume Light 体积光",
+    "titleEn": "Fast Volumetric Light",
+    "desc": "后处理实现的快速体积光方案，适合移动端性能预算，通过射线步进与散射积分模拟丁达尔光效。",
+    "cover": "assets/images/urp_volume_light.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/urp_volume_light.avif",
+        "label": "体积光"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+      "Volume Light",
+      "体积光",
+      "移动端"
+    ]
+  },
+  {
+    "id": "urp-oit",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "OIT 顺序无关透明",
+    "titleEn": "Order Independent Transparency",
+    "desc": "对比Alpha Blend、Depth Peeling与Weighted Blend三种OIT方案，解决透明物体排序问题，实现正确的透明度叠加。",
+    "cover": "assets/images/urp_oit_depthpeeling.png",
+    "gallery": [
+      {
+        "type": "grid",
+        "label": "简单场景对比",
+        "images": [
+          {
+            "src": "assets/images/urp_oit_alphablend.png",
+            "label": "Alpha Blend"
+          },
+          {
+            "src": "assets/images/urp_oit_depthpeeling.png",
+            "label": "Depth Peeling"
+          },
+          {
+            "src": "assets/images/urp_oit_weightedbend.png",
+            "label": "Weighted Blend"
+          }
+        ]
+      },
+      {
+        "type": "grid",
+        "label": "复杂场景对比",
+        "images": [
+          {
+            "src": "assets/images/urp_oit_scene_alphablend.png",
+            "label": "场景 Alpha Blend"
+          },
+          {
+            "src": "assets/images/urp_oit_scene_depthpeeling.png",
+            "label": "场景 Depth Peeling"
+          },
+          {
+            "src": "assets/images/urp_oit_scene_weighted.png",
+            "label": "场景 Weighted Blend"
+          }
+        ]
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+      "OIT",
+      "透明",
+      "Depth Peeling"
+    ]
+  },
+  {
+    "id": "urp-starfield-crack",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "video",
+    "title": "星空裂缝",
+    "titleEn": "Starfield Crack Effect",
+    "desc": "科幻风格星空裂缝特效，结合噪声扰动、程序化裂纹生长与粒子光晕，营造宇宙撕裂的震撼视觉。",
+    "cover": null,
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/urp_starfield_crack.mp4",
+        "label": "星空裂缝演示"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+      "VFX",
+      "星空",
+      "裂缝"
+    ]
+  },
+  {
+    "id": "g136_jiuxiao",
+    "category": "character",
+    "categoryLabel": "角色渲染",
+    "size": "video",
+    "title": "G136 · 九霄龙吟武器特效",
+    "titleEn": "G136 In-Game — Jiuxiao Dragon Weapon FX",
+    "desc": "游戏项目实际落地，九霄龙吟武器材质与特效制作录屏。含剑身流光、龙纹动态描边等复合材质效果。",
+    "cover": null,
+    "primaryVideo": "assets/videos/g136_jiuxiao.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/g136_jiuxiao.mp4",
+        "label": "九霄龙吟演示"
+      }
+    ],
+    "links": [],
+    "tags": [
+      "Game",
+      "Production",
+      "武器",
+      "特效材质",
+      "NeoX"
+    ]
+  },
+  {
+    "id": "g136_kongque",
+    "category": "character",
+    "categoryLabel": "角色渲染",
+    "size": "video",
+    "title": "G136 · 孔雀时装材质",
+    "titleEn": "G136 In-Game — Peacock Costume Material",
+    "desc": "游戏项目实际落地，孔雀时装角色材质制作录屏。含虹彩羽毛各向异性、镭射布料、薄膜干涉等效果。",
+    "cover": null,
+    "primaryVideo": "assets/videos/g136_kongque.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/g136_kongque.mp4",
+        "label": "孔雀时装演示"
+      }
+    ],
+    "links": [],
+    "tags": [
+      "Game",
+      "Production",
+      "时装",
+      "各向异性",
+      "镭射",
+      "NeoX"
+    ]
+  },
+  {
+    "id": "g136_jinyuhu",
+    "category": "character",
+    "categoryLabel": "角色渲染",
+    "size": "video",
+    "title": "G136 · 金玉葫芦材质",
+    "titleEn": "G136 In-Game — Golden Jade Gourd Material",
+    "desc": "游戏项目实际落地，金玉葫芦道具材质制作录屏。含金属质感、玉石次表面散射、流光动态纹理等效果。",
+    "cover": null,
+    "primaryVideo": "assets/videos/g136_jinyuhu.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/g136_jinyuhu.mp4",
+        "label": "金玉葫芦演示"
+      }
+    ],
+    "links": [],
+    "tags": [
+      "Game",
+      "Production",
+      "道具",
+      "金属",
+      "玉石",
+      "NeoX"
+    ]
+  },
+  {
+    "id": "softraster",
+    "category": "graphics",
+    "categoryLabel": "图形学",
+    "size": "standard",
+    "title": "软光栅化渲染器",
+    "titleEn": "Software Rasterizer",
+    "desc": "基于Unity实现的自定义软光栅化渲染器，涵盖背面剔除、视锥裁剪、透视纠正插值、MSAA等核心图形算法。",
+    "cover": "assets/images/softraster_1.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/softraster_1.png",
+        "label": "渲染结果"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/softraster_2.png",
+        "label": "线框模式"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/softraster_3.png",
+        "label": "深度测试"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Soft-Render",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "C#",
+      "光栅化",
+      "MSAA",
+      "图形学基础"
+    ]
+  },
+  {
+    "id": "houdini",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "Houdini 工具集",
+    "titleEn": "Custom Houdini HDA Library",
+    "desc": "封装常用Houdini HDA节点库，含地形处理、植被生成、RBD破碎动画等程序化工具，大幅提升内容制作效率。",
+    "cover": "assets/images/houdini_1.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1.avif",
+        "label": "Houdini Tool 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/houdini_2.png",
+        "label": "Houdini Tool 2"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Houdini",
+      "HDA",
+      "VEX",
+      "Procedural"
+    ]
+  },
+  {
+    "id": "unitytools",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "Unity Editor 工具集",
+    "titleEn": "Unity Editor Tools",
+    "desc": "自定义ShaderGUI扩展、Shader变体收集与剔除工具、LcLProfiler性能分析器等实用Editor扩展工具集。",
+    "cover": "assets/images/unitytools_shadergui.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/unitytools_shadergui.png",
+        "label": "ShaderGUI"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/unitytools_snap.avif",
+        "label": "Snap Tools"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Tools-Unity",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity Editor",
+      "C#",
+      "ShaderGUI",
+      "Profiler"
+    ]
+  }
 ];

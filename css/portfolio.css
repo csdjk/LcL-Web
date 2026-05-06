@@ -153,6 +153,58 @@
   stroke: var(--cyan);
 }
 
+/* ─── Mosaic preview for compare-grid cards ─── */
+.card__mosaic {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
+  overflow: hidden;
+}
+
+.card__mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-expo), filter 0.4s;
+}
+
+.portfolio-card:hover .card__mosaic img {
+  transform: scale(1.07);
+  filter: brightness(1.05) saturate(1.1);
+}
+
+/* Only 1 image: full width */
+.card__mosaic img:only-child {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+/* 3 images: last spans 2 cols */
+.card__mosaic img:first-child:nth-last-child(3) ~ img:last-child {
+  grid-column: 1 / -1;
+}
+
+.card__mosaic-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 2;
+  padding: 3px 8px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(0,212,255,0.35);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
 /* ─── Card body ─── */
 .card__body {
   padding: 18px 20px 20px;
