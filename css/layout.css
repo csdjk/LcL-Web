@@ -427,6 +427,34 @@ body {
   opacity: 0;
 }
 
+.filter-bar--sub {
+  margin-top: -36px;
+  margin-bottom: 32px;
+  padding-left: 4px;
+  opacity: 1;
+  border-left: 2px solid var(--cyan-dim);
+}
+
+.filter-subtab {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--dur-fast);
+}
+
+.filter-subtab:hover,
+.filter-subtab.active {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
 .filter-tab {
   font-family: var(--font-mono);
   font-size: 0.72rem;

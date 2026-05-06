@@ -7,36 +7,16 @@ const PORTFOLIO = [
     "title": "原神角色渲染",
     "titleEn": "Genshin Impact Character Rendering",
     "desc": "逆向分析并复刻《原神》角色渲染绿植，实现SDF面部阴影、多pass描边、各向异性头发、Ramp光照等效果。",
-    "cover": "assets/images/genshin_front.png",
+    "cover": null,
     "primaryVideo": "assets/videos/genshin_demo.mp4",
+    "webDemo": "demos/genshin/",
     "gallery": [
       {
         "type": "video",
         "src": "assets/videos/genshin_demo.mp4",
         "label": "演示视频"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/genshin_front.png",
-        "label": "正面"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/genshin_noon.png",
-        "label": "中午暖光"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/genshin_backlight.png",
-        "label": "背光"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/genshin_night.png",
-        "label": "夜晚冷光"
       }
     ],
-    "webDemo": "demos/genshin/",
     "links": [
       {
         "label": "Web Demo",
@@ -61,36 +41,16 @@ const PORTFOLIO = [
     "title": "崩坏·星穹铁道角色渲染",
     "titleEn": "Honkai Star Rail Character Rendering",
     "desc": "逆向复刻《崩坏：星穹铁道》角色渲染，含镜浅、银狼、饮月等角色的金属、皮肤、头发材质及丰富后处理效果。",
-    "cover": "assets/images/hsr_yinyue.png",
+    "cover": null,
     "primaryVideo": "assets/videos/hsr_demo.mp4",
+    "webDemo": "demos/starrail/",
     "gallery": [
       {
         "type": "video",
         "src": "assets/videos/hsr_demo.mp4",
         "label": "演示视频"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/hsr_yinyue.png",
-        "label": "饮月"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/hsr_jingliu.png",
-        "label": "镜浅"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/hsr_huangquan.png",
-        "label": "黄泉"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/hsr_yinyue2.png",
-        "label": "饮月2"
       }
     ],
-    "webDemo": "demos/starrail/",
     "links": [
       {
         "label": "Bilibili",
@@ -120,6 +80,7 @@ const PORTFOLIO = [
   {
     "id": "water",
     "category": "material",
+    "subCategory": "mat-water",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "风格化水渲染",
@@ -137,31 +98,6 @@ const PORTFOLIO = [
         "type": "video",
         "src": "assets/videos/water_demo2.mp4",
         "label": "演示视频 2"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/water_1.png",
-        "label": "Water 1"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/water_2.png",
-        "label": "Water 2"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/water_3.png",
-        "label": "Water 3"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/water_4.png",
-        "label": "Water 4"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/water_5.png",
-        "label": "Water 5"
       }
     ],
     "links": [],
@@ -174,27 +110,18 @@ const PORTFOLIO = [
   {
     "id": "shader-cartoonwater",
     "category": "material",
+    "subCategory": "mat-water",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "卡通水面",
     "titleEn": "Cartoon Water Shader",
-    "desc": "风格化卡通水面材质，含程序化水波、深浅水色渐变、岸边泡沫线、涟漪扰动等NPR水面要素。",
+    "desc": "风格化卡通水面材质，含程序化水波纹理、深浅水色渐变、岸边泡沫线与FlowMap流动，还原NPR水面要素。",
     "cover": "assets/images/shader_cartoonwater.avif",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_cartoonwater.avif",
         "label": "Cartoon Water"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_water_interact.avif",
-        "label": "水面交互"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_wave.avif",
-        "label": "波浪效果"
       }
     ],
     "links": [
@@ -212,8 +139,71 @@ const PORTFOLIO = [
     ]
   },
   {
+    "id": "shader-water-interact",
+    "category": "material",
+    "subCategory": "mat-water",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "水面交互",
+    "titleEn": "Interactive Water Surface",
+    "desc": "角色与水面实时交互效果，基于RenderTexture记录扰动信息，动态生成涟漪扩散与水波位移，还原真实踏水感。",
+    "cover": "assets/images/shader_water_interact.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_water_interact.avif",
+        "label": "水面交互"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Water",
+      "RenderTexture",
+      "交互"
+    ]
+  },
+  {
+    "id": "shader-wave",
+    "category": "postprocess",
+    "subCategory": "mat-water",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "波浪效果",
+    "titleEn": "Ocean Wave Effect",
+    "desc": "基于Gerstner Wave的多层叠加波浪模拟，顶点着色器驱动海面起伏，配合法线混合与泡沫遮罩呈现真实海浪质感。",
+    "cover": "assets/images/shader_wave.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_wave.avif",
+        "label": "波浪效果"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Wave",
+      "Gerstner",
+      "Ocean"
+    ]
+  },
+  {
     "id": "urp-rain",
     "category": "material",
+    "subCategory": "mat-water",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "雨水涟漪效果",
@@ -237,22 +227,18 @@ const PORTFOLIO = [
   {
     "id": "shader-gpu-grass",
     "category": "material",
+    "subCategory": "mat-vegetation",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "GPU 风格化草地",
-    "titleEn": "GPU Stylized Grass",
-    "desc": "基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、交互压倒及LOD分级，性能高效。",
+    "title": "风格化草地交互",
+    "titleEn": "GPU Stylized Interactive Grass",
+    "desc": "基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、角色交互压倒与LOD分级，性能高效。",
     "cover": "assets/images/shader_gpu_grass.avif",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_gpu_grass.avif",
         "label": "GPU Grass"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_snow_interact.avif",
-        "label": "雪地交互"
       }
     ],
     "links": [
@@ -270,8 +256,40 @@ const PORTFOLIO = [
     ]
   },
   {
+    "id": "shader-snow-interact",
+    "category": "material",
+    "subCategory": "mat-vegetation",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "雪地交互",
+    "titleEn": "Interactive Snow (Tessellation)",
+    "desc": "基于曲面细分（Tessellation）的雪地交互效果，角色行走时动态压出脚印凹坑，配合法线扰动还原真实积雪质感。",
+    "cover": "assets/images/shader_snow_interact.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_snow_interact.avif",
+        "label": "雪地交互"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Tessellation",
+      "Snow",
+      "曲面细分"
+    ]
+  },
+  {
     "id": "urp-cloud",
     "category": "material",
+    "subCategory": "mat-stylized",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "模型云",
@@ -301,27 +319,49 @@ const PORTFOLIO = [
   {
     "id": "shader-pbr",
     "category": "material",
+    "subCategory": "mat-pbr",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "Custom PBR",
+    "title": "自定义 PBR",
     "titleEn": "Custom Physically-Based Rendering",
-    "desc": "从零实现基于Cook-Torrance BRDF的物理着色，含GGX分布、Smith几何遮蔽、Fresnel-Schlick，并扩展各向异性与皮肤次表面散射。",
+    "desc": "从零实现基于Cook-Torrance BRDF的物理着色，含GGX法线分布、Smith几何遮蔽、Fresnel-Schlick近似，完整还原工业级PBR管线。",
     "cover": "assets/images/shader_pbr.png",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_pbr.png",
         "label": "PBR"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "PBR",
+      "BRDF",
+      "Cook-Torrance"
+    ]
+  },
+  {
+    "id": "shader-pbr-aniso",
+    "category": "material",
+    "subCategory": "mat-pbr",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "各向异性 PBR",
+    "titleEn": "Anisotropic PBR",
+    "desc": "在PBR框架下扩展各向异性高光，采用Kajiya-Kay与Ward模型，模拟拉丝金属、头发丝绒等具有方向性高光的材质。",
+    "cover": "assets/images/shader_pbr_aniso.png",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_pbr_aniso.png",
         "label": "各向异性PBR"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_pbr_skin.png",
-        "label": "皮肤PBR"
       },
       {
         "type": "image",
@@ -339,19 +379,19 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "PBR",
-      "BRDF",
       "各向异性",
-      "Skin"
+      "Anisotropy"
     ]
   },
   {
     "id": "shader-sss",
     "category": "material",
+    "subCategory": "mat-pbr",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "次表面散射 SSS",
     "titleEn": "Sub-Surface Scattering",
-    "desc": "多种SSS实现方案：预积分皮肤SSS、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
+    "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
     "cover": "assets/images/shader_sss.png",
     "gallery": [
       {
@@ -366,8 +406,18 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
+        "src": "assets/images/shader_pbr_skin.png",
+        "label": "皮肤PBR"
+      },
+      {
+        "type": "image",
         "src": "assets/images/shader_sg_sss.png",
         "label": "Shader Graph SSS"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_screen_sss.png",
+        "label": "屏幕空间SSS"
       }
     ],
     "links": [
@@ -387,6 +437,7 @@ const PORTFOLIO = [
   {
     "id": "shader-toon",
     "category": "material",
+    "subCategory": "mat-stylized",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "卡通渲染 Toon Shading",
@@ -432,6 +483,7 @@ const PORTFOLIO = [
   {
     "id": "shader-film-interference",
     "category": "material",
+    "subCategory": "mat-pbr",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "薄膜干涉",
@@ -472,6 +524,7 @@ const PORTFOLIO = [
   {
     "id": "shader-reflection",
     "category": "material",
+    "subCategory": "mat-other",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "反射与折射",
@@ -507,18 +560,45 @@ const PORTFOLIO = [
   {
     "id": "shader-glass",
     "category": "material",
+    "subCategory": "mat-other",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "玻璃 & 液体瓶",
-    "titleEn": "Stylized Glass & Liquid Bottle",
-    "desc": "风格化玻璃Shader含背景扭曲、菲涅尔边缘与高光叠加；液体瓶材质模拟晃动时液面变化与气泡漂浮。",
+    "title": "风格化玻璃",
+    "titleEn": "Stylized Glass",
+    "desc": "风格化玻璃Shader，含背景扭曲、菲涅尔边缘光与多层高光叠加，模拟卡通/写实风格透明玻璃质感。",
     "cover": "assets/images/shader_glass.png",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_glass.png",
         "label": "Glass"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Glass",
+      "Fresnel",
+      "GrabPass"
+    ]
+  },
+  {
+    "id": "shader-liquid-bottle",
+    "category": "material",
+    "subCategory": "mat-other",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "液体瓶",
+    "titleEn": "Liquid Bottle",
+    "desc": "液体瓶材质模拟晃动时液面动态变化与气泡漂浮，基于世界空间高度裁切与法线扰动实现真实液体感。",
+    "cover": "assets/images/shader_liquid_bottle.avif",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_liquid_bottle.avif",
@@ -534,14 +614,14 @@ const PORTFOLIO = [
     ],
     "tags": [
       "Unity",
-      "Glass",
       "Liquid",
-      "GrabPass"
+      "模拟"
     ]
   },
   {
     "id": "shader-interior",
     "category": "material",
+    "subCategory": "mat-other",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "Interior Mapping 室内映射",
@@ -591,18 +671,44 @@ const PORTFOLIO = [
   {
     "id": "urp-parallax",
     "category": "material",
+    "subCategory": "mat-other",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "Parallax & Triplanar",
-    "titleEn": "Parallax Occlusion Mapping & Triplanar",
-    "desc": "通过高度图与视线步进模拟表面凹凸感的视差映射，以及三向投影贴图——无需UV即可在任意地形表面贴合纹理。",
+    "title": "Parallax 视差映射",
+    "titleEn": "Parallax Occlusion Mapping",
+    "desc": "通过高度图与视线步进模拟表面凹凸感的视差映射（POM），在平面上呈现深度感极强的砖墙、地板等细节。",
     "cover": "assets/images/urp_parallax.png",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/urp_parallax.png",
         "label": "Parallax Mapping"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+      "Parallax",
+      "高度图"
+    ]
+  },
+  {
+    "id": "shader-triplanar",
+    "category": "material",
+    "subCategory": "mat-other",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Triplanar 三向投影",
+    "titleEn": "Triplanar Mapping",
+    "desc": "三向投影贴图，无需UV即可在任意地形表面自然贴合纹理，适用于程序化地形、岩石等复杂模型。",
+    "cover": "assets/images/shader_triplanar1.png",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_triplanar1.png",
@@ -623,14 +729,14 @@ const PORTFOLIO = [
     ],
     "tags": [
       "URP",
-      "Parallax",
       "Triplanar",
-      "高度图"
+      "地形"
     ]
   },
   {
     "id": "urp-ice",
     "category": "material",
+    "subCategory": "mat-stylized",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "冰冻效果",
@@ -665,6 +771,7 @@ const PORTFOLIO = [
   {
     "id": "shader-dissolve",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "溶解效果",
@@ -705,6 +812,7 @@ const PORTFOLIO = [
   {
     "id": "urp-fur",
     "category": "material",
+    "subCategory": "mat-vegetation",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "毛发渲染 Shell Fur",
@@ -734,6 +842,7 @@ const PORTFOLIO = [
   {
     "id": "shader-energyball",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "能量球特效",
@@ -763,6 +872,7 @@ const PORTFOLIO = [
   {
     "id": "shader-outlines",
     "category": "material",
+    "subCategory": "mat-stylized",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "多种描边方案",
@@ -803,6 +913,7 @@ const PORTFOLIO = [
   {
     "id": "shader-cloth",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "布料物理模拟",
@@ -832,6 +943,7 @@ const PORTFOLIO = [
   {
     "id": "urp-vat",
     "category": "material",
+    "subCategory": "mat-vegetation",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "VAT-RBD 顶点动画贴图",
@@ -862,18 +974,45 @@ const PORTFOLIO = [
   {
     "id": "shader-rope",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "Bezier 绳索 & 曲线网格",
-    "titleEn": "Bezier Rope & Curve Mesh",
-    "desc": "基于贝塞尔曲线的程序化Mesh生成，沿曲线挤出几何体，支持绳索、轨道、流光等动态形态。",
+    "title": "Bezier 绳索",
+    "titleEn": "Bezier Rope",
+    "desc": "基于贝塞尔曲线的程序化绳索Mesh生成，沿曲线挤出几何体，支持动态悬挂、流光等交互形态。",
     "cover": "assets/images/shader_rope.avif",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_rope.avif",
         "label": "绳索"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Bezier",
+      "Procedural",
+      "绳索"
+    ]
+  },
+  {
+    "id": "shader-bezier-mesh",
+    "category": "material",
+    "subCategory": "mat-fx",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Bezier 曲线网格",
+    "titleEn": "Bezier Curve Mesh",
+    "desc": "沿贝塞尔曲线路径挤出任意截面形状生成连续网格，可用于道路、轨道、管道等程序化建模场景。",
+    "cover": "assets/images/shader_bezier.avif",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_bezier.avif",
@@ -896,33 +1035,24 @@ const PORTFOLIO = [
       "Unity",
       "Bezier",
       "Procedural",
-      "绳索"
+      "曲线网格"
     ]
   },
   {
     "id": "shader-uv-anim",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "UV动画 & 序列帧",
-    "titleEn": "UV Animation & Flipbook",
-    "desc": "多种UV动画技术集合：基础UV滚动、Flipbook序列帧、刷子世界空间/切线空间绘制及公告板。",
+    "title": "UV 动画",
+    "titleEn": "UV Animation",
+    "desc": "多种UV动画技术：基础UV滚动、笔刷世界空间/切线空间绘制、公告板Billboard，常用于流水、火焰、特效等场景。",
     "cover": "assets/images/shader_uv_anim.avif",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_uv_anim.avif",
         "label": "UV Animation"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_flipbook.avif",
-        "label": "Flipbook"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_seq_anim.avif",
-        "label": "序列帧动画"
       },
       {
         "type": "image",
@@ -950,14 +1080,49 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "UV",
+      "Billboard"
+    ]
+  },
+  {
+    "id": "shader-flipbook",
+    "category": "material",
+    "subCategory": "mat-fx",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "序列帧动画",
+    "titleEn": "Flipbook / Sprite Sheet Animation",
+    "desc": "基于Flipbook序列帧图集的逐帧播放动画，支持混合采样减少闪烁，广泛用于爆炸、烟雾、火焰等粒子特效。",
+    "cover": "assets/images/shader_flipbook.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_flipbook.avif",
+        "label": "Flipbook"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_seq_anim.avif",
+        "label": "序列帧动画"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
       "Flipbook",
-      "Billboard",
-      "序列帧"
+      "序列帧",
+      "粒子"
     ]
   },
   {
     "id": "shader-mask",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "遮罩效果集",
@@ -1007,6 +1172,7 @@ const PORTFOLIO = [
   {
     "id": "shader-geo",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "几何着色器效果",
@@ -1041,6 +1207,7 @@ const PORTFOLIO = [
   {
     "id": "shader-shadow",
     "category": "material",
+    "subCategory": "mat-other",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "阴影算法集",
@@ -1092,6 +1259,7 @@ const PORTFOLIO = [
   {
     "id": "shader-water-wave",
     "category": "material",
+    "subCategory": "mat-water",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "屏幕波纹效果",
@@ -1122,6 +1290,7 @@ const PORTFOLIO = [
   {
     "id": "shader-ui",
     "category": "material",
+    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "UI 特效",
@@ -1305,14 +1474,52 @@ const PORTFOLIO = [
     "cover": "assets/images/shader_bloom.png",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/shader_bloom.png",
-        "label": "Bloom"
-      },
+        "type": "compare",
+        "label": "Bloom",
+        "before": {
+          "src": "assets/images/shader_bloom.png",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_bloom2.png",
+          "label": "后"
+        }
+      }
+    ],
+    "links": [
       {
-        "type": "image",
-        "src": "assets/images/shader_bloom2.png",
-        "label": "Bloom 2"
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Bloom",
+      "后处理"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-box-blur",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Box Blur",
+    "titleEn": "Box Blur",
+    "desc": "最基础的均值模糊算法，对周围像素等权均值采样，实现快速低成本的全屏模糊，适合低性能需求场景。",
+    "cover": "assets/images/shader_box_blur.png",
+    "gallery": [
+      {
+        "type": "compare",
+        "label": "Box Blur",
+        "before": {
+          "src": "assets/images/shader_original2.png",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_box_blur.png",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1324,45 +1531,30 @@ const PORTFOLIO = [
     ],
     "tags": [
       "Unity",
-      "Bloom",
+      "Blur",
       "后处理"
-    ]
+    ],
+    "featured": false
   },
   {
-    "id": "shader-blur",
+    "id": "shader-gauss-blur",
     "category": "postprocess",
     "categoryLabel": "后处理",
     "size": "standard",
-    "title": "模糊效果集",
-    "titleEn": "Blur Effects",
-    "desc": "汇集Box Blur、Gaussian Blur、Radial Blur、Motion Blur四种模糊算法，覆盖从背景虚化到运动残影的全场景需求。",
+    "title": "Gaussian Blur",
+    "titleEn": "Gaussian Blur",
+    "desc": "基于高斯核的双Pass模糊，先横向再纵向卷积，兼顾质量与性能，是后处理管线中最常用的模糊方案。",
     "cover": "assets/images/shader_gauss_blur.png",
     "gallery": [
       {
-        "type": "grid",
-        "label": "模糊效果对比",
-        "images": [
-          {
-            "src": "assets/images/shader_box_blur.png",
-            "label": "Box Blur"
-          },
-          {
-            "src": "assets/images/shader_gauss_blur.png",
-            "label": "Gaussian Blur"
-          },
-          {
-            "src": "assets/images/shader_gauss_blur2.png",
-            "label": "Gaussian Blur 2"
-          },
-          {
-            "src": "assets/images/shader_radial_blur.png",
-            "label": "Radial Blur"
-          },
-          {
-            "src": "assets/images/shader_motion_blur.avif",
-            "label": "Motion Blur"
-          }
-        ]
+        "type": "image",
+        "src": "assets/images/shader_gauss_blur.png",
+        "label": "Gaussian Blur"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_gauss_blur2.png",
+        "label": "Gaussian Blur 2"
       }
     ],
     "links": [
@@ -1376,6 +1568,65 @@ const PORTFOLIO = [
       "Unity",
       "Blur",
       "Gaussian",
+      "后处理"
+    ]
+  },
+  {
+    "id": "shader-radial-blur",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Radial Blur 径向模糊",
+    "titleEn": "Radial Blur",
+    "desc": "以屏幕中心为起点向外放射采样，产生镜头推拉感与爆炸冲击感，常用于技能释放、过场转场等视觉特效。",
+    "cover": "assets/images/shader_radial_blur.png",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_radial_blur.png",
+        "label": "Radial Blur"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Blur",
+      "Radial",
+      "后处理"
+    ]
+  },
+  {
+    "id": "shader-motion-blur",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "Motion Blur 运动模糊",
+    "titleEn": "Motion Blur",
+    "desc": "基于速度缓冲（Velocity Buffer）的屏幕空间运动模糊，根据物体运动向量对像素进行方向性拖影采样，模拟高速运动的视觉残影。",
+    "cover": "assets/images/shader_motion_blur.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/shader_motion_blur.avif",
+        "label": "Motion Blur"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Blur",
       "Motion Blur",
       "后处理"
     ]
@@ -1546,16 +1797,40 @@ const PORTFOLIO = [
     "category": "postprocess",
     "categoryLabel": "后处理",
     "size": "standard",
-    "title": "屏幕空间 SSS & 亮度调节",
-    "titleEn": "Screen Space SSS & Brightness",
-    "desc": "屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤添加散射晕染；附亮度/对比度调节效果。",
+    "title": "屏幕空间 SSS",
+    "titleEn": "Screen Space Sub-Surface Scattering",
+    "desc": "屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤区域添加散射晕染效果，兼容URP渲染管线。",
     "cover": "assets/images/shader_screen_sss.png",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_screen_sss.png",
         "label": "屏幕空间SSS"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "SSS",
+      "后处理"
+    ]
+  },
+  {
+    "id": "shader-brightness",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "亮度 / 对比度调节",
+    "titleEn": "Brightness & Contrast",
+    "desc": "基于后处理的全屏亮度与对比度调节效果，支持实时预览，可用于昼夜切换、场景氛围渲染等需求。",
+    "cover": "assets/images/shader_brightness.png",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_brightness.png",
@@ -1571,7 +1846,6 @@ const PORTFOLIO = [
     ],
     "tags": [
       "Unity",
-      "SSS",
       "后处理",
       "亮度"
     ]
@@ -1865,17 +2139,17 @@ const PORTFOLIO = [
       {
         "type": "image",
         "src": "assets/images/softraster_1.png",
-        "label": "渲染结果"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/softraster_2.png",
         "label": "线框模式"
       },
       {
         "type": "image",
+        "src": "assets/images/softraster_2.png",
+        "label": "自定义光栅化渲染"
+      },
+      {
+        "type": "image",
         "src": "assets/images/softraster_3.png",
-        "label": "深度测试"
+        "label": "unity内置渲染"
       }
     ],
     "links": [
@@ -1890,7 +2164,8 @@ const PORTFOLIO = [
       "光栅化",
       "MSAA",
       "图形学基础"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "houdini",

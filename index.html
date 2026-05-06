@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/portfolio.css">
-  <link rel="stylesheet" href="css/lightbox.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
@@ -203,6 +202,17 @@
       <button class="filter-tab" data-category="graphics">图形学</button>
     </div>
 
+    <!-- Sub-category filter (visible only when "普通材质" is active) -->
+    <div class="filter-bar filter-bar--sub" id="sub-filter-bar" role="group" aria-label="材质子分类过滤" style="display:none">
+      <button class="filter-subtab active" data-subcategory="all">全部材质</button>
+      <button class="filter-subtab" data-subcategory="mat-pbr">PBR 系</button>
+      <button class="filter-subtab" data-subcategory="mat-water">水体</button>
+      <button class="filter-subtab" data-subcategory="mat-vegetation">植被 / 毛发</button>
+      <button class="filter-subtab" data-subcategory="mat-fx">特效 / 溶解</button>
+      <button class="filter-subtab" data-subcategory="mat-stylized">卡通 / 风格化</button>
+      <button class="filter-subtab" data-subcategory="mat-other">其他材质</button>
+    </div>
+
     <!-- Cards injected by portfolio-render.js -->
     <div id="portfolio-grid" class="portfolio-grid"></div>
   </div>
@@ -261,36 +271,24 @@
   <a href="admin-login.html" id="admin-entry" tabindex="-1" aria-hidden="true" title="">⟨⟩</a>
 </footer>
 
-
 <!-- ═══════════════════════════════════════
-     LIGHTBOX
+     IMAGE VIEWER
 ════════════════════════════════════════ -->
-<div id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
-  <button class="lb-close" id="lb-close" aria-label="关闭">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-    </svg>
-  </button>
-
-  <div style="position:relative; display:flex; align-items:center; justify-content:center;">
-    <button class="lb-prev" id="lb-prev" aria-label="上一张">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 18 9 12 15 6"/>
-      </svg>
-    </button>
-
-    <div class="lb-media-wrap" id="lb-media-wrap"></div>
-
-    <button class="lb-next" id="lb-next" aria-label="下一张">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="9 18 15 12 9 6"/>
-      </svg>
-    </button>
+<div id="img-viewer" role="dialog" aria-modal="true" aria-label="图片查看">
+  <div id="img-viewer__panel">
+    <div id="img-viewer__header">
+      <span id="img-viewer__title"></span>
+      <button id="img-viewer__close" aria-label="关闭">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="img-viewer__grid"></div>
   </div>
-
-  <div class="lb-counter" id="lb-counter"></div>
-  <div class="lb-title" id="lb-title"></div>
 </div>
+
+
 
 
 <!-- ═══════════════════════════════════════
@@ -308,7 +306,6 @@
 <script src="js/text-scramble.js"></script>
 <script src="js/about-render.js"></script>
 <script src="js/portfolio-render.js"></script>
-<script src="js/lightbox.js"></script>
 <script src="js/scroll-anim.js"></script>
 <script src="js/nav.js"></script>
 <script src="js/water-bg.js"></script>

@@ -956,7 +956,8 @@
     parent.appendChild(wrap);
     let rows = items.map(item => {
       const r = Object.assign({}, item);
-      if (r.type === 'grid') r.images = (r.images || []).map(img => Object.assign({}, img));
+      if (r.type === 'grid')    r.images = (r.images || []).map(img => Object.assign({}, img));
+      if (r.type === 'compare') { r.before = Object.assign({}, r.before); r.after = Object.assign({}, r.after); }
       return r;
     });
 
@@ -1047,9 +1048,10 @@
     function render() {
       wrap.innerHTML = '';
       rows.forEach((row, ri) => {
-        const isGrid = row.type === 'grid';
+        const isGrid    = row.type === 'grid';
+        const isCompare = row.type === 'compare';
         const rowEl = document.createElement('div');
-        rowEl.className = isGrid ? 'dyn-row dyn-row--grid-parent' : 'dyn-row';
+        rowEl.className = isGrid ? 'dyn-row dyn-row--grid-parent' : isCompare ? 'dyn-row dyn-row--compare-parent' : 'dyn-row';
 
         const topLine = document.createElement('div');
         topLine.className = 'dyn-row-topline';
@@ -1057,7 +1059,7 @@
         // Type select
         const typeSelect = document.createElement('select');
         typeSelect.style.width = '76px';
-        ['image', 'video', 'grid'].forEach(v => {
+        ['image', 'video', 'grid', 'compare'].forEach(v => {
           const opt = document.createElement('option');
           opt.value = v; opt.textContent = v;
           if (v === (row.type || 'image')) opt.selected = true;
@@ -1067,19 +1069,19 @@
         // Grid-specific label input (shown for all types, but more prominent for grid)
         const lblInp = document.createElement('input');
         lblInp.type = 'text'; lblInp.value = row.label || '';
-        lblInp.placeholder = isGrid ? '对比组标题' : '标题'; lblInp.style.width = '110px';
+        lblInp.placeholder = isGrid ? '对比组标题' : isCompare ? '对比标题' : '标题'; lblInp.style.width = '110px';
         lblInp.addEventListener('input', () => { rows[ri].label = lblInp.value; });
 
         // Src input (hidden for grid)
         const srcInp = document.createElement('input');
         srcInp.type = 'text'; srcInp.value = row.src || '';
         srcInp.placeholder = '路径 / URL'; srcInp.style.flex = '1'; srcInp.style.minWidth = '0';
-        srcInp.style.display = isGrid ? 'none' : '';
+        srcInp.style.display = (isGrid || isCompare) ? 'none' : '';
         srcInp.addEventListener('input', () => { rows[ri].src = srcInp.value; });
 
         const preview = document.createElement('div');
         preview.style.cssText = 'display:flex;align-items:center;';
-        if (!isGrid) {
+        if (!isGrid && !isCompare) {
           srcInp.addEventListener('blur', () => {
             preview.innerHTML = '';
             preview.appendChild(makeMiniPreview(rows[ri].src, rows[ri].type));
@@ -1091,7 +1093,7 @@
         const browseBtn = document.createElement('button');
         browseBtn.type = 'button';
         browseBtn.className = 'btn-field-browse';
-        browseBtn.style.cssText = `position:static;width:26px;height:26px;flex-shrink:0;${isGrid ? 'display:none;' : ''}`;
+        browseBtn.style.cssText = `position:static;width:26px;height:26px;flex-shrink:0;${(isGrid || isCompare) ? 'display:none;' : ''}`;
         browseBtn.title = '从 assets 目录中选取';
         browseBtn.textContent = '📂';
         browseBtn.addEventListener('click', () => {
@@ -1112,13 +1114,19 @@
         // Type change handler
         typeSelect.addEventListener('change', () => {
           const newType = typeSelect.value;
-          const wasGrid = rows[ri].type === 'grid';
+          const wasGrid    = rows[ri].type === 'grid';
+          const wasCompare = rows[ri].type === 'compare';
           rows[ri].type = newType;
           if (newType === 'grid') {
             if (!rows[ri].images) rows[ri].images = [];
-            delete rows[ri].src;
+            delete rows[ri].src; delete rows[ri].before; delete rows[ri].after;
+          } else if (newType === 'compare') {
+            if (!rows[ri].before) rows[ri].before = { src: '', label: '前' };
+            if (!rows[ri].after)  rows[ri].after  = { src: '', label: '后' };
+            delete rows[ri].src; delete rows[ri].images;
           } else {
-            if (wasGrid) delete rows[ri].images;
+            if (wasGrid)    delete rows[ri].images;
+            if (wasCompare) { delete rows[ri].before; delete rows[ri].after; }
             if (!rows[ri].src) rows[ri].src = '';
           }
           render();
@@ -1140,6 +1148,60 @@
           rowEl.appendChild(imagesWrap);
         }
 
+        // Before/After inputs for compare type
+        if (isCompare) {
+          const compareWrap = document.createElement('div');
+          compareWrap.className = 'dyn-compare-images';
+
+          ['before', 'after'].forEach(side => {
+            const sideData = rows[ri][side] || { src: '', label: '' };
+            const sideEl = document.createElement('div');
+            sideEl.className = 'dyn-compare-side';
+
+            const sideLbl = document.createElement('span');
+            sideLbl.className = 'dyn-compare-side__tag';
+            sideLbl.textContent = side === 'before' ? '前 (Before)' : '后 (After)';
+
+            const sideSrc = document.createElement('input');
+            sideSrc.type = 'text'; sideSrc.value = sideData.src || '';
+            sideSrc.placeholder = '图片路径'; sideSrc.style.flex = '1'; sideSrc.style.minWidth = '0';
+            sideSrc.addEventListener('input', () => { rows[ri][side].src = sideSrc.value; });
+
+            const sideLabel = document.createElement('input');
+            sideLabel.type = 'text'; sideLabel.value = sideData.label || '';
+            sideLabel.placeholder = '标签'; sideLabel.style.width = '80px';
+            sideLabel.addEventListener('input', () => { rows[ri][side].label = sideLabel.value; });
+
+            const browseCompare = document.createElement('button');
+            browseCompare.type = 'button';
+            browseCompare.className = 'btn-field-browse';
+            browseCompare.style.cssText = 'position:static;width:26px;height:26px;flex-shrink:0;';
+            browseCompare.textContent = '📂';
+            browseCompare.addEventListener('click', () => {
+              openAssetBrowser((path) => {
+                sideSrc.value = path;
+                rows[ri][side].src = path;
+                const prev = sideEl.querySelector('.mini-preview');
+                if (prev) prev.remove();
+                sideEl.appendChild(makeMiniPreview(path, 'image'));
+              }, 'image');
+            });
+
+            const preview = makeMiniPreview(sideData.src, 'image');
+
+            sideSrc.addEventListener('blur', () => {
+              const prev = sideEl.querySelector('.mini-preview');
+              if (prev) prev.remove();
+              sideEl.appendChild(makeMiniPreview(rows[ri][side].src, 'image'));
+            });
+
+            sideEl.append(sideLbl, sideSrc, browseCompare, sideLabel, preview);
+            compareWrap.appendChild(sideEl);
+          });
+
+          rowEl.appendChild(compareWrap);
+        }
+
         wrap.appendChild(rowEl);
       });
 
@@ -1148,12 +1210,17 @@
       addEl.innerHTML = `
         <span class="dyn-add-opt" data-type="image">+ 图片/视频</span>
         <span class="dyn-add-sep">·</span>
-        <span class="dyn-add-opt" data-type="grid">⊞ 对比图组</span>`;
+        <span class="dyn-add-opt" data-type="grid">⊞ 对比图组</span>
+        <span class="dyn-add-sep">·</span>
+        <span class="dyn-add-opt" data-type="compare">⇄ 前后对比</span>`;
       addEl.querySelector('[data-type="image"]').addEventListener('click', () => {
         rows.push({ type: 'image', src: '', label: '' }); render();
       });
       addEl.querySelector('[data-type="grid"]').addEventListener('click', () => {
         rows.push({ type: 'grid', label: '对比', images: [{ src: '', label: '' }] }); render();
+      });
+      addEl.querySelector('[data-type="compare"]').addEventListener('click', () => {
+        rows.push({ type: 'compare', label: '效果对比', before: { src: '', label: '前' }, after: { src: '', label: '后' } }); render();
       });
       wrap.appendChild(addEl);
     }
