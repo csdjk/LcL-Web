@@ -27,14 +27,17 @@ body {
   display: flex;
   align-items: center;
   padding: 0 clamp(20px, 5vw, 60px);
+  /* always blurred — no hard switch on scroll */
+  background: rgba(4, 4, 12, 0.72);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 1px 0 rgba(0, 212, 255, 0.08), 0 4px 20px rgba(0,0,0,0.25);
   transition: background var(--dur-med) var(--ease-smooth),
-              backdrop-filter var(--dur-med) var(--ease-smooth),
               box-shadow var(--dur-med);
 }
 
 #nav.scrolled {
   background: rgba(4, 4, 12, 0.90);
-  backdrop-filter: blur(24px) saturate(1.5);
   box-shadow: 0 1px 0 rgba(0, 212, 255, 0.12), 0 4px 20px rgba(0,0,0,0.4);
 }
 
@@ -194,24 +197,25 @@ body {
 
 .hero-name-zh {
   font-family: var(--font-body);
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-  font-weight: 300;
-  letter-spacing: 0.6em;
-  color: rgba(200,220,255,0.75);
-  margin-top: 12px;
-  margin-bottom: 24px;
-  text-shadow: 0 0 20px rgba(0,212,255,0.35);
+  font-size: clamp(1.2rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: 0.7em;
+  color: rgba(220, 235, 255, 0.92);
+  margin-top: 14px;
+  margin-bottom: 28px;
+  text-shadow: 0 0 28px rgba(0,212,255,0.45), 0 1px 4px rgba(0,0,0,0.6);
   opacity: 0;
 }
 
 .hero-subtitle {
   font-family: var(--font-mono);
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
-  color: var(--text-secondary);
-  letter-spacing: 0.08em;
-  margin-bottom: 44px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: rgba(180, 210, 255, 0.88);
+  letter-spacing: 0.12em;
+  margin-bottom: 48px;
   min-height: 1.5em;
   opacity: 0;
+  text-shadow: 0 0 16px rgba(0,212,255,0.3);
 }
 
 .hero-subtitle .cursor {
@@ -279,11 +283,15 @@ body {
 /* ─────────────────────────────────────────
    ABOUT
 ───────────────────────────────────────── */
-#about {
+/* ── content-panel: unified background for about + portfolio + contact ── */
+#content-panel {
   background: rgba(8, 8, 18, 0.88);
   backdrop-filter: blur(16px) saturate(1.3);
   -webkit-backdrop-filter: blur(16px) saturate(1.3);
-  border-top: 1px solid rgba(0,212,255,0.08);
+}
+
+#about {
+  /* background handled by #content-panel */
 }
 
 #about .inner {
@@ -402,10 +410,7 @@ body {
    PORTFOLIO
 ───────────────────────────────────────── */
 #portfolio {
-  background: rgba(5, 5, 12, 0.85);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-top: 1px solid rgba(123,47,255,0.10);
+  /* background handled by #content-panel */
 }
 
 #portfolio .inner {
@@ -452,11 +457,8 @@ body {
    CONTACT
 ───────────────────────────────────────── */
 #contact {
-  background: rgba(8, 8, 18, 0.90);
-  backdrop-filter: blur(16px) saturate(1.3);
-  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  /* background handled by #content-panel */
   text-align: center;
-  border-top: 1px solid rgba(0,212,255,0.08);
 }
 
 #contact .inner {
@@ -536,6 +538,20 @@ footer {
 
 footer span {
   color: var(--cyan);
+}
+
+#admin-entry {
+  color: transparent;
+  text-decoration: none;
+  font-size: 0.6rem;
+  margin-left: 12px;
+  opacity: 0.08;
+  transition: opacity 0.4s, color 0.4s;
+  user-select: none;
+}
+#admin-entry:hover {
+  opacity: 0.5;
+  color: var(--text-muted);
 }
 
 /* ─────────────────────────────────────────

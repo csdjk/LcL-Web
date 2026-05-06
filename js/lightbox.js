@@ -5,7 +5,8 @@ let lbCurrentProject = null;
 let lbCurrentIndex = 0;
 
 function openLightbox(projectId, index = 0) {
-  const project = PORTFOLIO.find(p => p.id === projectId);
+  const data = (function(){ try { const s=localStorage.getItem('lcl_portfolio'); if(s) return JSON.parse(s); } catch(e){} return typeof PORTFOLIO!=='undefined'?PORTFOLIO:[]; })();
+  const project = data.find(p => p.id === projectId);
   if (!project || !project.gallery || !project.gallery.length) return;
 
   lbCurrentProject = project;

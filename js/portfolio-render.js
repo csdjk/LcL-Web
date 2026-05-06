@@ -167,11 +167,32 @@ function buildCard(project) {
 }
 
 // ── Render all cards ──────────────────────────────────────
+function getPortfolioData() {
+  try {
+    const s = localStorage.getItem('lcl_portfolio');
+    if (s) {
+      const saved = JSON.parse(s);
+      // Merge webDemo + links from source PORTFOLIO (edited in portfolio-data.js)
+      // so local file changes always take effect even with a localStorage override.
+      if (typeof PORTFOLIO !== 'undefined') {
+        saved.forEach(item => {
+          const src = PORTFOLIO.find(p => p.id === item.id);
+          if (!src) return;
+          if (src.webDemo !== undefined) item.webDemo = src.webDemo;
+          if (src.links   !== undefined) item.links   = src.links;
+        });
+      }
+      return saved;
+    }
+  } catch(e) {}
+  return typeof PORTFOLIO !== 'undefined' ? PORTFOLIO : [];
+}
+
 function renderPortfolio() {
   const grid = document.getElementById('portfolio-grid');
   if (!grid) return;
 
-  PORTFOLIO.forEach(project => {
+  getPortfolioData().forEach(project => {
     const card = buildCard(project);
     grid.appendChild(card);
   });

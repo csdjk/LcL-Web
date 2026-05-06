@@ -49,10 +49,9 @@
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
   <div class="hero-content">
-    <div class="hero-tag animate-float">Game Technical Artist</div>
 
     <h1 class="hero-name-en" aria-label="Li Changlong">LI CHANGLONG</h1>
-    <p class="hero-name-zh" aria-hidden="true">李&nbsp;&nbsp;长&nbsp;&nbsp;龙</p>
+    <p class="hero-name-zh" id="hero-name-zh" aria-hidden="true">李&nbsp;&nbsp;长&nbsp;&nbsp;龙</p>
 
     <p class="hero-subtitle">
       <span id="hero-subtitle-text"></span>
@@ -76,6 +75,11 @@
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════
+     CONTENT PANEL (about + portfolio + contact share one backdrop)
+════════════════════════════════════════ -->
+<div id="content-panel">
 
 <!-- ═══════════════════════════════════════
      ABOUT
@@ -246,12 +250,15 @@
   </div>
 </section>
 
+</div><!-- /#content-panel -->
+
 
 <!-- ═══════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
 <footer>
   <span>Li Changlong</span> &nbsp;·&nbsp; 游戏渲染技术美术 &nbsp;·&nbsp; Built with ♥ &amp; HLSL
+  <a href="admin-login.html" id="admin-entry" tabindex="-1" aria-hidden="true" title="">⟨⟩</a>
 </footer>
 
 
@@ -296,8 +303,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <!-- App scripts (order matters) -->
+<script src="js/site-config.js"></script>
 <script src="js/portfolio-data.js"></script>
 <script src="js/text-scramble.js"></script>
+<script src="js/about-render.js"></script>
 <script src="js/portfolio-render.js"></script>
 <script src="js/lightbox.js"></script>
 <script src="js/scroll-anim.js"></script>

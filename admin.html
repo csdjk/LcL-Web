@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LCL Admin — 内容管理</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #07070e; --bg1: #0c0c18; --bg2: #141420;
+  --border: rgba(0,212,255,0.15); --border-h: rgba(0,212,255,0.5);
+  --cyan: #00d4ff; --cyan-dim: rgba(0,212,255,0.12);
+  --red: #ff4466; --red-dim: rgba(255,68,102,0.12);
+  --green: #00e5a0; --green-dim: rgba(0,229,160,0.12);
+  --text: #d0d0e8; --text2: #7070a0; --text3: #404060;
+  --radius: 8px; --font: 'Segoe UI', system-ui, sans-serif;
+}
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 13px; }
+
+/* ── Layout ── */
+.app { display: grid; grid-template-rows: 56px 1fr; height: 100vh; }
+.topbar {
+  display: flex; align-items: center; gap: 16px; padding: 0 24px;
+  background: var(--bg1); border-bottom: 1px solid var(--border);
+}
+.topbar-logo { font-size: 16px; font-weight: 700; color: var(--cyan); letter-spacing: .08em; }
+.topbar-sep  { flex: 1; }
+.topbar-save { background: var(--cyan); color: #000; font-weight: 700; border: none; padding: 7px 20px; border-radius: var(--radius); cursor: pointer; font-size: 13px; }
+.topbar-save:hover { filter: brightness(1.1); }
+.topbar-reset { background: transparent; color: var(--red); border: 1px solid var(--red); padding: 6px 16px; border-radius: var(--radius); cursor: pointer; font-size: 12px; }
+.topbar-reset:hover { background: var(--red-dim); }
+.topbar-status { font-size: 11px; color: var(--text2); }
+
+.body  { display: grid; grid-template-columns: 200px 1fr; overflow: hidden; }
+
+/* ── Sidebar ── */
+.sidebar { background: var(--bg1); border-right: 1px solid var(--border); overflow-y: auto; padding: 16px 0; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
+  cursor: pointer; color: var(--text2); transition: all .15s;
+  border-left: 2px solid transparent;
+}
+.nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+.nav-item.active { color: var(--cyan); border-left-color: var(--cyan); background: var(--cyan-dim); }
+.nav-item .icon { font-size: 15px; width: 20px; text-align: center; }
+
+/* ── Content area ── */
+.content { overflow-y: auto; padding: 28px 32px; }
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── Section blocks ── */
+.block { background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 20px; }
+.block-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid var(--border);
+  font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--cyan);
+}
+.block-body { padding: 16px 18px; }
+
+/* ── Form controls ── */
+.form-row { display: grid; gap: 12px; margin-bottom: 14px; }
+.form-row.cols2 { grid-template-columns: 1fr 1fr; }
+.form-row.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 11px; color: var(--text2); letter-spacing: .04em; }
+.field input, .field select, .field textarea {
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); border-radius: 5px; padding: 7px 10px;
+  font-family: var(--font); font-size: 12px; outline: none;
+  transition: border-color .15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--border-h); }
+.field textarea { resize: vertical; min-height: 80px; }
+.field select option { background: var(--bg1); }
+
+/* ── Skills group ── */
+.skill-group-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px; margin-bottom: 10px;
+}
+.skill-group-head {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+}
+.skill-group-label { font-size: 11px; color: var(--cyan); font-weight: 600; }
+
+/* ── Portfolio list ── */
+.portfolio-toolbar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.btn-add {
+  display: flex; align-items: center; gap: 6px; background: var(--cyan-dim);
+  border: 1px solid var(--border-h); color: var(--cyan); padding: 7px 16px;
+  border-radius: var(--radius); cursor: pointer; font-size: 12px; font-weight: 600;
+}
+.btn-add:hover { background: rgba(0,212,255,0.2); }
+.search-input {
+  flex: 1; max-width: 260px; background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); padding: 7px 10px; border-radius: var(--radius); font-size: 12px; outline: none;
+}
+.search-input:focus { border-color: var(--border-h); }
+
+#portfolio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 10px;
+}
+.p-item {
+  display: flex; flex-direction: column;
+  background: var(--bg1); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; cursor: grab; transition: border-color .15s, box-shadow .15s, opacity .15s;
+  user-select: none;
+}
+.p-item:hover { border-color: rgba(0,212,255,0.25); }
+.p-item.dragging { opacity: 0.35; box-shadow: none; }
+.p-item.drag-over { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,212,255,0.18); }
+.p-item-body { padding: 8px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.p-item-cat {
+  font-size: 10px; padding: 1px 6px; border-radius: 100px;
+  background: var(--cyan-dim); color: var(--cyan); white-space: nowrap; align-self: flex-start;
+}
+.p-item-title { font-size: 11px; line-height: 1.4; }
+.p-item-id { font-size: 10px; color: var(--text3); font-family: monospace; }
+.p-item-actions { display: flex; gap: 5px; margin-top: 4px; }
+.btn-icon {
+  background: transparent; border: 1px solid var(--border); color: var(--text2);
+  width: 28px; height: 28px; border-radius: 5px; cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; transition: all .15s;
+}
+.p-item-actions .btn-icon { flex: 1; width: auto; height: 24px; font-size: 12px; }
+.btn-icon.edit:hover  { color: var(--cyan); border-color: var(--cyan); background: var(--cyan-dim); }
+.btn-icon.del:hover   { color: var(--red);  border-color: var(--red);  background: var(--red-dim);  }
+
+/* ── Modal ── */
+.modal-bg {
+  display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+  z-index: 1000; align-items: flex-start; justify-content: center;
+  padding: 24px 16px; overflow-y: auto;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--bg1); border: 1px solid var(--border);
+  border-radius: 12px; width: 100%; max-width: 720px;
+  position: relative;
+}
+.modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  font-weight: 700; font-size: 14px;
+}
+.modal-body  { padding: 20px; }
+.modal-foot  {
+  display: flex; gap: 10px; justify-content: flex-end; padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+.btn-close {
+  background: transparent; border: none; color: var(--text2); cursor: pointer; font-size: 18px;
+}
+.btn-close:hover { color: var(--text); }
+.btn-primary { background: var(--cyan); color: #000; font-weight: 700; border: none; padding: 8px 22px; border-radius: var(--radius); cursor: pointer; }
+.btn-primary:hover { filter: brightness(1.1); }
+.btn-secondary { background: transparent; color: var(--text2); border: 1px solid var(--border); padding: 8px 18px; border-radius: var(--radius); cursor: pointer; }
+.btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
+/* ── Dynamic list (gallery/links/tags) ── */
+.dyn-list { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 6px; }
+.dyn-row {
+  display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+  border-bottom: 1px solid var(--border); background: var(--bg);
+}
+.dyn-row:last-child { border-bottom: none; }
+.dyn-row input, .dyn-row select {
+  background: var(--bg1); border: 1px solid var(--border);
+  color: var(--text); border-radius: 4px; padding: 5px 8px;
+  font-size: 12px; outline: none;
+}
+.dyn-row input:focus, .dyn-row select:focus { border-color: var(--border-h); }
+.dyn-add {
+  display: flex; align-items: center; gap: 5px; padding: 7px 12px;
+  background: var(--bg); border-top: 1px solid var(--border);
+  color: var(--text2); cursor: pointer; font-size: 11px;
+  transition: color .15s;
+}
+.dyn-add:hover { color: var(--cyan); }
+
+/* ── Misc ── */
+.section-sep { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .1em; margin: 20px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.bg-section-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .1em; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.tag-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tag-pill {
+  display: flex; align-items: center; gap: 5px; background: var(--cyan-dim);
+  border: 1px solid var(--border); color: var(--cyan); padding: 3px 10px 3px 10px;
+  border-radius: 100px; font-size: 11px;
+}
+.tag-pill .rm { cursor: pointer; color: var(--text2); font-size: 14px; line-height: 1; }
+.tag-pill .rm:hover { color: var(--red); }
+.tag-input-row { display: flex; gap: 6px; margin-top: 8px; }
+.tag-input-row input { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: 5px; font-size: 12px; outline: none; }
+.tag-input-row input:focus { border-color: var(--border-h); }
+.tag-input-row button { background: var(--cyan-dim); border: 1px solid var(--border-h); color: var(--cyan); padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
+
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--green); color: #000; font-weight: 700; padding: 10px 20px;
+  border-radius: var(--radius); font-size: 13px;
+  animation: toastIn .2s ease; pointer-events: none;
+}
+@keyframes toastIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.export-btn {
+  display: flex; align-items: center; gap: 6px; background: var(--bg);
+  border: 1px solid var(--border); color: var(--text2); padding: 7px 14px;
+  border-radius: var(--radius); cursor: pointer; font-size: 12px; transition: all .15s;
+}
+.export-btn:hover { color: var(--cyan); border-color: var(--border-h); }
+
+/* ── Portfolio grid card thumbnail ── */
+.p-item-thumb {
+  width: 100%; aspect-ratio: 16/9; object-fit: cover;
+  display: block; background: var(--bg2); flex-shrink: 0;
+  border-bottom: 1px solid var(--border);
+}
+.p-item-nothumb {
+  width: 100%; aspect-ratio: 16/9; flex-shrink: 0;
+  background: var(--bg2); display: flex; align-items: center;
+  justify-content: center; color: var(--text3); font-size: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Modal preview strip ── */
+.preview-strip-wrap { margin-bottom: 4px; }
+.preview-strip-head {
+  font-size: 11px; color: var(--text3); text-transform: uppercase;
+  letter-spacing: .1em; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
+}
+.strip-hint { font-size: 10px; color: var(--text3); letter-spacing: 0; text-transform: none; font-style: italic; }
+.preview-strip {
+  display: flex; gap: 8px; flex-wrap: wrap; padding: 10px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); min-height: 84px; align-items: flex-start;
+  transition: border-color .15s, box-shadow .15s;
+}
+.preview-strip.strip-drag-active {
+  border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(0,212,255,0.18);
+}
+.preview-strip-empty { color: var(--text3); font-size: 11px; margin: auto; }
+
+/* Drop slot */
+.strip-drop-slot {
+  width: 108px; height: 72px; flex-shrink: 0; border-radius: 4px;
+  border: 1.5px dashed var(--border); background: var(--bg2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; cursor: pointer; color: var(--text3); font-size: 10px;
+  transition: all .15s;
+}
+.strip-drop-slot:hover, .strip-drop-slot.strip-drag-active {
+  border-color: var(--cyan); color: var(--cyan); background: var(--cyan-dim);
+}
+.strip-drop-icon { font-size: 20px; line-height: 1; }
+
+/* Thumbnail delete button */
+.preview-thumb .pt-del {
+  position: absolute; top: 3px; right: 3px; width: 18px; height: 18px;
+  background: rgba(220,60,60,0.85); border: none; border-radius: 3px;
+  color: #fff; font-size: 13px; line-height: 1; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  padding: 0; z-index: 2;
+}
+.preview-thumb:hover .pt-del { display: flex; }
+.preview-thumb {
+  position: relative; width: 108px; height: 72px; flex-shrink: 0;
+  border-radius: 4px; overflow: hidden; border: 1px solid var(--border);
+  cursor: pointer; transition: border-color .15s; background: var(--bg2);
+}
+.preview-thumb:hover { border-color: var(--border-h); }
+.preview-thumb img, .preview-thumb video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.preview-thumb .pt-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.7); color: #fff; font-size: 9px;
+  padding: 2px 5px; text-align: center;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.preview-thumb .pt-type {
+  position: absolute; top: 3px; right: 3px;
+  background: rgba(0,0,0,0.65); color: var(--cyan);
+  font-size: 8px; padding: 1px 4px; border-radius: 2px;
+}
+
+/* ── Gallery dyn-row mini preview ── */
+.dyn-mini-preview {
+  width: 40px; height: 30px; flex-shrink: 0; border-radius: 3px;
+  overflow: hidden; border: 1px solid var(--border); background: var(--bg2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--text3); font-size: 11px;
+}
+.dyn-mini-preview img, .dyn-mini-preview video {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* ── Security page ── */
+.pwd-change-box { max-width: 440px; }
+.sec-note { font-size: 11px; color: var(--text3); line-height: 1.7; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.sec-note code { color: var(--cyan); background: var(--bg2); padding: 1px 5px; border-radius: 3px; }
+#sec-msg { margin-top: 10px; font-size: 12px; min-height: 18px; }
+
+/* ── Media input with drag-and-drop ── */
+.media-input-wrap { display:none; }
+.btn-asset-browse { display:none; }
+.btn-browse-sm { display:none; }
+
+/* ── Asset picker overlay (unused, hidden) ── */
+#asset-picker-overlay { display:none !important; }
+
+/* ── Dir auth button ── */
+.btn-dir-auth {
+  padding: 5px 13px; font-size: 11px; cursor: pointer; border-radius: var(--radius);
+  border: 1px solid rgba(255,153,68,0.5); background: rgba(255,153,68,0.08);
+  color: #ff9944; white-space: nowrap; transition: all .15s;
+}
+.btn-dir-auth:hover { background: rgba(255,153,68,0.18); border-color: #ff9944; }
+.btn-dir-auth.authorized {
+  border-color: rgba(0,229,160,0.4); background: rgba(0,229,160,0.08); color: #00e5a0;
+}
+.btn-dir-auth.authorized:hover { background: rgba(0,229,160,0.18); }
+
+/* ── Browse button inside a .field ── */
+.btn-field-browse {
+  position: absolute; bottom: 6px; right: 6px;
+  width: 24px; height: 24px; padding: 0; cursor: pointer;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text2); font-size: 13px; display: flex; align-items: center;
+  justify-content: center; transition: all .15s; z-index: 1;
+}
+.btn-field-browse:hover { border-color: var(--cyan); background: var(--cyan-dim); }
+.field:has(.btn-field-browse) input { padding-right: 32px; }
+
+/* ── Asset browser overlay ── */
+#asset-browser-overlay {
+  display: none; position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,0.78); backdrop-filter: blur(5px);
+  align-items: center; justify-content: center;
+}
+#asset-browser-overlay.open { display: flex; }
+.ab-box {
+  background: var(--bg1); border: 1px solid var(--border); border-radius: 14px;
+  width: min(860px, 94vw); max-height: 84vh; display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+.ab-head {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+}
+.ab-title { font-weight: 700; font-size: 13px; color: var(--cyan); }
+.ab-tabs { display: flex; gap: 5px; margin-left: 4px; }
+.ab-tab {
+  padding: 4px 12px; border-radius: 20px; font-size: 11px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--text2);
+  transition: all .15s;
+}
+.ab-tab.active { background: var(--cyan-dim); border-color: var(--cyan); color: var(--cyan); }
+.ab-close {
+  margin-left: auto; width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--border); background: transparent; color: var(--text2);
+  cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+}
+.ab-close:hover { border-color: #f05; color: #f05; }
+.ab-body { flex: 1; overflow-y: auto; padding: 14px; }
+.ab-loading, .ab-empty { text-align: center; color: var(--text3); padding: 60px 20px; font-size: 12px; line-height: 2; }
+.ab-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px;
+}
+.ab-card {
+  border: 2px solid transparent; border-radius: 7px; overflow: hidden;
+  cursor: pointer; background: var(--bg2); position: relative;
+  aspect-ratio: 16/9; transition: border-color .15s, transform .12s;
+}
+.ab-card:hover { border-color: var(--cyan); transform: scale(1.04); }
+.ab-card img, .ab-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ab-type-badge {
+  position: absolute; top: 3px; left: 3px;
+  background: rgba(0,0,0,0.55); color: var(--cyan); font-size: 8px;
+  padding: 1px 4px; border-radius: 2px;
+}
+.ab-card-name {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.65); padding: 3px 5px; font-size: 9px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #ddd;
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Top bar -->
+  <div class="topbar">
+    <span class="topbar-logo">⟨ LCL Admin ⟩</span>
+    <span id="status-text" class="topbar-status"></span>
+    <span class="topbar-sep"></span>
+    <button class="export-btn" id="btn-export-site">↓ 写入 site-config.js</button>
+    <button class="export-btn" id="btn-export-portfolio">↓ 写入 portfolio-data.js</button>
+    <button class="topbar-reset" id="btn-reset">清除覆盖</button>
+    <button class="topbar-reset" id="btn-logout" style="color:var(--text2);border-color:var(--border);">退出登录</button>
+    <button class="btn-dir-auth" id="btn-dir-auth" title="授权后，拖拽/上传操作可直接写入 assets/，导出按钮可直接覆盖 JS 文件">📁 授权项目目录</button>
+    <button class="topbar-save" id="btn-save">保存并预览</button>
+  </div>
+  <div class="body">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="nav-item active" data-page="hero"><span class="icon">✦</span> Hero</div>
+      <div class="nav-item" data-page="about"><span class="icon">👤</span> 关于我</div>
+      <div class="nav-item" data-page="contact"><span class="icon">✉</span> 联系方式</div>
+      <div class="nav-item" data-page="portfolio"><span class="icon">▦</span> 作品集</div>
+      <div class="nav-item" data-page="security"><span class="icon">🔒</span> 安全</div>
+      <div class="nav-item" data-page="bg"><span class="icon">🎨</span> 背景</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- ── Hero page ── -->
+      <div class="page active" id="page-hero">
+        <div class="block">
+          <div class="block-head">Hero 主页</div>
+          <div class="block-body">
+            <div class="form-row cols2">
+              <div class="field">
+                <label>职位标签（hero-tag）</label>
+                <input id="h-tag" type="text" placeholder="Game Technical Artist">
+              </div>
+              <div class="field">
+                <label>英文名（大写）</label>
+                <input id="h-name-en" type="text" placeholder="LI CHANGLONG">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label>中文名（支持全角空格）</label>
+                <input id="h-name-zh" type="text" placeholder="李　长　龙">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── About page ── -->
+      <div class="page" id="page-about">
+        <div class="block">
+          <div class="block-head">统计数字</div>
+          <div class="block-body" id="stats-container"></div>
+        </div>
+        <div class="block">
+          <div class="block-head">个人简介（支持 HTML）</div>
+          <div class="block-body">
+            <div class="field">
+              <textarea id="about-bio" rows="8"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-head" style="justify-content:space-between;">
+            技能标签
+            <button class="btn-add" id="btn-add-skill-group">+ 添加分组</button>
+          </div>
+          <div class="block-body" id="skills-container"></div>
+        </div>
+      </div>
+
+      <!-- ── Contact page ── -->
+      <div class="page" id="page-contact">
+        <div class="block">
+          <div class="block-head">联系方式</div>
+          <div class="block-body">
+            <div class="form-row">
+              <div class="field"><label>邮箱</label><input id="c-email" type="text"></div>
+            </div>
+            <div class="form-row cols2">
+              <div class="field"><label>GitHub 链接</label><input id="c-github" type="text"></div>
+              <div class="field"><label>GitHub 显示文本</label><input id="c-github-label" type="text"></div>
+            </div>
+            <div class="form-row cols2">
+              <div class="field"><label>知乎链接</label><input id="c-zhihu" type="text"></div>
+              <div class="field"><label>知乎显示文本</label><input id="c-zhihu-label" type="text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Portfolio page ── -->
+      <div class="page" id="page-portfolio">
+        <div class="portfolio-toolbar">
+          <button class="btn-add" id="btn-new-project">+ 新建作品</button>
+          <input class="search-input" id="portfolio-search" type="text" placeholder="搜索标题 / ID...">
+        </div>
+        <div id="portfolio-list"></div>
+      </div>
+
+      <!-- ── Security page ── -->
+      <div class="page" id="page-security">
+        <div class="block pwd-change-box">
+          <div class="block-head">修改访问密码</div>
+          <div class="block-body">
+            <div class="form-row">
+              <div class="field">
+                <label>当前密码</label>
+                <input type="password" id="sec-cur-pwd" autocomplete="current-password" placeholder="当前密码">
+              </div>
+            </div>
+            <div class="form-row cols2">
+              <div class="field">
+                <label>新密码（至少 6 位）</label>
+                <input type="password" id="sec-new-pwd" autocomplete="new-password" placeholder="新密码">
+              </div>
+              <div class="field">
+                <label>确认新密码</label>
+                <input type="password" id="sec-confirm-pwd" autocomplete="new-password" placeholder="再次输入新密码">
+              </div>
+            </div>
+            <button class="btn-primary" id="sec-change-btn" style="margin-top:6px;">修改密码</button>
+            <div id="sec-msg"></div>
+            <div class="sec-note">
+              新密码哈希存于 localStorage，不影响源文件。清除浏览器数据后将恢复默认密码。<br>
+              当前默认密码：<code>lcl2024</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-bg">
+        <div class="block">
+          <div class="block-head">背景特效设置</div>
+          <div class="block-body" id="bg-body">
+            <!-- built by admin.js -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /body -->
+</div><!-- /app -->
+
+<!-- Portfolio edit modal -->
+<div class="modal-bg" id="edit-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <span id="modal-title">编辑作品</span>
+      <button class="btn-close" id="modal-close">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn-secondary" id="modal-cancel">取消</button>
+      <button class="btn-primary" id="modal-save">保存作品</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/site-config.js"></script>
+<script src="js/portfolio-data.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

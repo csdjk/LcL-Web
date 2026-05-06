@@ -4,50 +4,55 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
+  // ── Read hero config (localStorage override → SITE_CONFIG fallback) ────────
+  let _heroCfg = {};
+  try {
+    const _s = localStorage.getItem('lcl_site_config');
+    if (_s) _heroCfg = (JSON.parse(_s).hero) || {};
+  } catch(e) {}
+  const _sc = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.hero) || {};
+  const HERO_NAME_EN  = (_heroCfg.nameEn  || _sc.nameEn  || 'LI CHANGLONG').toUpperCase();
+  const HERO_NAME_ZH  = _heroCfg.nameZh   || _sc.nameZh  || '李　长　龙';
+  const HERO_TAG_TEXT = _heroCfg.tag      || _sc.tag      || 'Game Technical Artist';
+
   // ── Hero entrance sequence ────────────────────────────────
-  const heroTag     = document.querySelector('.hero-tag');
   const heroNameEn  = document.querySelector('.hero-name-en');
-  const heroNameZh  = document.querySelector('.hero-name-zh');
+  const heroNameZh  = document.getElementById('hero-name-zh');
   const heroSubWrap = document.querySelector('.hero-subtitle');
   const heroCta     = document.querySelector('.hero-cta');
   const heroScroll  = document.querySelector('.hero-scroll');
 
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  // Tag pill
-  heroTl.to(heroTag, { opacity: 1, y: 0, duration: 0.7 }, 0.3);
-
-  // Scramble text for hero name
+  // Scramble + fade-in hero English name (from config)
   heroTl.call(() => {
-    const nameEl = heroNameEn;
-    if (!nameEl) return;
-    nameEl.textContent = 'LI CHANGLONG';
-    nameEl.style.opacity = '0';
-    gsap.to(nameEl, { opacity: 1, duration: 0.3 });
-
+    if (!heroNameEn) return;
+    heroNameEn.textContent = HERO_NAME_EN;
+    heroNameEn.style.opacity = '0';
+    gsap.to(heroNameEn, { opacity: 1, duration: 0.3 });
     if (typeof TextScramble !== 'undefined') {
-      const scramble = new TextScramble(nameEl);
-      scramble.setText('LI CHANGLONG', 1800);
+      new TextScramble(heroNameEn).setText(HERO_NAME_EN, 1800);
     }
-  }, [], 0.5);
+  }, [], 0.3);
 
-  // Chinese name character stagger
+  // Chinese name fade-in (from config)
+  heroTl.call(() => {
+    if (heroNameZh) heroNameZh.textContent = HERO_NAME_ZH;
+  }, [], 0.9);
   heroTl.to(heroNameZh, { opacity: 1, duration: 0.8 }, 1.0);
 
-  // Subtitle typing
+  // Subtitle typing (from config tag)
   heroTl.call(() => {
     const heroSub = document.getElementById('hero-subtitle-text');
     if (!heroSubWrap) return;
     gsap.to(heroSubWrap, { opacity: 1, duration: 0.4 });
     if (!heroSub) return;
-    const full = 'Game Technical Artist · 游戏技术美术';
+    const full = HERO_TAG_TEXT;
     let i = 0;
     heroSub.textContent = '';
-
     const type = () => {
       if (i < full.length) {
-        heroSub.textContent += full[i];
-        i++;
+        heroSub.textContent += full[i++];
         setTimeout(type, 45 + Math.random() * 30);
       }
     };

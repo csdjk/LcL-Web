@@ -196,31 +196,138 @@
   `;
   const pcMat = new THREE.ShaderMaterial({vertexShader,fragmentShader:pcFrag,uniforms:pcU});
 
+  // ── Hyperspace ──────────────────────────────────────────────────────────────
+  const HS_DEFAULTS = { speed:0.40, streak:1.0, glow:1.0, colorSpread:1.0 };
+  const hsParams = Object.assign({}, HS_DEFAULTS);
+  const hsU = {
+    uTime:        {value:0.0},
+    uResolution:  {value:new THREE.Vector2(innerWidth,innerHeight)},
+    uMouse:       {value:new THREE.Vector2(0.5,0.5)},
+    uSpeed:       {value:hsParams.speed},
+    uStreak:      {value:hsParams.streak},
+    uGlow:        {value:hsParams.glow},
+    uColorSpread: {value:hsParams.colorSpread},
+  };
+  const HS_GUI = [
+    {key:'speed',       label:'飞行速度', min:0.1, max:2.0,  step:0.05, u:'uSpeed'},
+    {key:'streak',      label:'拖尾长度', min:0.0, max:3.0,  step:0.05, u:'uStreak'},
+    {key:'glow',        label:'发光强度', min:0.2, max:3.0,  step:0.05, u:'uGlow'},
+    {key:'colorSpread', label:'色彩范围', min:0.0, max:2.0,  step:0.05, u:'uColorSpread'},
+  ];
+
+  const hsFrag = /* glsl */`
+    precision highp float;
+    uniform float uTime,uSpeed,uStreak,uGlow,uColorSpread;
+    uniform vec2  uResolution,uMouse;
+
+    float h1(float p){return fract(sin(p*127.1)*43758.5453);}
+    float h2(float p){return fract(sin(p*311.7)*43758.5453);}
+
+    vec3 hue2rgb(float h){
+      float h6=fract(h)*6.;
+      return clamp(vec3(abs(h6-3.)-1.,2.-abs(h6-2.),2.-abs(h6-4.)),0.,1.);
+    }
+
+    void main(){
+      vec2 uv=(gl_FragCoord.xy*2.-uResolution)/uResolution.y;
+      vec2 vp=(uMouse-.5)*.5;
+      vec2 pos=uv-vp;
+      float t=uTime*uSpeed*0.18;
+      vec3 col=vec3(0.);
+
+      for(int i=0;i<200;i++){
+        float fi=float(i);
+        float ang=h1(fi)*6.28318;
+        float r0=h2(fi);
+        float sr=.04+r0*r0*1.1;
+        vec2 dir=vec2(cos(ang),sin(ang));
+        float lt=fract(t+h1(fi+50.));
+        float z=1.-lt;
+        float iz=1./max(z,.003);
+        vec2 curr=dir*sr*iz*.22;
+        float tl=uStreak*.1*(1.-z*.4);
+        float pz=z+tl;
+        float ipz=1./max(pz,.003);
+        vec2 prev=dir*sr*ipz*.22;
+        if(length(curr)>2.3&&length(prev)>2.3)continue;
+        vec2 seg=prev-curr;
+        float sl=length(seg);
+        if(sl<.00001)continue;
+        vec2 sn=seg/sl;
+        float along=clamp(dot(pos-curr,sn),0.,sl);
+        float perp=length(pos-curr-sn*along);
+        float w=.0007+(1.-z)*.0028;
+        float bri=(1.-z)*2.2;
+        float glow=exp(-perp*perp/(w*w))*bri*uGlow;
+        float hue=.15+h1(fi+200.)*uColorSpread*.38;
+        vec3 sc=mix(vec3(.95),hue2rgb(hue),.82)+vec3(.1,.05,0.);
+        col+=sc*glow;
+      }
+
+      float d=length(pos);
+      col+=vec3(.04,.07,.14)/(d*4.+.7);
+      col*=smoothstep(1.9,.3,length(uv));
+      gl_FragColor=vec4(col,1.);
+    }
+  `;
+  const hsMat = new THREE.ShaderMaterial({vertexShader,fragmentShader:hsFrag,uniforms:hsU});
+
   // ── Scene mesh ─────────────────────────────────────────────────────────────
-  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2,2), pcMat); // default: clouds
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2,2), pcMat);
   scene.add(mesh);
 
   // ── Background registry ────────────────────────────────────────────────────
   const BG_LIST = [
-    {id:'starNest', label:'✦ 星巢', mat:snMat, uniforms:snU, params:snParams, defaults:SN_DEFAULTS, guiDefs:SN_GUI,
-     accent:'#00d4ff', accentRgb:'0,212,255', clickOnly:true},
-    {id:'clouds',   label:'☁ 云彩', mat:pcMat, uniforms:pcU, params:pcParams, defaults:PC_DEFAULTS, guiDefs:PC_GUI,
-     accent:'#ffb347', accentRgb:'255,179,71', clickOnly:false},
+    {id:'starNest',   label:'✦ 星巢',   mat:snMat, uniforms:snU, params:snParams, defaults:SN_DEFAULTS, guiDefs:SN_GUI,
+     accent:'#00d4ff', accentRgb:'0,212,255',   clickOnly:true},
+    {id:'clouds',     label:'☁ 云彩',   mat:pcMat, uniforms:pcU, params:pcParams, defaults:PC_DEFAULTS, guiDefs:PC_GUI,
+     accent:'#ffb347', accentRgb:'255,179,71',  clickOnly:false},
+    {id:'hyperspace', label:'⚡ 超空间', mat:hsMat, uniforms:hsU, params:hsParams, defaults:HS_DEFAULTS, guiDefs:HS_GUI,
+     accent:'#ff9944', accentRgb:'255,153,68',  clickOnly:false},
   ];
   let activeBgIdx = 1; // default: clouds
+
+  // ── Section overlay vars (declared before load so saved values override defaults) ──
+  let sectionOpacity = 0.88;
+  let sectionBlur    = 16;
+
+  // ── Load saved default background & params ─────────────────────────────────
+  try {
+    const bgCfg = JSON.parse(localStorage.getItem('lcl_bg_config') || 'null');
+    if (bgCfg && bgCfg.bgId) {
+      const si = BG_LIST.findIndex(b => b.id === bgCfg.bgId);
+      if (si >= 0) { activeBgIdx = si; mesh.material = BG_LIST[si].mat; }
+    }
+    if (bgCfg && bgCfg.params) {
+      BG_LIST.forEach(bg => {
+        const saved = bgCfg.params[bg.id];
+        if (!saved) return;
+        bg.guiDefs.forEach(def => {
+          if (saved[def.key] != null) {
+            bg.params[def.key] = saved[def.key];
+            if (def.u) bg.uniforms[def.u].value = saved[def.key];
+          }
+        });
+      });
+    }
+    if (bgCfg && bgCfg.sectionOpacity != null) sectionOpacity = bgCfg.sectionOpacity;
+    if (bgCfg && bgCfg.sectionBlur    != null) sectionBlur    = bgCfg.sectionBlur;
+  } catch(e) {}
 
   // ── Mouse tracking ─────────────────────────────────────────────────────────
   const targetMouse = new THREE.Vector2(0.5, 0.5);
   let mouseDown = false;
   let mouseInertia = 0.30;
 
-  // ── Section opacity ────────────────────────────────────────────────────────
-  let sectionOpacity = 0.88;
+  // ── Section overlay ────────────────────────────────────────────────────────
   function applySectionOpacity(){
-    const about = document.getElementById('about');
-    const port  = document.getElementById('portfolio');
-    if (about)  about.style.background  = `rgba(8,8,18,${sectionOpacity})`;
-    if (port)   port.style.background   = `rgba(8,8,18,${sectionOpacity})`;
+    const panel = document.getElementById('content-panel');
+    const bf = `blur(${sectionBlur}px) saturate(1.3)`;
+    if (panel) {
+      panel.style.background           = `rgba(8,8,18,${sectionOpacity})`;
+      panel.style.backdropFilter       = bf;
+      panel.style.webkitBackdropFilter = bf;
+    }
   }
   // apply after DOM ready
   if (document.readyState === 'loading'){
@@ -242,6 +349,31 @@
     const w = innerWidth, h = innerHeight;
     renderer.setSize(w, h);
     BG_LIST.forEach(bg => bg.uniforms.uResolution.value.set(w, h));
+  });
+
+  // ── Admin preview postMessage bridge ───────────────────────────────
+  window.addEventListener('message', e => {
+    if (!e.data || e.data.type !== 'lcl-bg-preview') return;
+    const cfg = e.data.cfg;
+    if (!cfg) return;
+    if (cfg.bgId) {
+      const si = BG_LIST.findIndex(b => b.id === cfg.bgId);
+      if (si >= 0) { activeBgIdx = si; mesh.material = BG_LIST[si].mat; }
+    }
+    if (cfg.params) {
+      BG_LIST.forEach(bg => {
+        const saved = cfg.params[bg.id];
+        if (!saved) return;
+        bg.guiDefs.forEach(def => {
+          if (saved[def.key] != null) {
+            bg.params[def.key] = saved[def.key];
+            if (def.u) bg.uniforms[def.u].value = saved[def.key];
+          }
+        });
+      });
+    }
+    if (cfg.sectionOpacity != null) { sectionOpacity = cfg.sectionOpacity; applySectionOpacity(); }
+    if (cfg.sectionBlur    != null) { sectionBlur    = cfg.sectionBlur;    applySectionOpacity(); }
   });
 
   // ── GUI ────────────────────────────────────────────────────────────────────
@@ -298,7 +430,7 @@
     // Tab switcher
     const tabs = document.createElement('div');
     Object.assign(tabs.style, {
-      display:'grid', gridTemplateColumns:'1fr 1fr', gap:'6px', marginBottom:'14px',
+      display:'grid', gridTemplateColumns:`repeat(${BG_LIST.length},1fr)`, gap:'6px', marginBottom:'14px',
     });
     BG_LIST.forEach((b, i) => {
       const tab = document.createElement('button');
@@ -355,6 +487,10 @@
     addRow(panel, '内容区透明度', sectionOpacity, opacityDef, acc, v => {
       sectionOpacity = v; applySectionOpacity();
     });
+    const blurDef = {min:0, max:40, step:1};
+    addRow(panel, '内容区模糊度', sectionBlur, blurDef, acc, v => {
+      sectionBlur = v; applySectionOpacity();
+    });
 
     // Reset
     const btn = document.createElement('button');
@@ -372,6 +508,7 @@
     btn.addEventListener('click', () => {
       mouseInertia = 0.30;
       sectionOpacity = 0.88;
+      sectionBlur = 16;
       applySectionOpacity();
       Object.assign(bg.params, bg.defaults);
       bg.guiDefs.forEach(d => { if (d.u) bg.uniforms[d.u].value = bg.defaults[d.key]; });
