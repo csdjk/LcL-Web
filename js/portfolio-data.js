@@ -1131,35 +1131,16 @@ const PORTFOLIO = [
     ]
   },
   {
-    "id": "shader-uv-anim",
-    "category": "material",
-    "subCategory": "mat-fx",
-    "categoryLabel": "普通材质",
+    "id": "tools-brush",
     "size": "standard",
-    "title": "UV 动画",
-    "titleEn": "UV Animation",
-    "desc": "多种UV动画技术：基础UV滚动、笔刷世界空间/切线空间绘制、公告板Billboard，常用于流水、火焰、特效等场景。",
-    "cover": "assets/images-animated/shader_uv_anim.avif",
+    "title": "笔刷",
+    "titleEn": "Brush",
+    "desc": "笔刷工具",
     "gallery": [
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_uv_anim.avif",
-        "label": "UV Animation"
-      },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_brush_uv.avif",
-        "label": "笔刷UV"
-      },
       {
         "type": "image",
         "src": "assets/images-animated/shader_brush_world.avif",
         "label": "笔刷世界空间"
-      },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_billboard.avif",
-        "label": "Billboard"
       }
     ],
     "links": [
@@ -1170,8 +1151,10 @@ const PORTFOLIO = [
       }
     ],
     "tags": [
-      "Unity"
-    ]
+      "Unity",
+      "工具"
+    ],
+    "featured": false
   },
   {
     "id": "shader-flipbook",
