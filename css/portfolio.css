@@ -1,42 +1,62 @@
 /* ─────────────────────────────────────────
    PORTFOLIO CARD BASE
 ───────────────────────────────────────── */
+/* ── conic-gradient 旋转角度（CSS @property 让 animation 能插值）── */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* 边框彩虹旋转动画 */
+@keyframes border-spin {
+  to { --angle: 360deg; }
+}
+
 .portfolio-card {
   position: relative;
-  background: var(--bg-card);
-  border: var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
   opacity: 0;
   transform: translateY(60px);
-  /* Note: transform is driven by card-tilt.js on hover; CSS transition only
-     for non-JS fallback (initial load animation via GSAP). */
-  transition:
-    box-shadow var(--dur-med) var(--ease-smooth),
-    border-color var(--dur-med);
   will-change: transform;
+
+  /* 正常状态：透明 border + 两层 background 模拟普通边框，无布局偏移 */
+  border: 2px solid transparent;
+  background:
+    /* 第1层（上）：纯色填充内容区，用 linear-gradient 包装确保多层语法正确 */
+    linear-gradient(var(--bg-1), var(--bg-1)) padding-box,
+    /* 第2层（下）：低调深色边框 */
+    rgba(255,255,255,0.07) border-box;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  transition:
+    box-shadow var(--dur-med) var(--ease-smooth);
 }
 
 .portfolio-card:hover {
-  /* translateY lift is now handled by card-tilt.js via translateZ */
-  box-shadow: var(--glow-card), var(--glow-cyan);
-  border-color: rgba(0, 212, 255, 0.5);
+  /* conic-gradient 沿边框周长分布完整彩虹光谱，旋转产生彩虹光扫效果
+     第1层（上）：linear-gradient 纯色遮住内容区（padding-box）
+     第2层（下）：conic-gradient 彩虹填满整个 border-box，只在边框区域露出 */
+  animation: border-spin 2.5s linear infinite;
+  background:
+    linear-gradient(var(--bg-1), var(--bg-1)) padding-box,
+    conic-gradient(
+      from var(--angle),
+      hsl(0,   100%, 65%),
+      hsl(60,  100%, 65%),
+      hsl(120, 100%, 65%),
+      hsl(180, 100%, 65%),
+      hsl(240, 100%, 65%),
+      hsl(300, 100%, 65%),
+      hsl(360, 100%, 65%)
+    ) border-box;
+  box-shadow:
+    0 0 18px 4px rgba(0, 200, 255, 0.25),
+    0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
-/* ─── Holographic glare overlay (injected by card-tilt.js) ─── */
-.card-glare {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-  mix-blend-mode: screen;
-}
-
-/* Corner accents */
+/* ── 角标 ── */
 .portfolio-card::before,
 .portfolio-card::after {
   content: '';
@@ -51,7 +71,7 @@
 .portfolio-card::before {
   top: -1px;
   left: -1px;
-  border-top: 2px solid var(--cyan);
+  border-top:  2px solid var(--cyan);
   border-left: 2px solid var(--cyan);
   border-radius: var(--radius) 0 0 0;
 }
@@ -60,7 +80,7 @@
   bottom: -1px;
   right: -1px;
   border-bottom: 2px solid var(--cyan);
-  border-right: 2px solid var(--cyan);
+  border-right:  2px solid var(--cyan);
   border-radius: 0 0 var(--radius) var(--radius);
 }
 
@@ -69,6 +89,7 @@
   width: 40px;
   height: 40px;
 }
+
 
 /* ─── Grid sizes ─── */
 .card--featured  { grid-column: span 6; }
