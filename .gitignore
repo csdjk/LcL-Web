@@ -1,3 +1,4 @@
 # Local web demos (large Unity WebGL builds, do not commit)
 
-
+# Deploy secrets — contains real API keys, never commit
+tools/secrets.json

@@ -3,6 +3,7 @@
 
 import os
 import sys
+import json
 import argparse
 import hashlib
 import mimetypes
@@ -11,11 +12,15 @@ from qcloud_cos import CosConfig, CosS3Client, CosServiceError
 from tqdm import tqdm
 
 # ── Config ──────────────────────────────────────────────────────────────────
-# 从环境变量读取，避免密钥提交到仓库
-# 使用前先设置: set COS_SECRET_ID=xxx && set COS_SECRET_KEY=xxx (Windows)
-#              export COS_SECRET_ID=xxx && export COS_SECRET_KEY=xxx (Linux)
-SECRET_ID  = os.environ.get("COS_SECRET_ID", "")
-SECRET_KEY = os.environ.get("COS_SECRET_KEY", "")
+# 密钥从 tools/secrets.json 读取，该文件已加入 .gitignore，不会提交到仓库
+# 首次使用请复制 secrets.example.json 为 secrets.json 并填入真实密钥
+_SECRETS_FILE = Path(__file__).parent / "secrets.json"
+if not _SECRETS_FILE.exists():
+    sys.exit(f"[ERROR] 密钥文件不存在: {_SECRETS_FILE}\n"
+             f"  请复制 secrets.example.json 为 secrets.json 并填入真实密钥")
+_secrets   = json.loads(_SECRETS_FILE.read_text(encoding="utf-8"))
+SECRET_ID  = _secrets["SECRET_ID"]
+SECRET_KEY = _secrets["SECRET_KEY"]
 REGION     = "ap-guangzhou"
 BUCKET     = "lclgame-res-1304962048"
 COS_PREFIX = "LcL-Web/"          # Remote base path
