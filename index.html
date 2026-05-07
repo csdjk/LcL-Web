@@ -194,25 +194,9 @@
     <p class="section-label">// 作品集</p>
     <h2 class="section-title">Portfolio</h2>
 
-    <!-- Filter tabs -->
-    <div class="filter-bar" role="group" aria-label="作品分类过滤">
-      <button class="filter-tab active" data-category="all">全部</button>
-      <button class="filter-tab" data-category="character">角色渲染</button>
-      <button class="filter-tab" data-category="material">普通材质</button>
-      <button class="filter-tab" data-category="postprocess">后处理</button>
-      <button class="filter-tab" data-category="tools">工具</button>
-      <button class="filter-tab" data-category="graphics">图形学</button>
-    </div>
-
-    <!-- Sub-category filter (visible only when "普通材质" is active) -->
-    <div class="filter-bar filter-bar--sub" id="sub-filter-bar" role="group" aria-label="材质子分类过滤" style="display:none">
-      <button class="filter-subtab active" data-subcategory="all">全部材质</button>
-      <button class="filter-subtab" data-subcategory="mat-pbr">PBR 系</button>
-      <button class="filter-subtab" data-subcategory="mat-water">水体</button>
-      <button class="filter-subtab" data-subcategory="mat-vegetation">植被 / 毛发</button>
-      <button class="filter-subtab" data-subcategory="mat-fx">特效 / 溶解</button>
-      <button class="filter-subtab" data-subcategory="mat-stylized">卡通 / 风格化</button>
-      <button class="filter-subtab" data-subcategory="mat-other">其他材质</button>
+    <!-- Tag filter（由 portfolio-render.js 动态生成）-->
+    <div class="filter-bar" id="tag-filter-bar" role="group" aria-label="作品 Tag 筛选">
+      <button class="filter-tab active" data-tag="all">全部</button>
     </div>
 
     <!-- Cards injected by portfolio-render.js -->

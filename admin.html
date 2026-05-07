@@ -270,6 +270,68 @@ img.p-item-thumb { animation-play-state: paused; }
 .tag-input-row input:focus { border-color: var(--border-h); }
 .tag-input-row button { background: var(--cyan-dim); border: 1px solid var(--border-h); color: var(--cyan); padding: 6px 12px; border-radius: 5px; cursor: pointer; font-size: 12px; }
 
+/* ── Portfolio toolbar 次要按钮 ── */
+.btn-secondary {
+  background: var(--bg1); border: 1px solid var(--border);
+  color: var(--text2); padding: 7px 14px;
+  border-radius: var(--radius); cursor: pointer; font-size: 12px;
+  transition: border-color .15s, color .15s;
+}
+.btn-secondary:hover { border-color: var(--border-h); color: var(--text); }
+
+/* ── Tag 管理面板 ── */
+#tag-manager-panel {
+  background: var(--bg1); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px;
+}
+.tag-manager-head {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px;
+  font-size: 12px; font-weight: 600; color: var(--text);
+}
+.tag-manager-hint { font-size: 11px; color: var(--text3); font-weight: 400; }
+#tag-manager-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.tm-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--bg); border: 1px solid var(--border);
+  color: var(--text2); padding: 3px 8px; border-radius: 100px; font-size: 11px;
+  transition: border-color .12s;
+}
+.tm-tag em { color: var(--text3); font-style: normal; }
+.tm-tag .tm-del {
+  cursor: pointer; color: var(--text3); font-size: 13px; line-height: 1;
+  margin-left: 2px; padding: 0 2px;
+}
+.tm-tag:hover { border-color: var(--red); }
+.tm-tag:hover .tm-del { color: var(--red); }
+
+/* ── Tag 快捷选择区 ── */
+.tag-suggest {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px;
+  padding: 8px; background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); max-height: 120px; overflow-y: auto;
+}
+.tag-suggest-btn {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text3); padding: 2px 9px; border-radius: 100px;
+  font-size: 11px; cursor: pointer; transition: all .12s;
+}
+.tag-suggest-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.tag-suggest-btn.selected {
+  background: var(--cyan-dim); border-color: var(--cyan); color: var(--cyan);
+}
+
+/* ── Modal 紧凑化 ── */
+.modal { max-width: 760px; width: 96vw; }
+.modal-body  { padding: 14px 16px; }
+.form-row { gap: 10px; margin-bottom: 0; }
+.field { margin-bottom: 10px; }
+.field label { font-size: 10px; margin-bottom: 3px; }
+.field input, .field select, .field textarea {
+  padding: 5px 8px; font-size: 12px;
+}
+.field textarea { min-height: 56px; }
+.section-sep { margin: 14px 0 8px; }
+
 .toast {
   position: fixed; bottom: 24px; right: 24px; z-index: 9999;
   background: var(--green); color: #000; font-weight: 700; padding: 10px 20px;
@@ -569,8 +631,19 @@ img.p-item-thumb { animation-play-state: paused; }
       <div class="page" id="page-portfolio">
         <div class="portfolio-toolbar">
           <button class="btn-add" id="btn-new-project">+ 新建作品</button>
+          <button class="btn-secondary" id="btn-tag-manager">🏷 Tag 管理</button>
           <input class="search-input" id="portfolio-search" type="text" placeholder="搜索标题 / ID...">
         </div>
+
+        <!-- Tag 管理面板（折叠） -->
+        <div id="tag-manager-panel" style="display:none">
+          <div class="tag-manager-head">
+            <span>所有 Tag（点击删除）</span>
+            <span class="tag-manager-hint">删除后，所有引用该 Tag 的作品将同步移除</span>
+          </div>
+          <div id="tag-manager-list"></div>
+        </div>
+
         <div id="portfolio-list"></div>
       </div>
 

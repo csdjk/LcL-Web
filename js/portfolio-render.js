@@ -39,8 +39,8 @@ const vidObserver = new IntersectionObserver((entries, obs) => {
 function buildCard(project) {
   const card = document.createElement('article');
   card.className = `portfolio-card card--${project.size}`;
-  card.dataset.category = project.category;
-  if (project.subCategory) card.dataset.subCategory = project.subCategory;
+  // 将所有 tags 写入 data 属性，供筛选逻辑使用
+  card.dataset.tags = JSON.stringify(project.tags || []);
 
   // ── Media section ──
   const mediaWrap = document.createElement('div');
@@ -172,11 +172,10 @@ function buildCard(project) {
   const body = document.createElement('div');
   body.className = 'card__body';
 
-  // Tags row
+  // Tags row — 顶部只保留 FEATURED 标签，分类标签移除
   const tagsRow = document.createElement('div');
   tagsRow.className = 'card__tags-row';
-  tagsRow.innerHTML = `<span class="tag tag--category">${project.categoryLabel}</span>` +
-    (project.featured ? `<span class="tag tag--featured">FEATURED</span>` : '');
+  tagsRow.innerHTML = project.featured ? `<span class="tag tag--featured">FEATURED</span>` : '';
 
   // Title + desc
   const title = document.createElement('h3');
@@ -390,12 +389,14 @@ function initViewer() {
   });
 }
 
-// ── Filter logic ──────────────────────────────────────────
-function applyFilters(cat, subCat) {
+// ── Tag filter logic ──────────────────────────────────────
+function applyTagFilter(activeTags) {
   document.querySelectorAll('.portfolio-card').forEach(card => {
-    const catMatch = cat === 'all' || card.dataset.category === cat;
-    const subMatch = subCat === 'all' || !card.dataset.subCategory || card.dataset.subCategory === subCat;
-    const match = catMatch && subMatch;
+    const cardTags = JSON.parse(card.dataset.tags || '[]');
+    // 多选：卡片必须包含所有选中的 tag（AND 逻辑）
+    const match = activeTags.size === 0
+      || [...activeTags].every(t => cardTags.includes(t));
+
     if (typeof gsap !== 'undefined') {
       if (match) {
         card.style.display = '';
@@ -410,41 +411,107 @@ function applyFilters(cat, subCat) {
 }
 
 function initFilters() {
-  let activeCat = 'all';
-  let activeSubCat = 'all';
+  const bar = document.getElementById('tag-filter-bar');
+  if (!bar) return;
 
-  const subFilterBar = document.getElementById('sub-filter-bar');
+  // 统计每个 tag 出现的作品数量
+  const tagCount = new Map();
+  PORTFOLIO.forEach(p => (p.tags || []).forEach(t => {
+    tagCount.set(t, (tagCount.get(t) || 0) + 1);
+  }));
 
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      activeCat = tab.dataset.category;
+  // 分为高频（≥3）和低频（1~2）
+  const THRESHOLD = 3;
+  const primary = [], secondary = [];
+  tagCount.forEach((count, tag) => {
+    (count >= THRESHOLD ? primary : secondary).push({ tag, count });
+  });
 
-      // Show/hide sub-filter bar
-      if (subFilterBar) {
-        if (activeCat === 'material') {
-          subFilterBar.style.display = '';
-        } else {
-          subFilterBar.style.display = 'none';
-          // Reset sub-filter when leaving material category
-          activeSubCat = 'all';
-          document.querySelectorAll('.filter-subtab').forEach(t => t.classList.toggle('active', t.dataset.subcategory === 'all'));
-        }
+  // 按数量从大到小排序，数量相同则英文优先
+  const sortTags = arr => arr.sort((a, b) => {
+    if (b.count !== a.count) return b.count - a.count;
+    const aEn = /^[A-Za-z0-9]/.test(a.tag), bEn = /^[A-Za-z0-9]/.test(b.tag);
+    if (aEn && !bEn) return -1;
+    if (!aEn && bEn) return 1;
+    return a.tag.localeCompare(b.tag, 'zh-CN');
+  });
+  sortTags(primary);
+  sortTags(secondary);
+
+  // 插入高频 tag 按钮
+  const makBtn = (tag) => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-tab';
+    btn.dataset.tag = tag;
+    btn.textContent = tag;
+    return btn;
+  };
+  primary.forEach(({ tag }) => bar.appendChild(makBtn(tag)));
+
+  // 插入「更多」折叠区（低频 tag）
+  if (secondary.length > 0) {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'filter-tab filter-tab--more';
+    toggleBtn.textContent = `更多 ▾`;
+    toggleBtn.title = '显示更多细分 Tag';
+
+    const moreWrap = document.createElement('div');
+    moreWrap.className = 'filter-bar__more';
+    moreWrap.style.display = 'none';
+    secondary.forEach(({ tag }) => moreWrap.appendChild(makBtn(tag)));
+
+    toggleBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = moreWrap.style.display !== 'none';
+      moreWrap.style.display = open ? 'none' : '';
+      toggleBtn.textContent = open ? '更多 ▾' : '收起 ▴';
+    });
+
+    bar.appendChild(toggleBtn);
+    bar.parentNode.insertBefore(moreWrap, bar.nextSibling);
+  }
+
+  // ── 多选筛选逻辑 ──────────────────────────────────────
+  const activeTags = new Set();
+
+  function handleTagClick(btn) {
+    const tag = btn.dataset.tag;
+    if (!tag) return;
+
+    if (tag === 'all') {
+      activeTags.clear();
+      document.querySelectorAll('.filter-tab[data-tag]').forEach(b =>
+        b.classList.toggle('active', b.dataset.tag === 'all')
+      );
+    } else {
+      document.querySelector('.filter-tab[data-tag="all"]')?.classList.remove('active');
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag);
+        btn.classList.remove('active');
+      } else {
+        activeTags.add(tag);
+        btn.classList.add('active');
       }
+      if (activeTags.size === 0) {
+        document.querySelector('.filter-tab[data-tag="all"]')?.classList.add('active');
+      }
+    }
+    applyTagFilter(activeTags);
+  }
 
-      applyFilters(activeCat, activeSubCat);
-    });
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-tab[data-tag]');
+    if (btn) handleTagClick(btn);
   });
 
-  document.querySelectorAll('.filter-subtab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-subtab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      activeSubCat = tab.dataset.subcategory;
-      applyFilters(activeCat, activeSubCat);
+  // 低频区也绑定点击
+  const moreWrap = bar.nextElementSibling;
+  if (moreWrap?.classList.contains('filter-bar__more')) {
+    moreWrap.addEventListener('click', e => {
+      const btn = e.target.closest('.filter-tab[data-tag]');
+      if (btn) handleTagClick(btn);
     });
-  });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

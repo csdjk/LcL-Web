@@ -1,4 +1,4 @@
-﻿const PORTFOLIO = [
+const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -27,21 +27,16 @@
     "tags": [
       "Unity",
       "URP",
-      "HLSL",
-      "NPR",
-      "SDF阴影"
+      "NPR"
     ],
     "featured": true
   },
   {
     "id": "hsr",
-    "category": "character",
-    "categoryLabel": "角色渲染",
     "size": "featured",
     "title": "崩坏·星穹铁道角色渲染",
     "titleEn": "Honkai Star Rail Character Rendering",
     "desc": "逆向复刻《崩坏：星穹铁道》角色渲染，含镜浅、银狼、饮月等角色的金属、皮肤、头发材质及丰富后处理效果。",
-    "cover": null,
     "primaryVideo": "assets/videos/hsr_demo.mp4",
     "webDemo": "demos/starrail/",
     "gallery": [
@@ -52,11 +47,6 @@
       }
     ],
     "links": [
-      {
-        "label": "Bilibili",
-        "url": "https://b23.tv/328Rom5",
-        "icon": "video"
-      },
       {
         "label": "Web Demo",
         "url": "demos/starrail/",
@@ -71,9 +61,7 @@
     "tags": [
       "Unity",
       "URP",
-      "HLSL",
-      "NPR",
-      "角色渲染"
+      "NPR"
     ],
     "featured": true
   },
@@ -96,11 +84,7 @@
     ],
     "links": [],
     "tags": [
-      "Game",
-      "Production",
-      "武器",
-      "特效材质",
-      "NeoX"
+      "Game"
     ]
   },
   {
@@ -123,11 +107,8 @@
     "links": [],
     "tags": [
       "Game",
-      "Production",
-      "时装",
       "各向异性",
-      "镭射",
-      "NeoX"
+      "镭射"
     ]
   },
   {
@@ -149,12 +130,7 @@
     ],
     "links": [],
     "tags": [
-      "Game",
-      "Production",
-      "道具",
-      "金属",
-      "玉石",
-      "NeoX"
+      "Game"
     ]
   },
   {
@@ -182,9 +158,7 @@
     ],
     "links": [],
     "tags": [
-      "URP",
-      "Water Shader",
-      "Stylized"
+      "URP"
     ]
   },
   {
@@ -214,8 +188,7 @@
     "tags": [
       "Unity",
       "NPR",
-      "Water",
-      "FlowMap"
+      "Water"
     ]
   },
   {
@@ -244,9 +217,7 @@
     ],
     "tags": [
       "Unity",
-      "Water",
-      "RenderTexture",
-      "交互"
+      "Water"
     ]
   },
   {
@@ -274,10 +245,8 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Wave",
-      "Gerstner",
-      "Ocean"
+      "后处理",
+      "Unity"
     ]
   },
   {
@@ -303,8 +272,7 @@
       }
     ],
     "tags": [
-      "URP",
-      "雨水"
+      "URP"
     ],
     "featured": false
   },
@@ -333,10 +301,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "GrabPass",
-      "Wave",
-      "波纹"
+      "Unity"
     ]
   },
   {
@@ -365,9 +330,7 @@
     ],
     "tags": [
       "Unity",
-      "GPU Instancing",
-      "Grass",
-      "风格化"
+      "GPU Instancing"
     ]
   },
   {
@@ -395,10 +358,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Tessellation",
-      "Snow",
-      "曲面细分"
+      "Unity"
     ]
   },
   {
@@ -424,9 +384,7 @@
       }
     ],
     "tags": [
-      "URP",
-      "Fur",
-      "Shell"
+      "URP"
     ],
     "featured": false
   },
@@ -455,8 +413,7 @@
     "tags": [
       "URP",
       "VAT",
-      "Houdini",
-      "RBD"
+      "Houdini"
     ],
     "featured": false
   },
@@ -486,9 +443,7 @@
     ],
     "tags": [
       "Unity",
-      "PBR",
-      "BRDF",
-      "Cook-Torrance"
+      "PBR"
     ]
   },
   {
@@ -523,8 +478,7 @@
     "tags": [
       "Unity",
       "PBR",
-      "各向异性",
-      "Anisotropy"
+      "各向异性"
     ]
   },
   {
@@ -573,9 +527,7 @@
     ],
     "tags": [
       "Unity",
-      "SSS",
-      "皮肤",
-      "次表面散射"
+      "SSS"
     ]
   },
   {
@@ -611,9 +563,7 @@
     ],
     "tags": [
       "Unity",
-      "薄膜干涉",
-      "镭射",
-      "物理光学"
+      "镭射"
     ],
     "featured": false
   },
@@ -658,9 +608,7 @@
     ],
     "tags": [
       "Unity",
-      "NPR",
-      "Toon",
-      "卡通渲染"
+      "NPR"
     ]
   },
   {
@@ -700,8 +648,7 @@
     "tags": [
       "Unity",
       "NPR",
-      "Outline",
-      "描边"
+      "Outline"
     ]
   },
   {
@@ -730,7 +677,6 @@
     ],
     "tags": [
       "URP",
-      "Cloud",
       "NPR"
     ]
   },
@@ -764,9 +710,7 @@
       }
     ],
     "tags": [
-      "URP",
-      "Ice",
-      "Fresnel"
+      "URP"
     ]
   },
   {
@@ -799,10 +743,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Reflection",
-      "Refraction",
-      "Fresnel"
+      "Unity"
     ]
   },
   {
@@ -831,9 +772,7 @@
     ],
     "tags": [
       "Unity",
-      "Glass",
-      "Fresnel",
-      "GrabPass"
+      "Glass"
     ]
   },
   {
@@ -861,9 +800,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Liquid",
-      "模拟"
+      "Unity"
     ]
   },
   {
@@ -911,9 +848,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Interior Mapping",
-      "城市场景"
+      "Unity"
     ]
   },
   {
@@ -941,9 +876,7 @@
       }
     ],
     "tags": [
-      "URP",
-      "Parallax",
-      "高度图"
+      "URP"
     ]
   },
   {
@@ -976,9 +909,7 @@
       }
     ],
     "tags": [
-      "URP",
-      "Triplanar",
-      "地形"
+      "URP"
     ]
   },
   {
@@ -1027,10 +958,7 @@
     ],
     "tags": [
       "Unity",
-      "Shadow",
-      "PCF",
-      "PCSS",
-      "ShadowMap"
+      "Shadow"
     ]
   },
   {
@@ -1069,9 +997,7 @@
     ],
     "tags": [
       "Unity",
-      "Dissolve",
-      "UI",
-      "Noise"
+      "UI"
     ]
   },
   {
@@ -1099,9 +1025,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "VFX",
-      "能量球"
+      "Unity"
     ]
   },
   {
@@ -1129,9 +1053,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "物理模拟",
-      "GPU"
+      "Unity"
     ]
   },
   {
@@ -1159,10 +1081,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Bezier",
-      "Procedural",
-      "绳索"
+      "Unity"
     ]
   },
   {
@@ -1190,10 +1109,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Bezier",
-      "Procedural",
-      "曲线网格"
+      "Unity"
     ]
   },
   {
@@ -1236,9 +1152,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "UV",
-      "Billboard"
+      "Unity"
     ]
   },
   {
@@ -1271,10 +1185,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Flipbook",
-      "序列帧",
-      "粒子"
+      "Unity"
     ]
   },
   {
@@ -1322,9 +1233,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Mask",
-      "遮罩"
+      "Unity"
     ]
   },
   {
@@ -1357,9 +1266,7 @@
       }
     ],
     "tags": [
-      "Unity",
-      "Geometry Shader",
-      "Particle"
+      "Unity"
     ]
   },
   {
@@ -1388,9 +1295,7 @@
     ],
     "tags": [
       "Unity",
-      "UI",
-      "Shader",
-      "旧照片"
+      "UI"
     ]
   },
   {
@@ -1418,7 +1323,6 @@
     ],
     "tags": [
       "URP",
-      "SSR",
       "后处理"
     ]
   },
@@ -1446,9 +1350,8 @@
       }
     ],
     "tags": [
-      "URP",
-      "SSPR",
-      "Compute Shader"
+      "后处理",
+      "URP"
     ]
   },
   {
@@ -1504,6 +1407,7 @@
       }
     ],
     "tags": [
+      "后处理",
       "URP",
       "TAA",
       "抗锯齿"
@@ -1540,7 +1444,6 @@
       }
     ],
     "tags": [
-      "Bloom",
       "后处理"
     ],
     "featured": false
@@ -1569,10 +1472,8 @@
       }
     ],
     "tags": [
-      "URP",
-      "Volume Light",
-      "体积光",
-      "移动端"
+      "后处理",
+      "URP"
     ]
   },
   {
@@ -1599,10 +1500,8 @@
       }
     ],
     "tags": [
-      "URP",
-      "VFX",
-      "星空",
-      "裂缝"
+      "后处理",
+      "URP"
     ]
   },
   {
@@ -1674,7 +1573,6 @@
     "tags": [
       "Unity",
       "Blur",
-      "Gaussian",
       "后处理"
     ],
     "featured": false
@@ -1711,7 +1609,6 @@
     "tags": [
       "Unity",
       "Blur",
-      "Radial",
       "后处理"
     ],
     "featured": false
@@ -1742,7 +1639,6 @@
     "tags": [
       "Unity",
       "Blur",
-      "Motion Blur",
       "后处理"
     ]
   },
@@ -1784,8 +1680,6 @@
     ],
     "tags": [
       "Unity",
-      "Edge Detection",
-      "Sobel",
       "后处理"
     ]
   },
@@ -1862,8 +1756,6 @@
     ],
     "tags": [
       "Unity",
-      "Depth",
-      "深度图",
       "后处理"
     ]
   },
@@ -1892,9 +1784,7 @@
     ],
     "tags": [
       "Unity",
-      "Depth",
-      "后处理",
-      "变焦"
+      "后处理"
     ]
   },
   {
@@ -1950,9 +1840,8 @@
       }
     ],
     "tags": [
-      "URP",
-      "Decal",
-      "深度重建"
+      "后处理",
+      "URP"
     ]
   },
   {
@@ -1985,8 +1874,6 @@
     ],
     "tags": [
       "Unity",
-      "Glitch",
-      "故障艺术",
       "后处理"
     ]
   },
@@ -2015,8 +1902,7 @@
     ],
     "tags": [
       "Unity",
-      "后处理",
-      "亮度"
+      "后处理"
     ]
   },
   {
@@ -2044,8 +1930,6 @@
     ],
     "tags": [
       "URP",
-      "Rain",
-      "天刀",
       "后处理"
     ],
     "featured": false
@@ -2105,10 +1989,9 @@
       }
     ],
     "tags": [
+      "后处理",
       "URP",
-      "OIT",
-      "透明",
-      "Depth Peeling"
+      "OIT"
     ]
   },
   {
@@ -2136,8 +2019,6 @@
     ],
     "tags": [
       "Unity",
-      "CommandBuffer",
-      "DOF",
       "后处理"
     ]
   },
@@ -2171,8 +2052,6 @@
     ],
     "tags": [
       "Unity",
-      "CommandBuffer",
-      "RenderTexture",
       "后处理"
     ]
   },
@@ -2201,7 +2080,6 @@
     ],
     "tags": [
       "Unity",
-      "CommandBuffer",
       "后处理"
     ]
   },
@@ -2239,17 +2117,14 @@
       }
     ],
     "tags": [
-      "C#",
-      "光栅化",
-      "MSAA",
-      "图形学基础"
+      "MSAA"
     ],
     "featured": false
   },
   {
     "id": "houdini-water-ripple",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "雨滴水波模拟",
     "titleEn": "Rain Drop Water Ripple",
@@ -2263,14 +2138,20 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "VEX", "流体模拟", "水波"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "houdini-smoke",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "烟雾模拟",
     "titleEn": "Smoke Simulation",
@@ -2284,14 +2165,20 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "Volume", "流体模拟", "烟雾"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "houdini-water-wave",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "FFT 海水工具",
     "titleEn": "Water Wave Tools (FFT)",
@@ -2310,14 +2197,21 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "FFT", "水面", "法线贴图"]
+    "tags": [
+      "Houdini",
+      "FFT"
+    ]
   },
   {
     "id": "houdini-noise-creator",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "噪声贴图生成器",
     "titleEn": "Noise Creator",
@@ -2331,14 +2225,20 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "COP", "噪声", "程序化纹理"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "houdini-gpa-importer",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "GPA 数据导入器",
     "titleEn": "GPA Data Importer",
@@ -2357,14 +2257,22 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "GPA", "工具", "逆向分析"]
+    "tags": [
+      "Houdini",
+      "工具",
+      "逆向分析"
+    ]
   },
   {
     "id": "houdini-scatter",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "不重叠散点 / 陨石分布",
     "titleEn": "Non-Overlapping Scatter & Meteorite Distribution",
@@ -2383,14 +2291,20 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "VEX", "散布", "程序化"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "houdini-volume-texture",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "3D Texture → Volume 导入",
     "titleEn": "Import 3D Texture to Volume",
@@ -2409,14 +2323,20 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "Volume", "VDB", "3D Texture"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "houdini-rock-generator",
-    "category": "tools",
-    "categoryLabel": "工具",
+    "category": "houdini",
+    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "石头生成器",
     "titleEn": "Rock Generator",
@@ -2445,9 +2365,15 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
+        "icon": "github"
+      }
     ],
-    "tags": ["Houdini", "HDA", "VEX", "程序化建模", "石头生成"]
+    "tags": [
+      "Houdini"
+    ]
   },
   {
     "id": "unitytool-shadergui",
@@ -2466,9 +2392,18 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Tools-Unity",
+        "icon": "github"
+      }
     ],
-    "tags": ["Unity", "Editor", "ShaderGUI", "URP", "工具"]
+    "tags": [
+      "Unity",
+      "ShaderGUI",
+      "URP",
+      "工具"
+    ]
   },
   {
     "id": "unitytool-shader-variant",
@@ -2502,9 +2437,16 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Tools-Unity",
+        "icon": "github"
+      }
     ],
-    "tags": ["Unity", "Editor", "Shader", "变体剔除", "包体优化"]
+    "tags": [
+      "工具",
+      "Unity"
+    ]
   },
   {
     "id": "unitytool-snapdragon",
@@ -2523,9 +2465,15 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Tools-Unity",
+        "icon": "github"
+      }
     ],
-    "tags": ["Python", "Snapdragon", "性能分析", "移动端", "GPU"]
+    "tags": [
+      "工具"
+    ]
   },
   {
     "id": "unitytool-renderdoc-csv",
@@ -2549,9 +2497,18 @@
       }
     ],
     "links": [
-      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-Tools-Unity",
+        "icon": "github"
+      }
     ],
-    "tags": ["Unity", "RenderDoc", "Python", "FBX", "逆向分析"]
+    "tags": [
+      "工具",
+      "Unity",
+      "RenderDoc",
+      "逆向分析"
+    ]
   },
   {
     "id": "unitytools",
@@ -2582,10 +2539,8 @@
       }
     ],
     "tags": [
-      "Unity Editor",
-      "C#",
-      "ShaderGUI",
-      "Profiler"
+      "工具",
+      "ShaderGUI"
     ]
   }
 ];

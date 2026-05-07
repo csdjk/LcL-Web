@@ -10,13 +10,6 @@
     return;
   }
 
-  const CAT_OPTIONS = [
-    { value: 'character',   label: '角色渲染' },
-    { value: 'material',    label: '普通材质' },
-    { value: 'postprocess', label: '后处理' },
-    { value: 'tools',       label: '工具' },
-    { value: 'graphics',    label: '图形学' },
-  ];
   const SIZE_OPTIONS = ['standard', 'featured', 'wide', 'video'];
   const ICON_OPTIONS = ['github', 'globe', 'video', 'article', 'external'];
 
@@ -503,7 +496,6 @@
     const _tDomStart = performance.now();
     port.forEach((p, i) => {
       if (q && !p.title.toLowerCase().includes(q) && !(p.id||'').toLowerCase().includes(q)) return;
-      const catLabel = CAT_OPTIONS.find(o => o.value === p.category)?.label || p.category;
 
       const card = document.createElement('div');
       card.className = 'p-item';
@@ -539,8 +531,7 @@
       // Body
       const body = document.createElement('div');
       body.className = 'p-item-body';
-      body.innerHTML = `<span class="p-item-cat">${catLabel}</span>
-        <span class="p-item-title">${p.title}</span>
+      body.innerHTML = `<span class="p-item-title">${p.title}</span>
         <span class="p-item-id">${p.id}</span>`;
 
       const actions = document.createElement('div');
@@ -630,12 +621,44 @@
   document.getElementById('portfolio-search').addEventListener('input', e => renderPortfolioList(e.target.value));
   document.getElementById('btn-new-project').addEventListener('click', () => openModal(-1));
 
-  // ── Portfolio modal ────────────────────────────────────────────────────────
+  // ── Tag 管理面板 ──────────────────────────────────────────────────────────
+  const tagManagerPanel = document.getElementById('tag-manager-panel');
+  const tagManagerList  = document.getElementById('tag-manager-list');
+
+  function getTagStats() {
+    const map = new Map();
+    port.forEach(p => (p.tags || []).forEach(t => map.set(t, (map.get(t) || 0) + 1)));
+    return [...map.entries()].sort((a, b) => b[1] - a[1]);
+  }
+
+  function renderTagManager() {
+    tagManagerList.innerHTML = '';
+    getTagStats().forEach(([tag, count]) => {
+      const item = document.createElement('span');
+      item.className = 'tm-tag';
+      item.innerHTML = `${tag} <em>${count}</em><span class="tm-del" title="删除此 Tag">×</span>`;
+      item.querySelector('.tm-del').addEventListener('click', () => {
+        port.forEach(p => { p.tags = (p.tags || []).filter(t => t !== tag); });
+        renderTagManager();
+        renderPortfolioList(document.getElementById('portfolio-search').value);
+        showToast(`已删除 Tag「${tag}」`);
+      });
+      tagManagerList.appendChild(item);
+    });
+  }
+
+  document.getElementById('btn-tag-manager').addEventListener('click', () => {
+    const open = tagManagerPanel.style.display !== 'none';
+    tagManagerPanel.style.display = open ? 'none' : 'block';
+    if (!open) renderTagManager();
+  });
+
+
   function openModal(idx) {
     const _t0 = performance.now();
     editingIdx = idx;
     const p = idx >= 0 ? JSON.parse(JSON.stringify(port[idx])) : {
-      id: '', category: 'character', categoryLabel: '角色渲染', size: 'standard',
+      id: '', size: 'standard',
       title: '', titleEn: '', desc: '', primaryVideo: '',
       webDemo: '', gallery: [], links: [], tags: [], featured: false,
     };
@@ -806,42 +829,7 @@
     addSep(body, '基本信息');
     const r1 = addRow(body, 'cols2');
     addField(r1, 'ID（唯一标识）', 'f-id', 'text', p.id);
-
-    // 分类字段 + 新增分类按钮
-    const catField = document.createElement('div');
-    catField.className = 'field';
-    catField.innerHTML = `<label>分类</label>`;
-    const catRow = document.createElement('div');
-    catRow.style.cssText = 'display:flex;gap:6px;align-items:center;';
-    const catSel = document.createElement('select');
-    catSel.id = 'f-cat';
-    catSel.style.flex = '1';
-    CAT_OPTIONS.forEach(o => {
-      const opt = document.createElement('option');
-      opt.value = o.value; opt.textContent = o.label;
-      if (o.value === p.category) opt.selected = true;
-      catSel.appendChild(opt);
-    });
-    const btnAddCat = document.createElement('button');
-    btnAddCat.type = 'button';
-    btnAddCat.textContent = '+ 新增';
-    btnAddCat.style.cssText = 'padding:5px 10px;font-size:11px;cursor:pointer;border-radius:5px;border:1px solid var(--border-h);background:var(--cyan-dim);color:var(--cyan);white-space:nowrap;flex-shrink:0;';
-    btnAddCat.addEventListener('click', () => {
-      const val = prompt('分类 value（英文，如 vfx）');
-      if (!val || !val.trim()) return;
-      const label = prompt('分类显示名称（中文，如 特效）');
-      if (!label || !label.trim()) return;
-      const newOpt = { value: val.trim(), label: label.trim() };
-      CAT_OPTIONS.push(newOpt);
-      const opt = document.createElement('option');
-      opt.value = newOpt.value; opt.textContent = newOpt.label;
-      opt.selected = true;
-      catSel.appendChild(opt);
-    });
-    catRow.appendChild(catSel);
-    catRow.appendChild(btnAddCat);
-    catField.appendChild(catRow);
-    r1.appendChild(catField);
+    addField(r1, '卡片尺寸', 'f-size', 'select', p.size, SIZE_OPTIONS.map(v=>({value:v,label:v})));
 
     const r2 = addRow(body, 'cols2');
     addField(r2, '中文标题', 'f-title',   'text', p.title);
@@ -849,7 +837,6 @@
     const r3 = addRow(body, '');
     addField(r3, '描述', 'f-desc', 'textarea', p.desc);
     const r4 = addRow(body, 'cols3');
-    addField(r4, '卡片尺寸', 'f-size', 'select', p.size, SIZE_OPTIONS.map(v=>({value:v,label:v})));
     const fFeatured = document.createElement('div');
     fFeatured.className = 'field';
     fFeatured.innerHTML = `<label>精选</label>
@@ -879,14 +866,49 @@
     // Tags
     addSep(body, '技术标签 (tags)');
     const tagsWrap = document.createElement('div');
+
+    // 已有 tag pill 列表
     const tagPills = document.createElement('div');
     tagPills.className = 'tag-pills';
     tagPills.id = 'modal-tag-pills';
+
+    // 输入行：文本框 + 添加按钮
     const tagInputRow = document.createElement('div');
     tagInputRow.className = 'tag-input-row';
-    tagInputRow.innerHTML = `<input id="modal-tag-input" placeholder="输入标签 + 回车 / 点添加"><button id="modal-tag-add">添加</button>`;
+    tagInputRow.innerHTML = `
+      <input id="modal-tag-input" placeholder="输入新 Tag 或从下方选择" autocomplete="off" list="tag-datalist">
+      <datalist id="tag-datalist"></datalist>
+      <button id="modal-tag-add">添加</button>`;
+
+    // 填充 datalist（所有已有 tag 去掉当前已选的）
+    const allExistingTags = [...new Set(port.flatMap(p => p.tags || []))].sort((a, b) => a.localeCompare(b, 'zh-CN'));
+    const datalist = tagInputRow.querySelector('#tag-datalist');
+    allExistingTags.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      datalist.appendChild(opt);
+    });
+
+    // 快速选择区：按频率排序的 tag 小按钮
+    const tagSuggest = document.createElement('div');
+    tagSuggest.className = 'tag-suggest';
+    const tagStats = new Map();
+    port.forEach(pp => (pp.tags || []).forEach(t => tagStats.set(t, (tagStats.get(t) || 0) + 1)));
+    const sortedExisting = [...tagStats.entries()].sort((a, b) => b[1] - a[1]).map(e => e[0]);
+    sortedExisting.forEach(t => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tag-suggest-btn';
+      btn.textContent = t;
+      btn.addEventListener('click', () => {
+        if (!modalTags.includes(t)) { modalTags.push(t); renderModalTags(); }
+      });
+      tagSuggest.appendChild(btn);
+    });
+
     tagsWrap.appendChild(tagPills);
     tagsWrap.appendChild(tagInputRow);
+    tagsWrap.appendChild(tagSuggest);
     body.appendChild(tagsWrap);
 
     let modalTags = [...(p.tags || [])];
@@ -899,24 +921,25 @@
         pill.querySelector('.rm').addEventListener('click', () => { modalTags.splice(ti, 1); renderModalTags(); });
         tagPills.appendChild(pill);
       });
+      // 已选中的建议按钮高亮
+      tagSuggest.querySelectorAll('.tag-suggest-btn').forEach(btn => {
+        btn.classList.toggle('selected', modalTags.includes(btn.textContent));
+      });
     }
     renderModalTags();
     const addModalTag = () => {
       const inp = document.getElementById('modal-tag-input');
       const val = inp.value.trim();
-      if (val) { modalTags.push(val); inp.value = ''; renderModalTags(); }
+      if (val && !modalTags.includes(val)) { modalTags.push(val); inp.value = ''; renderModalTags(); }
+      else inp.value = '';
     };
     document.getElementById('modal-tag-add').addEventListener('click', addModalTag);
-    document.getElementById('modal-tag-input').addEventListener('keydown', e => { if (e.key === 'Enter') addModalTag(); });
+    document.getElementById('modal-tag-input').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addModalTag(); } });
 
     // Save
     document.getElementById('modal-save').onclick = () => {
-      const catVal = document.getElementById('f-cat').value;
-      const catLabel = CAT_OPTIONS.find(o => o.value === catVal)?.label || catVal;
       const updated = {
         id:            document.getElementById('f-id').value.trim(),
-        category:      catVal,
-        categoryLabel: catLabel,
         size:          document.getElementById('f-size').value,
         title:         document.getElementById('f-title').value,
         titleEn:       document.getElementById('f-title-en').value,
