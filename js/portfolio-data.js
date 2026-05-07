@@ -1,4 +1,4 @@
-const PORTFOLIO = [
+﻿const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -981,14 +981,10 @@ const PORTFOLIO = [
   },
   {
     "id": "shader-dissolve",
-    "category": "material",
-    "subCategory": "mat-fx",
-    "categoryLabel": "普通材质",
     "size": "standard",
     "title": "溶解效果",
     "titleEn": "Dissolve Effect",
     "desc": "基于噪声贴图的动态溶解Shader，支持溶解边缘发光、方向性溶解与UI溶解，广泛用于角色死亡、技能释放等场景。",
-    "cover": "assets/images-animated/shader_dissolve.avif",
     "gallery": [
       {
         "type": "image",
@@ -998,7 +994,7 @@ const PORTFOLIO = [
       {
         "type": "image",
         "src": "assets/images-animated/shader_dissolve2.avif",
-        "label": "溶解 2"
+        "label": "方向溶解"
       },
       {
         "type": "image",
@@ -1016,7 +1012,8 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "UI"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-energyball",
@@ -1158,24 +1155,15 @@ const PORTFOLIO = [
   },
   {
     "id": "shader-flipbook",
-    "category": "material",
-    "subCategory": "mat-fx",
-    "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "序列帧动画",
-    "titleEn": "Flipbook / Sprite Sheet Animation",
-    "desc": "基于Flipbook序列帧图集的逐帧播放动画，支持混合采样减少闪烁，广泛用于爆炸、烟雾、火焰等粒子特效。",
-    "cover": "assets/images-animated/shader_flipbook.avif",
+    "title": "翻书效果",
+    "titleEn": "Flipbook ",
+    "desc": "",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images-animated/shader_flipbook.avif",
         "label": "Flipbook"
-      },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_seq_anim.avif",
-        "label": "序列帧动画"
       }
     ],
     "links": [
@@ -1187,7 +1175,8 @@ const PORTFOLIO = [
     ],
     "tags": [
       "Unity"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-mask",
@@ -1357,18 +1346,22 @@ const PORTFOLIO = [
   },
   {
     "id": "urp-hbao",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "standard",
     "title": "HBAO 环境光遮蔽",
     "titleEn": "Horizon-Based Ambient Occlusion",
     "desc": "Horizon-Based AO实现屏幕空间环境光遮蔽，相比SSAO更精确还原物体接触阴影，提升画面层次感。",
-    "cover": "assets/images/urp_hbao.webp",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/urp_hbao.webp",
-        "label": "HBAO"
+        "type": "compare",
+        "label": "HBAO",
+        "before": {
+          "src": "assets/images/urp_hbao0.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/urp_hbao.webp",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1382,7 +1375,8 @@ const PORTFOLIO = [
       "URP",
       "HBAO",
       "后处理"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "urp-taa",
@@ -1479,13 +1473,10 @@ const PORTFOLIO = [
   },
   {
     "id": "urp-starfield-crack",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "video",
     "title": "星空裂缝",
     "titleEn": "Starfield Crack Effect",
     "desc": "科幻风格星空裂缝特效，结合噪声扰动、程序化裂纹生长与粒子光晕，营造宇宙撕裂的震撼视觉。",
-    "cover": null,
     "gallery": [
       {
         "type": "video",
@@ -1501,9 +1492,10 @@ const PORTFOLIO = [
       }
     ],
     "tags": [
-      "后处理",
-      "URP"
-    ]
+      "URP",
+      "特效"
+    ],
+    "featured": false
   },
   {
     "id": "shader-box-blur",
@@ -1686,13 +1678,10 @@ const PORTFOLIO = [
   },
   {
     "id": "shader-pp-outline",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "standard",
     "title": "后处理描边",
     "titleEn": "Post-Process Outline",
-    "desc": "基于深度/法线不连续性的全屏后处理描边方案，无需修改模型即可为场景中所有物体添加统一轮廓线。",
-    "cover": "assets/images-animated/shader_pp_outline.avif",
+    "desc": "后处理描边",
     "gallery": [
       {
         "type": "grid",
@@ -1708,7 +1697,7 @@ const PORTFOLIO = [
           },
           {
             "src": "assets/images-animated/shader_screen_outline.avif",
-            "label": "屏幕描边"
+            "label": "后处理描边"
           }
         ]
       }
@@ -1723,9 +1712,9 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "Outline",
-      "后处理",
-      "NPR"
-    ]
+      "后处理"
+    ],
+    "featured": false
   },
   {
     "id": "shader-depth-fx",
@@ -1819,13 +1808,10 @@ const PORTFOLIO = [
   },
   {
     "id": "urp-decal",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "standard",
     "title": "Screen Decal 屏幕贴花",
     "titleEn": "Screen Space Decal",
     "desc": "基于深度重建的屏幕空间贴花系统，将弹孔、血迹、涂鸦等贴花精准投射到任意几何表面。",
-    "cover": "assets/images/urp_decal.webp",
     "gallery": [
       {
         "type": "image",
@@ -1841,9 +1827,9 @@ const PORTFOLIO = [
       }
     ],
     "tags": [
-      "后处理",
       "URP"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-bad-tv",
@@ -1968,13 +1954,10 @@ const PORTFOLIO = [
   },
   {
     "id": "shader-cmd-dof",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "standard",
     "title": "景深 DOF",
     "titleEn": "Depth of Field (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，实现景深（DOF）效果。",
-    "cover": "assets/images/shader_cmd_dof.webp",
     "gallery": [
       {
         "type": "image",
@@ -1992,7 +1975,8 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "后处理"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-cmd-bake",
@@ -2101,11 +2085,11 @@ const PORTFOLIO = [
     "title": "雨滴水波模拟",
     "titleEn": "Rain Drop Water Ripple",
     "desc": "Houdini 中模拟雨滴打在水面上产生的涟漪扩散效果，基于粒子与流体求解器实现真实的波纹传播与衰减。",
-    "cover": "assets/images-animated/houdini_1693816134877.avif",
+    "cover": "assets/images-animated/1693816134877.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1693816134877.avif",
+        "src": "assets/images-animated/1693816134877.webp",
         "label": "雨滴水波模拟"
       }
     ],
@@ -2128,11 +2112,11 @@ const PORTFOLIO = [
     "title": "烟雾模拟",
     "titleEn": "Smoke Simulation",
     "desc": "Houdini 中基于体素的烟雾流体模拟，支持密度、温度、速度等场的交互，可用于游戏特效离线烘焙。",
-    "cover": "assets/images-animated/houdini_1693821659576.avif",
+    "cover": "assets/images-animated/1693821659576.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1693821659576.avif",
+        "src": "assets/images-animated/1693821659576.webp",
         "label": "烟雾模拟"
       }
     ],
@@ -2155,16 +2139,16 @@ const PORTFOLIO = [
     "title": "FFT 海水工具",
     "titleEn": "Water Wave Tools (FFT)",
     "desc": "自定义 HDA：基于 FFT 算法创建无缝循环海水动画，可调节波长、波高、波速、风向等参数，支持导出序列帧法线贴图供 Shader 实时采样。",
-    "cover": "assets/images-animated/houdini_1693818175779.avif",
+    "cover": "assets/images-animated/1693818175779.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1693818175779.avif",
+        "src": "assets/images-animated/1693818175779.webp",
         "label": "FFT 海水动画"
       },
       {
         "type": "image",
-        "src": "assets/images/houdini_1693904688049.webp",
+        "src": "assets/images-animated/1693904688049.webp",
         "label": "合成法线贴图 8×8"
       }
     ],
@@ -2188,11 +2172,11 @@ const PORTFOLIO = [
     "title": "噪声贴图生成器",
     "titleEn": "Noise Creator",
     "desc": "自定义 HDA：在 Houdini COP 中生成多种类型噪声贴图，支持 Perlin、Worley、Voronoi、Simplex 等，可用于游戏材质的程序化纹理制作。",
-    "cover": "assets/images/houdini_1693828818467.webp",
+    "cover": "assets/images/1693828818467.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/houdini_1693828818467.webp",
+        "src": "assets/images/1693828818467.webp",
         "label": "多种噪声类型预览"
       }
     ],
@@ -2215,16 +2199,16 @@ const PORTFOLIO = [
     "title": "GPA 数据导入器",
     "titleEn": "GPA Data Importer",
     "desc": "自定义 HDA：将 Intel GPA 截帧工具导出的 CSV 顶点数据（UV、法线、顶点色等）写回 FBX 模型，解决 GPA 导出 OBJ 丢失顶点属性的问题。",
-    "cover": "assets/images/houdini_1693972063318.webp",
+    "cover": "assets/images/1693972063318.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/houdini_1693971844222.webp",
+        "src": "assets/images/1693971844222.webp",
         "label": "CSV 数据格式"
       },
       {
         "type": "image",
-        "src": "assets/images/houdini_1693972063318.webp",
+        "src": "assets/images/1693972063318.webp",
         "label": "写入 FBX 后效果"
       }
     ],
@@ -2249,16 +2233,16 @@ const PORTFOLIO = [
     "title": "不重叠散点 / 陨石分布",
     "titleEn": "Non-Overlapping Scatter & Meteorite Distribution",
     "desc": "两个粒子散布 HDA：不重叠散点在 Scatter Align 基础上剔除互相穿插的 Point；陨石分布工具按物理规律生成随机陨石坑阵列，适用于程序化地形装饰。",
-    "cover": "assets/images/houdini_1704784939634.webp",
+    "cover": "assets/images/1704784939634.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/houdini_1704784939634.webp",
+        "src": "assets/images/1704784939634.webp",
         "label": "不重叠撒点"
       },
       {
         "type": "image",
-        "src": "assets/images/houdini_1704786399736.webp",
+        "src": "assets/images/1704786399736.webp",
         "label": "陨石分布"
       }
     ],
@@ -2281,16 +2265,16 @@ const PORTFOLIO = [
     "title": "3D Texture → Volume 导入",
     "titleEn": "Import 3D Texture to Volume",
     "desc": "自定义 HDA：将 3D Texture 序列帧导入 Houdini 并转换为 Volume 体数据，方便在 Karma/Mantra 中渲染或进一步处理 VDB 体积。",
-    "cover": "assets/images/houdini_1704787356247.webp",
+    "cover": "assets/images/1704787356247.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/houdini_1704787356247.webp",
+        "src": "assets/images/1704787356247.webp",
         "label": "3D Texture 导入节点"
       },
       {
         "type": "image",
-        "src": "assets/images/houdini_1704787556062.webp",
+        "src": "assets/images/1704787556062.webp",
         "label": "转换后的 Volume 效果"
       }
     ],
@@ -2307,32 +2291,29 @@ const PORTFOLIO = [
   },
   {
     "id": "houdini-rock-generator",
-    "category": "houdini",
-    "categoryLabel": "Houdini",
     "size": "standard",
     "title": "石头生成器",
     "titleEn": "Rock Generator",
     "desc": "三档精度石头生成 HDA（Low / Complex / High），通过程序化噪声与布尔运算生成形态各异的石块，支持法线烘焙，适用于游戏场景快速填充。",
-    "cover": "assets/images-animated/houdini_1706522527711.avif",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/houdini_1706519960942.webp",
+        "src": "assets/images/1706519960942.webp",
         "label": "石头生成器预览"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1706522527711.avif",
+        "src": "assets/images-animated/1706522527711.webp",
         "label": "Low 精度生成"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1706521940141.avif",
+        "src": "assets/images-animated/1706521940141.webp",
         "label": "Complex 精度生成"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1706522225385.avif",
+        "src": "assets/images-animated/1706522225385.webp",
         "label": "High 精度生成"
       }
     ],
@@ -2345,7 +2326,8 @@ const PORTFOLIO = [
     ],
     "tags": [
       "Houdini"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "unitytool-shadergui",
@@ -2455,16 +2437,16 @@ const PORTFOLIO = [
     "title": "RenderDoc CSV → FBX 转换工具",
     "titleEn": "RenderDoc CSV Convert To FBX Tool",
     "desc": "将 RenderDoc 导出的顶点 CSV 数据转换为 FBX 模型，在原版基础上新增自动映射所有顶点字段（位置、法线、UV、顶点色等）、修改字段时自动应用所有分量，方便逆向分析游戏渲染网格结构。",
-    "cover": "assets/images-animated/unitytool_1709888519062.avif",
+    "cover": "assets/images-animated/1709888519062.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/unitytool_1709888519062.avif",
+        "src": "assets/images-animated/1709888519062.webp",
         "label": "CSV 导入转换过程"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/unitytool_1709888858620.avif",
+        "src": "assets/images-animated/1709888858620.webp",
         "label": "生成 FBX 效果"
       }
     ],

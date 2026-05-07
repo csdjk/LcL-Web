@@ -6,6 +6,8 @@ from PIL import Image
 from tqdm import tqdm
 
 ASSETS_DIR = Path(__file__).parent.parent / "assets" / "images"
+# PNG source files (formerly in source-houdini / source-unity-tools) are now
+# co-located here alongside their .webp conversions.
 QUALITY = 100  # 92 is a good balance of quality vs size
 
 
