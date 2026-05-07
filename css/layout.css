@@ -475,27 +475,6 @@ body {
   background: var(--cyan-dim);
 }
 
-/* 「更多」按钮 */
-.filter-tab--more {
-  border-style: dashed;
-  opacity: 0.7;
-}
-.filter-tab--more:hover {
-  opacity: 1;
-}
-
-/* 低频 tag 折叠区 */
-.filter-bar__more {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: -36px;
-  margin-bottom: 32px;
-  padding: 12px 16px;
-  border-left: 2px solid var(--cyan-dim);
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);

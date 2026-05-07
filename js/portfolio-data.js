@@ -66,14 +66,58 @@ const PORTFOLIO = [
     "featured": true
   },
   {
+    "id": "water",
+    "size": "featured",
+    "title": "风格化水渲染",
+    "titleEn": "Stylized Water Rendering",
+    "desc": "实现风格化水面着色，含法线扰动、深浅水色渐变、焦散、泡沫线、水下折射及动态交互。",
+    "primaryVideo": "assets/videos/water_demo.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/water_demo.mp4",
+        "label": "演示视频 1"
+      },
+      {
+        "type": "video",
+        "src": "assets/videos/water_demo2.mp4",
+        "label": "演示视频 2"
+      }
+    ],
+    "links": [],
+    "tags": [
+      "URP",
+      "Water"
+    ],
+    "featured": false
+  },
+  {
+    "id": "g136_jinyuhu",
+    "size": "featured",
+    "title": "G136 · 金玉葫芦材质",
+    "titleEn": "G136 In-Game — Golden Jade Gourd Material",
+    "desc": "游戏项目实际落地，金玉葫芦道具材质制作录屏。含金属质感、玉石次表面散射、流光动态纹理等效果。",
+    "primaryVideo": "assets/videos/g136_jinyuhu.mp4",
+    "gallery": [
+      {
+        "type": "video",
+        "src": "assets/videos/g136_jinyuhu.mp4",
+        "label": "金玉葫芦演示"
+      }
+    ],
+    "links": [],
+    "tags": [
+      "Game",
+      "SSS"
+    ],
+    "featured": false
+  },
+  {
     "id": "g136_jiuxiao",
-    "category": "character",
-    "categoryLabel": "角色渲染",
     "size": "video",
-    "title": "G136 · 九霄龙吟武器特效",
+    "title": "G136 · 九霄龙吟时装材质",
     "titleEn": "G136 In-Game — Jiuxiao Dragon Weapon FX",
-    "desc": "游戏项目实际落地，九霄龙吟武器材质与特效制作录屏。含剑身流光、龙纹动态描边等复合材质效果。",
-    "cover": null,
+    "desc": "游戏项目实际落地，九霄龙吟时装材质",
     "primaryVideo": "assets/videos/g136_jiuxiao.mp4",
     "gallery": [
       {
@@ -85,7 +129,8 @@ const PORTFOLIO = [
     "links": [],
     "tags": [
       "Game"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "g136_kongque",
@@ -112,53 +157,88 @@ const PORTFOLIO = [
     ]
   },
   {
-    "id": "g136_jinyuhu",
-    "category": "character",
-    "categoryLabel": "角色渲染",
-    "size": "video",
-    "title": "G136 · 金玉葫芦材质",
-    "titleEn": "G136 In-Game — Golden Jade Gourd Material",
-    "desc": "游戏项目实际落地，金玉葫芦道具材质制作录屏。含金属质感、玉石次表面散射、流光动态纹理等效果。",
-    "cover": null,
-    "primaryVideo": "assets/videos/g136_jinyuhu.mp4",
+    "id": "urp-rain",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "雨水涟漪效果",
+    "titleEn": "Rain Ripple Effect",
+    "desc": "雨水涟漪材质",
     "gallery": [
       {
-        "type": "video",
-        "src": "assets/videos/g136_jinyuhu.mp4",
-        "label": "金玉葫芦演示"
+        "type": "image",
+        "label": "对比",
+        "src": "assets/images-animated/urp_rain.avif"
       }
     ],
-    "links": [],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
     "tags": [
-      "Game"
-    ]
+      "URP"
+    ],
+    "featured": false
   },
   {
-    "id": "water",
+    "id": "urp-rain-tiandao",
+    "category": "material",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "Rain 天刀方案",
+    "titleEn": "Rain - Tiandao Style",
+    "desc": "参考《天涯明月刀》的雨效实现方案，结合屏幕空间涟漪与粒子降雨，在移动端高效呈现真实感雨天氛围。",
+    "cover": "assets/images-animated/urp_rain_tiandao.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/urp_rain_tiandao.avif",
+        "label": "Rain 天刀方案"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnURP",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+      "后处理"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-water-interact",
     "category": "material",
     "subCategory": "mat-water",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "风格化水渲染",
-    "titleEn": "Stylized Water Rendering",
-    "desc": "实现风格化水面着色，含法线扰动、深浅水色渐变、焦散、泡沫线、水下折射及动态交互。",
-    "cover": "assets/images/water_1.webp",
-    "primaryVideo": "assets/videos/water_demo.mp4",
+    "title": "水面交互",
+    "titleEn": "Interactive Water Surface",
+    "desc": "角色与水面实时交互效果，基于RenderTexture记录扰动信息，动态生成涟漪扩散与水波位移，还原真实踏水感。",
+    "cover": "assets/images-animated/shader_water_interact.avif",
     "gallery": [
       {
-        "type": "video",
-        "src": "assets/videos/water_demo.mp4",
-        "label": "演示视频 1"
-      },
-      {
-        "type": "video",
-        "src": "assets/videos/water_demo2.mp4",
-        "label": "演示视频 2"
+        "type": "image",
+        "src": "assets/images-animated/shader_water_interact.avif",
+        "label": "水面交互"
       }
     ],
-    "links": [],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
     "tags": [
-      "URP"
+      "Unity",
+      "Water"
     ]
   },
   {
@@ -192,35 +272,6 @@ const PORTFOLIO = [
     ]
   },
   {
-    "id": "shader-water-interact",
-    "category": "material",
-    "subCategory": "mat-water",
-    "categoryLabel": "普通材质",
-    "size": "standard",
-    "title": "水面交互",
-    "titleEn": "Interactive Water Surface",
-    "desc": "角色与水面实时交互效果，基于RenderTexture记录扰动信息，动态生成涟漪扩散与水波位移，还原真实踏水感。",
-    "cover": "assets/images-animated/shader_water_interact.avif",
-    "gallery": [
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_water_interact.avif",
-        "label": "水面交互"
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnUnityShader",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "Unity",
-      "Water"
-    ]
-  },
-  {
     "id": "shader-wave",
     "category": "postprocess",
     "subCategory": "mat-water",
@@ -248,33 +299,6 @@ const PORTFOLIO = [
       "后处理",
       "Unity"
     ]
-  },
-  {
-    "id": "urp-rain",
-    "category": "material",
-    "categoryLabel": "普通材质",
-    "size": "standard",
-    "title": "雨水涟漪效果",
-    "titleEn": "Rain Ripple Effect",
-    "desc": "雨水涟漪材质",
-    "gallery": [
-      {
-        "type": "image",
-        "label": "对比",
-        "src": "assets/images-animated/urp_rain.avif"
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnURP",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "URP"
-    ],
-    "featured": false
   },
   {
     "id": "shader-water-wave",
@@ -448,14 +472,10 @@ const PORTFOLIO = [
   },
   {
     "id": "shader-pbr-aniso",
-    "category": "material",
-    "subCategory": "mat-pbr",
-    "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "各向异性 PBR",
-    "titleEn": "Anisotropic PBR",
+    "title": "各向异性",
+    "titleEn": "Anisotropic",
     "desc": "在PBR框架下扩展各向异性高光，采用Kajiya-Kay与Ward模型，模拟拉丝金属、头发丝绒等具有方向性高光的材质。",
-    "cover": "assets/images/shader_pbr_aniso.webp",
     "gallery": [
       {
         "type": "image",
@@ -479,18 +499,15 @@ const PORTFOLIO = [
       "Unity",
       "PBR",
       "各向异性"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-sss",
-    "category": "material",
-    "subCategory": "mat-pbr",
-    "categoryLabel": "普通材质",
     "size": "standard",
     "title": "次表面散射 SSS",
     "titleEn": "Sub-Surface Scattering",
     "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
-    "cover": "assets/images/shader_sss.webp",
     "gallery": [
       {
         "type": "image",
@@ -528,7 +545,8 @@ const PORTFOLIO = [
     "tags": [
       "Unity",
       "SSS"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-film-interference",
@@ -1904,35 +1922,6 @@ const PORTFOLIO = [
       "Unity",
       "后处理"
     ]
-  },
-  {
-    "id": "urp-rain-tiandao",
-    "category": "material",
-    "categoryLabel": "普通材质",
-    "size": "standard",
-    "title": "Rain 天刀方案",
-    "titleEn": "Rain - Tiandao Style",
-    "desc": "参考《天涯明月刀》的雨效实现方案，结合屏幕空间涟漪与粒子降雨，在移动端高效呈现真实感雨天氛围。",
-    "cover": "assets/images-animated/urp_rain_tiandao.avif",
-    "gallery": [
-      {
-        "type": "image",
-        "src": "assets/images-animated/urp_rain_tiandao.avif",
-        "label": "Rain 天刀方案"
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnURP",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "URP",
-      "后处理"
-    ],
-    "featured": false
   },
   {
     "id": "urp-oit",
