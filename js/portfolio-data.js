@@ -1,4 +1,4 @@
-const PORTFOLIO = [
+﻿const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -2247,39 +2247,311 @@ const PORTFOLIO = [
     "featured": false
   },
   {
-    "id": "houdini",
+    "id": "houdini-water-ripple",
     "category": "tools",
     "categoryLabel": "工具",
     "size": "standard",
-    "title": "Houdini 工具集",
-    "titleEn": "Custom Houdini HDA Library",
-    "desc": "封装常用Houdini HDA节点库，含地形处理、植被生成、RBD破碎动画等程序化工具，大幅提升内容制作效率。",
-    "cover": "assets/images-animated/houdini_1.avif",
+    "title": "雨滴水波模拟",
+    "titleEn": "Rain Drop Water Ripple",
+    "desc": "Houdini 中模拟雨滴打在水面上产生的涟漪扩散效果，基于粒子与流体求解器实现真实的波纹传播与衰减。",
+    "cover": "assets/images-animated/houdini_1693816134877.avif",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/houdini_1.avif",
-        "label": "Houdini Tool 1"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/houdini_2.webp",
-        "label": "Houdini Tool 2"
+        "src": "assets/images-animated/houdini_1693816134877.avif",
+        "label": "雨滴水波模拟"
       }
     ],
     "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "VEX", "流体模拟", "水波"]
+  },
+  {
+    "id": "houdini-smoke",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "烟雾模拟",
+    "titleEn": "Smoke Simulation",
+    "desc": "Houdini 中基于体素的烟雾流体模拟，支持密度、温度、速度等场的交互，可用于游戏特效离线烘焙。",
+    "cover": "assets/images-animated/houdini_1693821659576.avif",
+    "gallery": [
       {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LcLLib-for-Houdini",
-        "icon": "github"
+        "type": "image",
+        "src": "assets/images-animated/houdini_1693821659576.avif",
+        "label": "烟雾模拟"
       }
     ],
-    "tags": [
-      "Houdini",
-      "HDA",
-      "VEX",
-      "Procedural"
-    ]
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "Volume", "流体模拟", "烟雾"]
+  },
+  {
+    "id": "houdini-water-wave",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "FFT 海水工具",
+    "titleEn": "Water Wave Tools (FFT)",
+    "desc": "自定义 HDA：基于 FFT 算法创建无缝循环海水动画，可调节波长、波高、波速、风向等参数，支持导出序列帧法线贴图供 Shader 实时采样。",
+    "cover": "assets/images-animated/houdini_1693818175779.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/houdini_1693818175779.avif",
+        "label": "FFT 海水动画"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1693904688049.webp",
+        "label": "合成法线贴图 8×8"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "FFT", "水面", "法线贴图"]
+  },
+  {
+    "id": "houdini-noise-creator",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "噪声贴图生成器",
+    "titleEn": "Noise Creator",
+    "desc": "自定义 HDA：在 Houdini COP 中生成多种类型噪声贴图，支持 Perlin、Worley、Voronoi、Simplex 等，可用于游戏材质的程序化纹理制作。",
+    "cover": "assets/images/houdini_1693828818467.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1693828818467.webp",
+        "label": "多种噪声类型预览"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "COP", "噪声", "程序化纹理"]
+  },
+  {
+    "id": "houdini-gpa-importer",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "GPA 数据导入器",
+    "titleEn": "GPA Data Importer",
+    "desc": "自定义 HDA：将 Intel GPA 截帧工具导出的 CSV 顶点数据（UV、法线、顶点色等）写回 FBX 模型，解决 GPA 导出 OBJ 丢失顶点属性的问题。",
+    "cover": "assets/images/houdini_1693972063318.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1693971844222.webp",
+        "label": "CSV 数据格式"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1693972063318.webp",
+        "label": "写入 FBX 后效果"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "GPA", "工具", "逆向分析"]
+  },
+  {
+    "id": "houdini-scatter",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "不重叠散点 / 陨石分布",
+    "titleEn": "Non-Overlapping Scatter & Meteorite Distribution",
+    "desc": "两个粒子散布 HDA：不重叠散点在 Scatter Align 基础上剔除互相穿插的 Point；陨石分布工具按物理规律生成随机陨石坑阵列，适用于程序化地形装饰。",
+    "cover": "assets/images/houdini_1704784939634.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1704784939634.webp",
+        "label": "不重叠撒点"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1704786399736.webp",
+        "label": "陨石分布"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "VEX", "散布", "程序化"]
+  },
+  {
+    "id": "houdini-volume-texture",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "3D Texture → Volume 导入",
+    "titleEn": "Import 3D Texture to Volume",
+    "desc": "自定义 HDA：将 3D Texture 序列帧导入 Houdini 并转换为 Volume 体数据，方便在 Karma/Mantra 中渲染或进一步处理 VDB 体积。",
+    "cover": "assets/images/houdini_1704787356247.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1704787356247.webp",
+        "label": "3D Texture 导入节点"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1704787556062.webp",
+        "label": "转换后的 Volume 效果"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "Volume", "VDB", "3D Texture"]
+  },
+  {
+    "id": "houdini-rock-generator",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "石头生成器",
+    "titleEn": "Rock Generator",
+    "desc": "三档精度石头生成 HDA（Low / Complex / High），通过程序化噪声与布尔运算生成形态各异的石块，支持法线烘焙，适用于游戏场景快速填充。",
+    "cover": "assets/images-animated/houdini_1706522527711.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/houdini_1706519960942.webp",
+        "label": "石头生成器预览"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/houdini_1706522527711.avif",
+        "label": "Low 精度生成"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/houdini_1706521940141.avif",
+        "label": "Complex 精度生成"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/houdini_1706522225385.avif",
+        "label": "High 精度生成"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcLLib-for-Houdini", "icon": "github" }
+    ],
+    "tags": ["Houdini", "HDA", "VEX", "程序化建模", "石头生成"]
+  },
+  {
+    "id": "unitytool-shadergui",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "LcLShaderGUI",
+    "titleEn": "LcLShaderGUI — Custom Shader Inspector",
+    "desc": "自定义 Unity ShaderGUI 扩展，支持无限嵌套可折叠区域、Texture 缩略图、属性默认值重置、Vector Slider、Min/Max 限制、根据 Toggle 显隐属性、切换 Pass 等功能，大幅提升 Shader 参数编辑效率。",
+    "cover": "assets/images/unitytool_ShaderGUI.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/unitytool_ShaderGUI.webp",
+        "label": "ShaderGUI 面板预览"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+    ],
+    "tags": ["Unity", "Editor", "ShaderGUI", "URP", "工具"]
+  },
+  {
+    "id": "unitytool-shader-variant",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "Shader 变体收集与剔除工具",
+    "titleEn": "Shader Variant Collection & Stripping Tool",
+    "desc": "Unity Editor 扩展工具集：变体收集界面可批量扫描场景并生成 ShaderVariantCollection；变体剔除工具基于 IPreprocessShaders 接口，在 Build 时按规则自动剔除冗余变体，显著减少包体大小与加载耗时。",
+    "cover": "assets/images/unitytool_1709883622784.webp",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/unitytool_1709885366011.webp",
+        "label": "创建配置文件"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/unitytool_1709883622784.webp",
+        "label": "变体收集界面"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/unitytool_1709884816981.webp",
+        "label": "变体收集结果"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/unitytool_1709883925163.webp",
+        "label": "变体剔除工具面板"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+    ],
+    "tags": ["Unity", "Editor", "Shader", "变体剔除", "包体优化"]
+  },
+  {
+    "id": "unitytool-snapdragon",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "Snapdragon Profiler 截帧数据可视化",
+    "titleEn": "Snapdragon Profiler Data Visualizer",
+    "desc": "Python 工具：解析 Snapdragon Profiler 截帧导出的数据文件，将 Draw Call、Shader 耗时、纹理采样等性能数据可视化展示，方便移动端 GPU 性能瓶颈分析。",
+    "cover": "assets/images-animated/unitytool_snapTools_compressed.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/unitytool_snapTools_compressed.avif",
+        "label": "截帧数据可视化界面"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+    ],
+    "tags": ["Python", "Snapdragon", "性能分析", "移动端", "GPU"]
+  },
+  {
+    "id": "unitytool-renderdoc-csv",
+    "category": "tools",
+    "categoryLabel": "工具",
+    "size": "standard",
+    "title": "RenderDoc CSV → FBX 转换工具",
+    "titleEn": "RenderDoc CSV Convert To FBX Tool",
+    "desc": "将 RenderDoc 导出的顶点 CSV 数据转换为 FBX 模型，在原版基础上新增自动映射所有顶点字段（位置、法线、UV、顶点色等）、修改字段时自动应用所有分量，方便逆向分析游戏渲染网格结构。",
+    "cover": "assets/images-animated/unitytool_1709888519062.avif",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/unitytool_1709888519062.avif",
+        "label": "CSV 导入转换过程"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/unitytool_1709888858620.avif",
+        "label": "生成 FBX 效果"
+      }
+    ],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/csdjk/LcL-Tools-Unity", "icon": "github" }
+    ],
+    "tags": ["Unity", "RenderDoc", "Python", "FBX", "逆向分析"]
   },
   {
     "id": "unitytools",
