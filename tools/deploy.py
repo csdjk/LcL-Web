@@ -11,8 +11,11 @@ from qcloud_cos import CosConfig, CosS3Client, CosServiceError
 from tqdm import tqdm
 
 # ── Config ──────────────────────────────────────────────────────────────────
-SECRET_ID  = "0"
-SECRET_KEY = "0"
+# 从环境变量读取，避免密钥提交到仓库
+# 使用前先设置: set COS_SECRET_ID=xxx && set COS_SECRET_KEY=xxx (Windows)
+#              export COS_SECRET_ID=xxx && export COS_SECRET_KEY=xxx (Linux)
+SECRET_ID  = os.environ.get("COS_SECRET_ID", "")
+SECRET_KEY = os.environ.get("COS_SECRET_KEY", "")
 REGION     = "ap-guangzhou"
 BUCKET     = "lclgame-res-1304962048"
 COS_PREFIX = "LcL-Web/"          # Remote base path
