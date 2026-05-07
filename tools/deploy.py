@@ -70,6 +70,20 @@ def guess_content_type(path: Path) -> str:
     return mime or "application/octet-stream"
 
 
+# Static assets (images/videos) are content-addressed; cache 1 year.
+# HTML/JS/CSS may change; cache 10 minutes with revalidation.
+_LONG_CACHE_EXTS  = {".webp", ".avif", ".png", ".jpg", ".jpeg", ".gif", ".mp4", ".webm"}
+_SHORT_CACHE_EXTS = {".html", ".js", ".css"}
+
+def cache_control(path: Path) -> str:
+    ext = path.suffix.lower()
+    if ext in _LONG_CACHE_EXTS:
+        return "public, max-age=31536000, immutable"
+    if ext in _SHORT_CACHE_EXTS:
+        return "public, max-age=600, must-revalidate"
+    return "public, max-age=3600"
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Deploy LcL-Web to Tencent COS")
     group = parser.add_mutually_exclusive_group()
@@ -131,6 +145,7 @@ def main():
                     Body=f,
                     Key=cos_key,
                     ContentType=guess_content_type(local_path),
+                    CacheControl=cache_control(local_path),
                 )
             uploaded_files.append(rel)
             bar.set_postfix_str(f"↑ {rel}", refresh=False)

@@ -1,4 +1,4 @@
-const PORTFOLIO = [
+﻿const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -166,7 +166,7 @@ const PORTFOLIO = [
     "title": "风格化水渲染",
     "titleEn": "Stylized Water Rendering",
     "desc": "实现风格化水面着色，含法线扰动、深浅水色渐变、焦散、泡沫线、水下折射及动态交互。",
-    "cover": "assets/images/water_1.png",
+    "cover": "assets/images/water_1.webp",
     "primaryVideo": "assets/videos/water_demo.mp4",
     "gallery": [
       {
@@ -410,11 +410,11 @@ const PORTFOLIO = [
     "title": "毛发渲染 Shell Fur",
     "titleEn": "Shell-based Fur Rendering",
     "desc": "基于Shell层叠技术的毛发渲染方案，多Pass剥离毛皮层级，模拟真实毛发体积与各向异性高光。",
-    "cover": "assets/images/urp_fur.png",
+    "cover": "assets/images/urp_fur.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/urp_fur.png",
+        "src": "assets/images/urp_fur.webp",
         "label": "毛发"
       }
     ],
@@ -471,11 +471,11 @@ const PORTFOLIO = [
     "title": "自定义 PBR",
     "titleEn": "Custom Physically-Based Rendering",
     "desc": "从零实现基于Cook-Torrance BRDF的物理着色，含GGX法线分布、Smith几何遮蔽、Fresnel-Schlick近似，完整还原工业级PBR管线。",
-    "cover": "assets/images/shader_pbr.png",
+    "cover": "assets/images/shader_pbr.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_pbr.png",
+        "src": "assets/images/shader_pbr.webp",
         "label": "PBR"
       }
     ],
@@ -502,16 +502,16 @@ const PORTFOLIO = [
     "title": "各向异性 PBR",
     "titleEn": "Anisotropic PBR",
     "desc": "在PBR框架下扩展各向异性高光，采用Kajiya-Kay与Ward模型，模拟拉丝金属、头发丝绒等具有方向性高光的材质。",
-    "cover": "assets/images/shader_pbr_aniso.png",
+    "cover": "assets/images/shader_pbr_aniso.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_pbr_aniso.png",
+        "src": "assets/images/shader_pbr_aniso.webp",
         "label": "各向异性PBR"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_aniso.png",
+        "src": "assets/images/shader_aniso.webp",
         "label": "各向异性高光"
       }
     ],
@@ -538,31 +538,31 @@ const PORTFOLIO = [
     "title": "次表面散射 SSS",
     "titleEn": "Sub-Surface Scattering",
     "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
-    "cover": "assets/images/shader_sss.png",
+    "cover": "assets/images/shader_sss.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_sss.png",
+        "src": "assets/images/shader_sss.webp",
         "label": "SSS"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_sss2.png",
+        "src": "assets/images/shader_sss2.webp",
         "label": "SSS 2"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_pbr_skin.png",
+        "src": "assets/images/shader_pbr_skin.webp",
         "label": "皮肤PBR"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_sg_sss.png",
+        "src": "assets/images/shader_sg_sss.webp",
         "label": "Shader Graph SSS"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_screen_sss.png",
+        "src": "assets/images/shader_screen_sss.webp",
         "label": "屏幕空间SSS"
       }
     ],
@@ -594,11 +594,11 @@ const PORTFOLIO = [
         "label": "薄膜干涉 1",
         "images": [
           {
-            "src": "assets/images/shader_film_interference2.png",
+            "src": "assets/images/shader_film_interference2.webp",
             "label": ""
           },
           {
-            "src": "assets/images/shader_film_interference1.png",
+            "src": "assets/images/shader_film_interference1.webp",
             "label": ""
           }
         ]
@@ -628,16 +628,16 @@ const PORTFOLIO = [
     "title": "卡通渲染 Toon Shading",
     "titleEn": "Toon Shading",
     "desc": "NPR卡通着色实现，含阶梯化漫反射、Rim光、描边等要素，可与角色渲染管线灵活组合。",
-    "cover": "assets/images/shader_toon.png",
+    "cover": "assets/images/shader_toon.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_toon.png",
+        "src": "assets/images/shader_toon.webp",
         "label": "Toon Shading"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_character.png",
+        "src": "assets/images/shader_character.webp",
         "label": "角色着色"
       },
       {
@@ -647,7 +647,7 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/shader_original2.png",
+        "src": "assets/images/shader_original2.webp",
         "label": "参考对比"
       }
     ],
@@ -754,7 +754,7 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/urp_ice.png",
+        "src": "assets/images/urp_ice.webp",
         "label": "冰晶静态"
       }
     ],
@@ -780,16 +780,16 @@ const PORTFOLIO = [
     "title": "反射与折射",
     "titleEn": "Reflection & Refraction",
     "desc": "基于Cubemap与GrabPass的反射/折射效果，含Snell定律折射、菲涅尔混合，模拟玻璃球与水晶质感。",
-    "cover": "assets/images/shader_reflection.png",
+    "cover": "assets/images/shader_reflection.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_reflection.png",
+        "src": "assets/images/shader_reflection.webp",
         "label": "Reflection"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_reflection2.png",
+        "src": "assets/images/shader_reflection2.webp",
         "label": "Refraction"
       }
     ],
@@ -816,11 +816,11 @@ const PORTFOLIO = [
     "title": "风格化玻璃",
     "titleEn": "Stylized Glass",
     "desc": "风格化玻璃Shader，含背景扭曲、菲涅尔边缘光与多层高光叠加，模拟卡通/写实风格透明玻璃质感。",
-    "cover": "assets/images/shader_glass.png",
+    "cover": "assets/images/shader_glass.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_glass.png",
+        "src": "assets/images/shader_glass.webp",
         "label": "Glass"
       }
     ],
@@ -896,12 +896,12 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/shader_interior_2dview1.png",
+        "src": "assets/images/shader_interior_2dview1.webp",
         "label": "2D视角 1"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_interior_2dview2.png",
+        "src": "assets/images/shader_interior_2dview2.webp",
         "label": "2D视角 2"
       }
     ],
@@ -927,11 +927,11 @@ const PORTFOLIO = [
     "title": "Parallax 视差映射",
     "titleEn": "Parallax Occlusion Mapping",
     "desc": "通过高度图与视线步进模拟表面凹凸感的视差映射（POM），在平面上呈现深度感极强的砖墙、地板等细节。",
-    "cover": "assets/images/urp_parallax.png",
+    "cover": "assets/images/urp_parallax.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/urp_parallax.png",
+        "src": "assets/images/urp_parallax.webp",
         "label": "Parallax Mapping"
       }
     ],
@@ -957,16 +957,16 @@ const PORTFOLIO = [
     "title": "Triplanar 三向投影",
     "titleEn": "Triplanar Mapping",
     "desc": "三向投影贴图，无需UV即可在任意地形表面自然贴合纹理，适用于程序化地形、岩石等复杂模型。",
-    "cover": "assets/images/shader_triplanar1.png",
+    "cover": "assets/images/shader_triplanar1.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_triplanar1.png",
+        "src": "assets/images/shader_triplanar1.webp",
         "label": "Triplanar 1"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_triplanar2.png",
+        "src": "assets/images/shader_triplanar2.webp",
         "label": "Triplanar 2"
       }
     ],
@@ -992,31 +992,31 @@ const PORTFOLIO = [
     "title": "阴影算法集",
     "titleEn": "Shadow Algorithms",
     "desc": "ShadowMap基础、PCF软化、Poisson盘采样、PCSS接触硬化及Alpha透明阴影等多种阴影技术实现与对比。",
-    "cover": "assets/images/shader_pcss.png",
+    "cover": "assets/images/shader_pcss.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_shadowmap.png",
+        "src": "assets/images/shader_shadowmap.webp",
         "label": "Shadow Map"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_pcf.png",
+        "src": "assets/images/shader_pcf.webp",
         "label": "PCF"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_pcf_poisson.png",
+        "src": "assets/images/shader_pcf_poisson.webp",
         "label": "PCF Poisson"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_pcss.png",
+        "src": "assets/images/shader_pcss.webp",
         "label": "PCSS"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_alpha_shadow.png",
+        "src": "assets/images/shader_alpha_shadow.webp",
         "label": "Alpha透明阴影"
       }
     ],
@@ -1302,17 +1302,17 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/shader_sphere_mask.png",
+        "src": "assets/images/shader_sphere_mask.webp",
         "label": "球形遮罩"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_2d_mask.png",
+        "src": "assets/images/shader_2d_mask.webp",
         "label": "2D遮罩"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_box_mask.png",
+        "src": "assets/images/shader_box_mask.webp",
         "label": "Box遮罩"
       }
     ],
@@ -1347,7 +1347,7 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/shader_geo_primitive.png",
+        "src": "assets/images/shader_geo_primitive.webp",
         "label": "几何基元"
       }
     ],
@@ -1373,11 +1373,11 @@ const PORTFOLIO = [
     "title": "UI 特效",
     "titleEn": "UI Shader Effects",
     "desc": "UI层Shader效果集，含旧照片滤镜（噪点、褪色、划痕）、UI溶解特效等，为HUD界面增添艺术表现力。",
-    "cover": "assets/images/shader_ui_oldphoto.png",
+    "cover": "assets/images/shader_ui_oldphoto.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_ui_oldphoto.png",
+        "src": "assets/images/shader_ui_oldphoto.webp",
         "label": "旧照片"
       }
     ],
@@ -1461,11 +1461,11 @@ const PORTFOLIO = [
     "title": "HBAO 环境光遮蔽",
     "titleEn": "Horizon-Based Ambient Occlusion",
     "desc": "Horizon-Based AO实现屏幕空间环境光遮蔽，相比SSAO更精确还原物体接触阴影，提升画面层次感。",
-    "cover": "assets/images/urp_hbao.png",
+    "cover": "assets/images/urp_hbao.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/urp_hbao.png",
+        "src": "assets/images/urp_hbao.webp",
         "label": "HBAO"
       }
     ],
@@ -1490,11 +1490,11 @@ const PORTFOLIO = [
     "title": "TAA 时间抗锯齿",
     "titleEn": "Temporal Anti-Aliasing",
     "desc": "基于历史帧重投影的时间抗锯齿方案，通过Jitter与速度缓冲消除锯齿，画面平滑稳定。",
-    "cover": "assets/images/urp_taa.png",
+    "cover": "assets/images/urp_taa.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/urp_taa.png",
+        "src": "assets/images/urp_taa.webp",
         "label": "TAA"
       }
     ],
@@ -1519,17 +1519,17 @@ const PORTFOLIO = [
     "title": "Bloom 泛光",
     "titleEn": "Bloom Post-Processing",
     "desc": "自定义Bloom泛光后处理，基于亮度阈值提取发光区域后多级降采样再混合，还原高亮溢出的光晕感。",
-    "cover": "assets/images/shader_bloom.png",
+    "cover": "assets/images/shader_bloom.webp",
     "gallery": [
       {
         "type": "compare",
         "label": "Bloom",
         "before": {
-          "src": "assets/images/shader_bloom.png",
+          "src": "assets/images/shader_bloom.webp",
           "label": "前"
         },
         "after": {
-          "src": "assets/images/shader_bloom2.png",
+          "src": "assets/images/shader_bloom2.webp",
           "label": "后"
         }
       }
@@ -1615,17 +1615,17 @@ const PORTFOLIO = [
     "title": "Box Blur",
     "titleEn": "Box Blur",
     "desc": "最基础的均值模糊算法，对周围像素等权均值采样，实现快速低成本的全屏模糊，适合低性能需求场景。",
-    "cover": "assets/images/shader_box_blur.png",
+    "cover": "assets/images/shader_box_blur.webp",
     "gallery": [
       {
         "type": "compare",
         "label": "Box Blur",
         "before": {
-          "src": "assets/images/shader_original2.png",
+          "src": "assets/images/shader_original2.webp",
           "label": "前"
         },
         "after": {
-          "src": "assets/images/shader_box_blur.png",
+          "src": "assets/images/shader_box_blur.webp",
           "label": "后"
         }
       }
@@ -1652,11 +1652,11 @@ const PORTFOLIO = [
     "title": "Gaussian Blur",
     "titleEn": "Gaussian Blur",
     "desc": "基于高斯核的双Pass模糊，先横向再纵向卷积，兼顾质量与性能，是后处理管线中最常用的模糊方案。",
-    "cover": "assets/images/shader_gauss_blur.png",
+    "cover": "assets/images/shader_gauss_blur.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_gauss_blur2.png",
+        "src": "assets/images/shader_gauss_blur2.webp",
         "label": "Gaussian Blur 2"
       }
     ],
@@ -1683,11 +1683,11 @@ const PORTFOLIO = [
     "title": "Radial Blur 径向模糊",
     "titleEn": "Radial Blur",
     "desc": "以屏幕中心为起点向外放射采样，产生镜头推拉感与爆炸冲击感，常用于技能释放、过场转场等视觉特效。",
-    "cover": "assets/images/shader_radial_blur.png",
+    "cover": "assets/images/shader_radial_blur.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_radial_blur.png",
+        "src": "assets/images/shader_radial_blur.webp",
         "label": "Radial Blur"
       }
     ],
@@ -1754,11 +1754,11 @@ const PORTFOLIO = [
             "label": "边缘检测动态"
           },
           {
-            "src": "assets/images/shader_edge_detect.png",
+            "src": "assets/images/shader_edge_detect.webp",
             "label": "边缘检测"
           },
           {
-            "src": "assets/images/shader_edge_extract.png",
+            "src": "assets/images/shader_edge_extract.webp",
             "label": "边缘提取"
           }
         ]
@@ -1838,7 +1838,7 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/shader_depth_map.png",
+        "src": "assets/images/shader_depth_map.webp",
         "label": "深度图"
       },
       {
@@ -1869,11 +1869,11 @@ const PORTFOLIO = [
     "title": "屏幕空间 SSS",
     "titleEn": "Screen Space Sub-Surface Scattering",
     "desc": "屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤区域添加散射晕染效果，兼容URP渲染管线。",
-    "cover": "assets/images/shader_screen_sss.png",
+    "cover": "assets/images/shader_screen_sss.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_screen_sss.png",
+        "src": "assets/images/shader_screen_sss.webp",
         "label": "屏幕空间SSS"
       }
     ],
@@ -1898,11 +1898,11 @@ const PORTFOLIO = [
     "title": "Screen Decal 屏幕贴花",
     "titleEn": "Screen Space Decal",
     "desc": "基于深度重建的屏幕空间贴花系统，将弹孔、血迹、涂鸦等贴花精准投射到任意几何表面。",
-    "cover": "assets/images/urp_decal.png",
+    "cover": "assets/images/urp_decal.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/urp_decal.png",
+        "src": "assets/images/urp_decal.webp",
         "label": "Screen Decal"
       }
     ],
@@ -1962,11 +1962,11 @@ const PORTFOLIO = [
     "title": "亮度 / 对比度调节",
     "titleEn": "Brightness & Contrast",
     "desc": "基于后处理的全屏亮度与对比度调节效果，支持实时预览，可用于昼夜切换、场景氛围渲染等需求。",
-    "cover": "assets/images/shader_brightness.png",
+    "cover": "assets/images/shader_brightness.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_brightness.png",
+        "src": "assets/images/shader_brightness.webp",
         "label": "亮度/对比度"
       }
     ],
@@ -2022,22 +2022,22 @@ const PORTFOLIO = [
     "title": "OIT 顺序无关透明",
     "titleEn": "Order Independent Transparency",
     "desc": "对比Alpha Blend、Depth Peeling与Weighted Blend三种OIT方案，解决透明物体排序问题，实现正确的透明度叠加。",
-    "cover": "assets/images/urp_oit_depthpeeling.png",
+    "cover": "assets/images/urp_oit_depthpeeling.webp",
     "gallery": [
       {
         "type": "grid",
         "label": "简单场景对比",
         "images": [
           {
-            "src": "assets/images/urp_oit_alphablend.png",
+            "src": "assets/images/urp_oit_alphablend.webp",
             "label": "Alpha Blend"
           },
           {
-            "src": "assets/images/urp_oit_depthpeeling.png",
+            "src": "assets/images/urp_oit_depthpeeling.webp",
             "label": "Depth Peeling"
           },
           {
-            "src": "assets/images/urp_oit_weightedbend.png",
+            "src": "assets/images/urp_oit_weightedbend.webp",
             "label": "Weighted Blend"
           }
         ]
@@ -2047,15 +2047,15 @@ const PORTFOLIO = [
         "label": "复杂场景对比",
         "images": [
           {
-            "src": "assets/images/urp_oit_scene_alphablend.png",
+            "src": "assets/images/urp_oit_scene_alphablend.webp",
             "label": "场景 Alpha Blend"
           },
           {
-            "src": "assets/images/urp_oit_scene_depthpeeling.png",
+            "src": "assets/images/urp_oit_scene_depthpeeling.webp",
             "label": "场景 Depth Peeling"
           },
           {
-            "src": "assets/images/urp_oit_scene_weighted.png",
+            "src": "assets/images/urp_oit_scene_weighted.webp",
             "label": "场景 Weighted Blend"
           }
         ]
@@ -2083,11 +2083,11 @@ const PORTFOLIO = [
     "title": "景深 DOF",
     "titleEn": "Depth of Field (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，实现景深（DOF）效果。",
-    "cover": "assets/images/shader_cmd_dof.png",
+    "cover": "assets/images/shader_cmd_dof.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_cmd_dof.png",
+        "src": "assets/images/shader_cmd_dof.webp",
         "label": "DOF 景深"
       }
     ],
@@ -2113,16 +2113,16 @@ const PORTFOLIO = [
     "title": "烘焙 RT",
     "titleEn": "Bake Render Texture (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，将场景内容烘焙到 RenderTexture 中。",
-    "cover": "assets/images/shader_cmd_bake1.png",
+    "cover": "assets/images/shader_cmd_bake1.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_cmd_bake1.png",
+        "src": "assets/images/shader_cmd_bake1.webp",
         "label": "烘焙 RT 1"
       },
       {
         "type": "image",
-        "src": "assets/images/shader_cmd_bake2.png",
+        "src": "assets/images/shader_cmd_bake2.webp",
         "label": "烘焙 RT 2"
       }
     ],
@@ -2148,11 +2148,11 @@ const PORTFOLIO = [
     "title": "局部后处理",
     "titleEn": "Local Post Processing (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，实现仅对指定区域或对象生效的局部后处理效果。",
-    "cover": "assets/images/shader_cmd_local_pp.png",
+    "cover": "assets/images/shader_cmd_local_pp.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/shader_cmd_local_pp.png",
+        "src": "assets/images/shader_cmd_local_pp.webp",
         "label": "局部后处理"
       }
     ],
@@ -2177,21 +2177,21 @@ const PORTFOLIO = [
     "title": "软光栅化渲染器",
     "titleEn": "Software Rasterizer",
     "desc": "基于Unity实现的自定义软光栅化渲染器，涵盖背面剔除、视锥裁剪、透视纠正插值、MSAA等核心图形算法。",
-    "cover": "assets/images/softraster_1.png",
+    "cover": "assets/images/softraster_1.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/softraster_1.png",
+        "src": "assets/images/softraster_1.webp",
         "label": "线框模式"
       },
       {
         "type": "image",
-        "src": "assets/images/softraster_2.png",
+        "src": "assets/images/softraster_2.webp",
         "label": "自定义光栅化渲染"
       },
       {
         "type": "image",
-        "src": "assets/images/softraster_3.png",
+        "src": "assets/images/softraster_3.webp",
         "label": "unity内置渲染"
       }
     ],
@@ -2227,7 +2227,7 @@ const PORTFOLIO = [
       },
       {
         "type": "image",
-        "src": "assets/images/houdini_2.png",
+        "src": "assets/images/houdini_2.webp",
         "label": "Houdini Tool 2"
       }
     ],
@@ -2253,11 +2253,11 @@ const PORTFOLIO = [
     "title": "Unity Editor 工具集",
     "titleEn": "Unity Editor Tools",
     "desc": "自定义ShaderGUI扩展、Shader变体收集与剔除工具、LcLProfiler性能分析器等实用Editor扩展工具集。",
-    "cover": "assets/images/unitytools_shadergui.png",
+    "cover": "assets/images/unitytools_shadergui.webp",
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images/unitytools_shadergui.png",
+        "src": "assets/images/unitytools_shadergui.webp",
         "label": "ShaderGUI"
       },
       {

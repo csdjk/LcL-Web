@@ -20,7 +20,7 @@ const imgObserver = new IntersectionObserver((entries, obs) => {
     }
     obs.unobserve(target);
   });
-}, { rootMargin: '300px 0px' });
+}, { rootMargin: '100px 0px' });
 
 // ── Build a single card ───────────────────────────────────
 function buildCard(project) {
