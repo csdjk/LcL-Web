@@ -272,35 +272,6 @@
     ]
   },
   {
-    "id": "shader-wave",
-    "category": "postprocess",
-    "subCategory": "mat-water",
-    "categoryLabel": "后处理",
-    "size": "standard",
-    "title": "波浪效果",
-    "titleEn": "Ocean Wave Effect",
-    "desc": "基于Gerstner Wave的多层叠加波浪模拟，顶点着色器驱动海面起伏，配合法线混合与泡沫遮罩呈现真实海浪质感。",
-    "cover": "assets/images-animated/shader_wave.avif",
-    "gallery": [
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_wave.avif",
-        "label": "波浪效果"
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnUnityShader",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "后处理",
-      "Unity"
-    ]
-  },
-  {
     "id": "shader-water-wave",
     "category": "material",
     "subCategory": "mat-water",
@@ -1136,7 +1107,7 @@
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/shader_brush_world.avif",
+        "src": "assets/images-animated/shader_brush_world.webp",
         "label": "笔刷世界空间"
       }
     ],
