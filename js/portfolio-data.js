@@ -1,4 +1,4 @@
-﻿const PORTFOLIO = [
+const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -404,13 +404,11 @@
   {
     "id": "urp-fur",
     "category": "material",
-    "subCategory": "mat-vegetation",
     "categoryLabel": "普通材质",
     "size": "standard",
     "title": "毛发渲染 Shell Fur",
     "titleEn": "Shell-based Fur Rendering",
     "desc": "基于Shell层叠技术的毛发渲染方案，多Pass剥离毛皮层级，模拟真实毛发体积与各向异性高光。",
-    "cover": "assets/images/urp_fur.webp",
     "gallery": [
       {
         "type": "image",
@@ -429,18 +427,17 @@
       "URP",
       "Fur",
       "Shell"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "urp-vat",
-    "category": "material",
-    "subCategory": "mat-vegetation",
-    "categoryLabel": "普通材质",
+    "category": "anim",
+    "categoryLabel": "动画",
     "size": "standard",
     "title": "VAT-RBD 顶点动画贴图",
     "titleEn": "Vertex Animation Texture (Rigid Body)",
     "desc": "将Houdini RBD刚体破碎动画烘焙至贴图，运行时通过顶点采样还原动画，实现海量动态破碎而无需骨骼。",
-    "cover": "assets/images-animated/urp_vat.avif",
     "gallery": [
       {
         "type": "image",
@@ -460,7 +457,8 @@
       "VAT",
       "Houdini",
       "RBD"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-pbr",
@@ -1652,12 +1650,18 @@
     "title": "Gaussian Blur",
     "titleEn": "Gaussian Blur",
     "desc": "基于高斯核的双Pass模糊，先横向再纵向卷积，兼顾质量与性能，是后处理管线中最常用的模糊方案。",
-    "cover": "assets/images/shader_gauss_blur.webp",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/shader_gauss_blur2.webp",
-        "label": "Gaussian Blur 2"
+        "type": "compare",
+        "label": "Gaussian Blur 2",
+        "before": {
+          "src": "assets/images/shader_original2.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_gauss_blur2.webp",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1683,12 +1687,18 @@
     "title": "Radial Blur 径向模糊",
     "titleEn": "Radial Blur",
     "desc": "以屏幕中心为起点向外放射采样，产生镜头推拉感与爆炸冲击感，常用于技能释放、过场转场等视觉特效。",
-    "cover": "assets/images/shader_radial_blur.webp",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/shader_radial_blur.webp",
-        "label": "Radial Blur"
+        "type": "compare",
+        "label": "Radial Blur",
+        "before": {
+          "src": "assets/images/shader_original2.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_radial_blur.webp",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1703,7 +1713,8 @@
       "Blur",
       "Radial",
       "后处理"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-motion-blur",
@@ -1826,9 +1837,9 @@
     "category": "postprocess",
     "categoryLabel": "后处理",
     "size": "standard",
-    "title": "深度图效果",
-    "titleEn": "Depth Buffer Effects",
-    "desc": "利用深度缓冲实现深度图可视化、深度扫描波（科幻雷达感）及放大镜/变焦后处理等效果。",
+    "title": "深度图与深度扫描",
+    "titleEn": "Depth Map & Depth Scan",
+    "desc": "利用深度缓冲实现深度图可视化，以及基于深度的扫描波效果（科幻雷达感）。",
     "cover": "assets/images-animated/shader_depth_scan.avif",
     "gallery": [
       {
@@ -1840,7 +1851,32 @@
         "type": "image",
         "src": "assets/images/shader_depth_map.webp",
         "label": "深度图"
-      },
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "Depth",
+      "深度图",
+      "后处理"
+    ]
+  },
+  {
+    "id": "shader-zoom-fx",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "变焦效果",
+    "titleEn": "Zoom Effect",
+    "desc": "基于深度缓冲的放大镜/变焦后处理效果，可对屏幕局部区域进行实时缩放。",
+    "cover": "assets/images-animated/shader_zoom.avif",
+    "gallery": [
       {
         "type": "image",
         "src": "assets/images-animated/shader_zoom.avif",
@@ -1857,8 +1893,8 @@
     "tags": [
       "Unity",
       "Depth",
-      "深度图",
-      "后处理"
+      "后处理",
+      "变焦"
     ]
   },
   {

@@ -10,7 +10,7 @@ const LINK_ICONS = {
 
 const PLAY_ICON = `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
 
-// ── Image lazy-load observer ──────────────────────────────
+// ── 图片懒加载：滚动到视口附近再加载 ─────────────────────
 const imgObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach(({ isIntersecting, target }) => {
     if (!isIntersecting) return;
@@ -20,7 +20,20 @@ const imgObserver = new IntersectionObserver((entries, obs) => {
     }
     obs.unobserve(target);
   });
-}, { rootMargin: '100px 0px' });
+}, { rootMargin: '200px 0px' });
+
+// ── 视频懒加载：滚动到视口附近再加载 src ─────────────────
+const vidObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(({ isIntersecting, target }) => {
+    if (!isIntersecting) return;
+    if (target.dataset.src) {
+      target.src = target.dataset.src;
+      target.removeAttribute('data-src');
+      target.load(); // 触发加载
+    }
+    obs.unobserve(target);
+  });
+}, { rootMargin: '200px 0px' });
 
 // ── Build a single card ───────────────────────────────────
 function buildCard(project) {
@@ -67,14 +80,14 @@ function buildCard(project) {
   const firstCompare = !hasVideo && gallery.find(item => item.type === 'compare');
 
   if (hasVideo) {
-    // ── Video card ──
+    // ── 视频卡片（懒加载：滚动到附近才加载 src）──
     const videoSrc = project.primaryVideo || firstItem.src;
     const vid = document.createElement('video');
-    vid.src = videoSrc;
+    vid.dataset.src = videoSrc;  // 先不赋 src，等滚动到视口再加载
     vid.muted = true;
     vid.loop = true;
     vid.playsInline = true;
-    vid.preload = 'metadata';
+    vid.preload = 'none';        // 不预加载任何数据
     mediaWrap.appendChild(vid);
 
     const playDiv = document.createElement('div');
@@ -82,8 +95,18 @@ function buildCard(project) {
     playDiv.innerHTML = PLAY_ICON;
     mediaWrap.appendChild(playDiv);
 
-    card.addEventListener('mouseenter', () => vid.play().catch(() => {}));
+    // 悬停时：确保 src 已加载后再播放
+    card.addEventListener('mouseenter', () => {
+      if (vid.dataset.src) {
+        vid.src = vid.dataset.src;
+        vid.removeAttribute('data-src');
+        vid.load();
+      }
+      vid.play().catch(() => {});
+    });
     card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+
+    vidObserver.observe(vid);
 
   } else if (firstCompare) {
     // ── Compare slider on card ──

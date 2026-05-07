@@ -805,8 +805,44 @@
     // Basic info
     addSep(body, '基本信息');
     const r1 = addRow(body, 'cols2');
-    addField(r1, 'ID（唯一标识）',   'f-id',    'text',   p.id);
-    addField(r1, '分类', 'f-cat', 'select', p.category, CAT_OPTIONS);
+    addField(r1, 'ID（唯一标识）', 'f-id', 'text', p.id);
+
+    // 分类字段 + 新增分类按钮
+    const catField = document.createElement('div');
+    catField.className = 'field';
+    catField.innerHTML = `<label>分类</label>`;
+    const catRow = document.createElement('div');
+    catRow.style.cssText = 'display:flex;gap:6px;align-items:center;';
+    const catSel = document.createElement('select');
+    catSel.id = 'f-cat';
+    catSel.style.flex = '1';
+    CAT_OPTIONS.forEach(o => {
+      const opt = document.createElement('option');
+      opt.value = o.value; opt.textContent = o.label;
+      if (o.value === p.category) opt.selected = true;
+      catSel.appendChild(opt);
+    });
+    const btnAddCat = document.createElement('button');
+    btnAddCat.type = 'button';
+    btnAddCat.textContent = '+ 新增';
+    btnAddCat.style.cssText = 'padding:5px 10px;font-size:11px;cursor:pointer;border-radius:5px;border:1px solid var(--border-h);background:var(--cyan-dim);color:var(--cyan);white-space:nowrap;flex-shrink:0;';
+    btnAddCat.addEventListener('click', () => {
+      const val = prompt('分类 value（英文，如 vfx）');
+      if (!val || !val.trim()) return;
+      const label = prompt('分类显示名称（中文，如 特效）');
+      if (!label || !label.trim()) return;
+      const newOpt = { value: val.trim(), label: label.trim() };
+      CAT_OPTIONS.push(newOpt);
+      const opt = document.createElement('option');
+      opt.value = newOpt.value; opt.textContent = newOpt.label;
+      opt.selected = true;
+      catSel.appendChild(opt);
+    });
+    catRow.appendChild(catSel);
+    catRow.appendChild(btnAddCat);
+    catField.appendChild(catRow);
+    r1.appendChild(catField);
+
     const r2 = addRow(body, 'cols2');
     addField(r2, '中文标题', 'f-title',   'text', p.title);
     addField(r2, '英文标题', 'f-title-en','text', p.titleEn || '');
@@ -822,12 +858,7 @@
       </label>`;
     r4.appendChild(fFeatured);
 
-    // Assets
-    addSep(body, '资源路径');
-    const r6 = addRow(body, '');
-    addField(r6, 'Web Demo 链接', 'f-web-demo', 'text', p.webDemo || '');
-
-    // Gallery → 资源库
+    // Gallery → 资源库（移到描述下方）
     addSep(body, '资源库 (gallery)');
     const _tGallery = performance.now();
     galleryListRef = buildGalleryList(body, p.gallery || []);
@@ -836,6 +867,9 @@
 
     // Links
     addSep(body, '链接按钮 (links)');
+    // Web Demo 链接移到这里
+    const r6 = addRow(body, '');
+    addField(r6, 'Web Demo 链接', 'f-web-demo', 'text', p.webDemo || '');
     const linksList = buildDynList(body, 'links', p.links || [], [
       { key: 'label', label: '文字', type: 'text',   width: '100px' },
       { key: 'url',   label: 'URL',  type: 'text',   flex: 1 },
