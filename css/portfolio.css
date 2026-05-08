@@ -463,13 +463,25 @@
   align-items: start;
 }
 
-/* === 4+ 张：瀑布流 === */
+/* === 4+ 张：网格（从左到右排列，默认）=== */
 #img-viewer__grid[data-layout="masonry"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+#img-viewer__grid[data-layout="masonry"] .viewer-item {
+  margin-bottom: 0;
+}
+
+/* === 4+ 张：瀑布流（从上到下排列）=== */
+#img-viewer__grid[data-layout="masonry-columns"] {
   columns: 3 220px;
   column-gap: 12px;
 }
 
-#img-viewer__grid[data-layout="masonry"] .viewer-item {
+#img-viewer__grid[data-layout="masonry-columns"] .viewer-item {
   margin-bottom: 12px;
 }
 

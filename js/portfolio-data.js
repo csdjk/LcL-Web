@@ -521,26 +521,20 @@
   },
   {
     "id": "shader-film-interference",
-    "category": "material",
-    "categoryLabel": "普通材质",
     "size": "standard",
     "title": "薄膜干涉",
     "titleEn": "Thin-Film Interference",
     "desc": "薄膜干涉效果，模拟肥皂泡、镭射布料、彩虹油膜等多彩渐变光学现象。",
     "gallery": [
       {
-        "type": "grid",
-        "label": "薄膜干涉 1",
-        "images": [
-          {
-            "src": "assets/images/shader_film_interference2.webp",
-            "label": ""
-          },
-          {
-            "src": "assets/images/shader_film_interference1.webp",
-            "label": ""
-          }
-        ]
+        "type": "image",
+        "src": "assets/images/shader_film_interference2.webp",
+        "label": ""
+      },
+      {
+        "type": "image",
+        "src": "assets/images/shader_film_interference1.webp",
+        "label": ""
       }
     ],
     "links": [
@@ -562,30 +556,15 @@
     "subCategory": "mat-stylized",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "卡通渲染 Toon Shading",
+    "title": "简单的卡通渲染",
     "titleEn": "Toon Shading",
-    "desc": "NPR卡通着色实现，含阶梯化漫反射、Rim光、描边等要素，可与角色渲染管线灵活组合。",
+    "desc": "简单的卡通渲染实现，阶梯化漫反射",
     "cover": "assets/images/shader_toon.webp",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_toon.webp",
         "label": "Toon Shading"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_character.webp",
-        "label": "角色着色"
-      },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_character.avif",
-        "label": "角色着色动画"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_original2.webp",
-        "label": "参考对比"
       }
     ],
     "links": [
@@ -602,30 +581,42 @@
   },
   {
     "id": "shader-outlines",
-    "category": "material",
-    "subCategory": "mat-stylized",
-    "categoryLabel": "普通材质",
     "size": "standard",
     "title": "多种描边方案",
     "titleEn": "Outline Techniques",
+    "galleryColumns": true,
     "desc": "汇集菲涅尔描边、法线扩展描边（含遮挡处理）等多种描边实现，覆盖NPR渲染中常见的轮廓线需求。",
-    "cover": "assets/images-animated/shader_fresnel_outline.avif",
     "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_normal_outline.avif",
+        "label": "Backface"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_normal_outline_occ.avif",
+        "label": "Backface(遮挡)"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_pp_outline.avif",
+        "label": "后处理描边"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_pp_outline_occ.avif",
+        "label": "后处理描边(遮挡)"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_edge_detection.avif",
+        "label": "边缘检测"
+      },
       {
         "type": "image",
         "src": "assets/images-animated/shader_fresnel_outline.avif",
         "label": "菲涅尔描边"
       },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_normal_outline.avif",
-        "label": "法线描边"
-      },
-      {
-        "type": "image",
-        "src": "assets/images-animated/shader_normal_outline_occ.avif",
-        "label": "法线描边(遮挡)"
-      }
     ],
     "links": [
       {
@@ -637,9 +628,52 @@
     "tags": [
       "Unity",
       "NPR",
-      "Outline"
+      "Outline",
+      "后处理"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-edge-detect",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "边缘检测",
+    "titleEn": "Edge Detection",
+    "desc": "基于Sobel/Roberts算子的屏幕空间边缘检测，可生成卡通轮廓线或水墨风描边，并支持遮挡信息融合。",
+    "cover": "assets/images-animated/shader_edge_detection.avif",
+    "gallery": [
+      {
+        "type": "compare",
+        "label": "边缘检测对比",
+        "before": {
+          "src": "assets/images/shader_girl.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_edge_detect.webp",
+          "label": "后"
+        }
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_edge_extract.webp",
+        "label": "边缘提取"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "后处理"
     ]
   },
+
   {
     "id": "urp-cloud",
     "category": "material",
@@ -683,12 +717,12 @@
       {
         "type": "image",
         "src": "assets/images-animated/urp_ice2.avif",
-        "label": "冰冻动态"
+        "label": "水晶材质"
       },
       {
         "type": "image",
         "src": "assets/images/urp_ice.webp",
-        "label": "冰晶静态"
+        "label": "冰冻材质"
       }
     ],
     "links": [
@@ -710,18 +744,13 @@
     "size": "standard",
     "title": "反射与折射",
     "titleEn": "Reflection & Refraction",
-    "desc": "基于Cubemap与GrabPass的反射/折射效果，含Snell定律折射、菲涅尔混合，模拟玻璃球与水晶质感。",
+    "desc": "基于Cubemap与GrabPass的反射/折射效果，含折射、菲涅尔混合，模拟玻璃球与水晶质感。",
     "cover": "assets/images/shader_reflection.webp",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_reflection.webp",
         "label": "Reflection"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_reflection2.webp",
-        "label": "Refraction"
       }
     ],
     "links": [
@@ -903,14 +932,10 @@
   },
   {
     "id": "shader-shadow",
-    "category": "material",
-    "subCategory": "mat-other",
-    "categoryLabel": "普通材质",
     "size": "standard",
     "title": "阴影算法集",
     "titleEn": "Shadow Algorithms",
-    "desc": "ShadowMap基础、PCF软化、Poisson盘采样、PCSS接触硬化及Alpha透明阴影等多种阴影技术实现与对比。",
-    "cover": "assets/images/shader_pcss.webp",
+    "desc": "ShadowMap基础、PCF软化、Poisson盘采样、PCSS接触硬化等多种阴影技术实现与对比。",
     "gallery": [
       {
         "type": "image",
@@ -931,11 +956,6 @@
         "type": "image",
         "src": "assets/images/shader_pcss.webp",
         "label": "PCSS"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_alpha_shadow.webp",
-        "label": "Alpha透明阴影"
       }
     ],
     "links": [
@@ -948,7 +968,8 @@
     "tags": [
       "Unity",
       "Shadow"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "shader-dissolve",
@@ -1607,87 +1628,6 @@
     ]
   },
   {
-    "id": "shader-edge-detect",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
-    "size": "standard",
-    "title": "边缘检测",
-    "titleEn": "Edge Detection",
-    "desc": "基于Sobel/Roberts算子的屏幕空间边缘检测，可生成卡通轮廓线或水墨风描边，并支持遮挡信息融合。",
-    "cover": "assets/images-animated/shader_edge_detection.avif",
-    "gallery": [
-      {
-        "type": "grid",
-        "label": "边缘检测对比",
-        "images": [
-          {
-            "src": "assets/images-animated/shader_edge_detection.avif",
-            "label": "边缘检测动态"
-          },
-          {
-            "src": "assets/images/shader_edge_detect.webp",
-            "label": "边缘检测"
-          },
-          {
-            "src": "assets/images/shader_edge_extract.webp",
-            "label": "边缘提取"
-          }
-        ]
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnUnityShader",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "Unity",
-      "后处理"
-    ]
-  },
-  {
-    "id": "shader-pp-outline",
-    "size": "standard",
-    "title": "后处理描边",
-    "titleEn": "Post-Process Outline",
-    "desc": "后处理描边",
-    "gallery": [
-      {
-        "type": "grid",
-        "label": "描边效果对比",
-        "images": [
-          {
-            "src": "assets/images-animated/shader_pp_outline.avif",
-            "label": "后处理描边"
-          },
-          {
-            "src": "assets/images-animated/shader_pp_outline_occ.avif",
-            "label": "后处理描边(遮挡)"
-          },
-          {
-            "src": "assets/images-animated/shader_screen_outline.avif",
-            "label": "后处理描边"
-          }
-        ]
-      }
-    ],
-    "links": [
-      {
-        "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnUnityShader",
-        "icon": "github"
-      }
-    ],
-    "tags": [
-      "Unity",
-      "Outline",
-      "后处理"
-    ],
-    "featured": false
-  },
-  {
     "id": "shader-depth-fx",
     "category": "postprocess",
     "categoryLabel": "后处理",
@@ -1837,18 +1777,22 @@
   },
   {
     "id": "shader-brightness",
-    "category": "postprocess",
-    "categoryLabel": "后处理",
     "size": "standard",
     "title": "亮度 / 对比度调节",
     "titleEn": "Brightness & Contrast",
-    "desc": "基于后处理的全屏亮度与对比度调节效果，支持实时预览，可用于昼夜切换、场景氛围渲染等需求。",
-    "cover": "assets/images/shader_brightness.webp",
+    "desc": "基于后处理的全屏亮度与对比度调节效果。",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/shader_brightness.webp",
-        "label": "亮度/对比度"
+        "type": "compare",
+        "label": "亮度/对比度",
+        "before": {
+          "src": "assets/images/shader_girl.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_brightness.webp",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1861,7 +1805,8 @@
     "tags": [
       "Unity",
       "后处理"
-    ]
+    ],
+    "featured": false
   },
   {
     "id": "urp-oit",
@@ -2119,7 +2064,7 @@
       },
       {
         "type": "image",
-        "src": "assets/images-animated/1693904688049.webp",
+        "src": "assets/images/1693904688049.webp",
         "label": "合成法线贴图 8×8"
       }
     ],

@@ -141,9 +141,7 @@
           ? [{ name: 'images-animated', type: 'image' }]
           : filterType === 'image-static'
             ? [{ name: 'images', type: 'image' }]
-            : filterType === 'image'
-              ? [{ name: 'images', type: 'image' }, { name: 'images-animated', type: 'image' }]
-              : [{ name: 'images', type: 'image' }, { name: 'images-animated', type: 'image' }, { name: 'videos', type: 'video' }];
+            : [{ name: 'images', type: 'image' }, { name: 'images-animated', type: 'image' }, { name: 'videos', type: 'video' }];
       for (const { name, type } of dirs) {
         try {
           const dirH = await assetsH.getDirectoryHandle(name);
@@ -151,10 +149,9 @@
             if (fh.kind !== 'file') continue;
             const ext = fname.split('.').pop().toLowerCase();
             const isVid     = /^(mp4|webm|mov|avi)$/.test(ext);
-            const isAnimImg = /^(gif|avif)$/.test(ext);
-            const isStatImg = /^(png|jpg|jpeg|webp|svg)$/.test(ext);
-            if (!isVid && !isAnimImg && !isStatImg) continue;
-            const subtype = isVid ? 'video' : isAnimImg ? 'image-animated' : 'image-static';
+            const isStatImg = /^(png|jpg|jpeg|webp|gif|avif|svg)$/.test(ext);
+            if (!isVid && !isStatImg) continue;
+            const subtype = isVid ? 'video' : name === 'images-animated' ? 'image-animated' : 'image-static';
             result.push({ name: fname, path: `assets/${name}/${fname}`, type: isVid ? 'video' : 'image', subtype, ext });
           }
         } catch(e) { /* subdir may not exist */ }
@@ -844,11 +841,18 @@
         <input type="checkbox" id="f-featured" ${p.featured ? 'checked' : ''}> FEATURED 标签
       </label>`;
     r4.appendChild(fFeatured);
+    const fGalleryColumns = document.createElement('div');
+    fGalleryColumns.className = 'field';
+    fGalleryColumns.innerHTML = `<label>预览图排列</label>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+        <input type="checkbox" id="f-gallery-columns" ${p.galleryColumns ? 'checked' : ''}> 从上到下（瀑布流）
+      </label>`;
+    r4.appendChild(fGalleryColumns);
 
     // Gallery → 资源库（移到描述下方）
     addSep(body, '资源库 (gallery)');
     const _tGallery = performance.now();
-    galleryListRef = buildGalleryList(body, p.gallery || []);
+    galleryListRef = buildGalleryList(body, p.gallery || [], () => refreshPreview());
     console.log(`[perf] buildModalForm — buildGalleryList (${(p.gallery||[]).length} items): ${(performance.now()-_tGallery).toFixed(1)}ms`);
     const galleryList = () => galleryListRef.getRows();
 
@@ -950,6 +954,7 @@
         links:         linksList(),
         tags:          modalTags,
         featured:      document.getElementById('f-featured').checked,
+        galleryColumns: document.getElementById('f-gallery-columns').checked || undefined,
       };
       if (!updated.id) { alert('请填写 ID'); return; }
       if (!updated.title) { alert('请填写标题'); return; }
@@ -1082,7 +1087,7 @@
   }
 
   // ── Gallery list (with inline mini-preview) ──────────────────────────────
-  function buildGalleryList(parent, items) {
+  function buildGalleryList(parent, items, onChange) {
     const wrap = document.createElement('div');
     wrap.className = 'dyn-list';
     parent.appendChild(wrap);
@@ -1234,6 +1239,7 @@
             if (type) { rows[ri].type = type; typeSelect.value = type; }
             preview.innerHTML = '';
             preview.appendChild(makeMiniPreview(path, rows[ri].type));
+            if (onChange) onChange();
           }, rows[ri].type || 'all');
         });
 
@@ -1355,6 +1361,7 @@
         rows.push({ type: 'compare', label: '效果对比', before: { src: '', label: '前' }, after: { src: '', label: '后' } }); render();
       });
       wrap.appendChild(addEl);
+      if (onChange) onChange();
     }
 
     render();

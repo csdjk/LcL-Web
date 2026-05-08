@@ -54,16 +54,17 @@ function buildCard(project) {
   const allImages = [];
   const allMedia  = [];
   gallery.forEach(item => {
-    if (item.type === 'image') {
+    const itemType = item.type || 'image';
+    if (itemType === 'image') {
       allImages.push(item);
       allMedia.push({ type: 'image', src: item.src, label: item.label });
-    } else if (item.type === 'video') {
+    } else if (itemType === 'video') {
       allMedia.push({ type: 'video', src: item.src, label: item.label });
-    } else if (item.type === 'compare') {
+    } else if (itemType === 'compare') {
       // Use before image as mosaic preview
       if (item.before?.src) allImages.push({ src: item.before.src, label: item.label });
       allMedia.push({ type: 'compare', label: item.label, before: item.before, after: item.after });
-    } else if (item.type === 'grid') {
+    } else if (itemType === 'grid') {
       item.images?.forEach(img => {
         allImages.push(img);
         allMedia.push({ type: 'image', src: img.src, label: img.label });
@@ -228,7 +229,7 @@ function buildCard(project) {
     card.style.cursor = 'pointer';
     card.addEventListener('click', e => {
       if (e.target.closest('.compare-slider')) return;
-      openViewer(project.title, allMedia);
+      openViewer(project.title, allMedia, { galleryColumns: !!project.galleryColumns });
     });
   }
 
@@ -401,7 +402,7 @@ function _closeViewerZoom(silent) {
   }
 }
 
-function openViewer(title, mediaItems) {
+function openViewer(title, mediaItems, opts) {
   const viewer  = document.getElementById('img-viewer');
   const titleEl = document.getElementById('img-viewer__title');
   const grid    = document.getElementById('img-viewer__grid');
@@ -410,9 +411,11 @@ function openViewer(title, mediaItems) {
   titleEl.textContent = title;
   grid.innerHTML = '';
 
-  // Set layout mode based on item count
+  // Set layout mode based on item count and gallery flow option
   const count = mediaItems.length;
-  grid.dataset.layout = count === 1 ? 'single' : count === 2 ? 'two' : count === 3 ? 'three' : 'masonry';
+  const useColumns = opts && opts.galleryColumns;
+  grid.dataset.layout = count === 1 ? 'single' : count === 2 ? 'two' : count === 3 ? 'three'
+    : (useColumns ? 'masonry-columns' : 'masonry');
 
   // Collect zoomable images for navigation
   const zoomable = mediaItems.filter(it => it.type !== 'compare' && it.type !== 'video');
