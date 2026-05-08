@@ -1,4 +1,4 @@
-﻿const PORTFOLIO = [
+const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
@@ -7,7 +7,6 @@
     "title": "原神角色渲染",
     "titleEn": "Genshin Impact Character Rendering",
     "desc": "逆向分析并复刻《原神》角色渲染绿植，实现SDF面部阴影、多pass描边、各向异性头发、Ramp光照等效果。",
-    "cover": null,
     "primaryVideo": "assets/videos/genshin_demo.mp4",
     "webDemo": "demos/genshin/",
     "gallery": [
@@ -140,7 +139,6 @@
     "title": "G136 · 孔雀时装材质",
     "titleEn": "G136 In-Game — Peacock Costume Material",
     "desc": "游戏项目实际落地，孔雀时装角色材质制作录屏。含虹彩羽毛各向异性、镭射布料、薄膜干涉等效果。",
-    "cover": null,
     "primaryVideo": "assets/videos/g136_kongque.mp4",
     "gallery": [
       {
@@ -191,7 +189,6 @@
     "title": "Rain 天刀方案",
     "titleEn": "Rain - Tiandao Style",
     "desc": "参考《天涯明月刀》的雨效实现方案，结合屏幕空间涟漪与粒子降雨，在移动端高效呈现真实感雨天氛围。",
-    "cover": "assets/images-animated/urp_rain_tiandao.avif",
     "gallery": [
       {
         "type": "image",
@@ -221,7 +218,6 @@
     "title": "水面交互",
     "titleEn": "Interactive Water Surface",
     "desc": "角色与水面实时交互效果，基于RenderTexture记录扰动信息，动态生成涟漪扩散与水波位移，还原真实踏水感。",
-    "cover": "assets/images-animated/shader_water_interact.avif",
     "gallery": [
       {
         "type": "image",
@@ -250,7 +246,6 @@
     "title": "卡通水面",
     "titleEn": "Cartoon Water Shader",
     "desc": "风格化卡通水面材质，含程序化水波纹理、深浅水色渐变、岸边泡沫线与FlowMap流动，还原NPR水面要素。",
-    "cover": "assets/images-animated/shader_cartoonwater.avif",
     "gallery": [
       {
         "type": "image",
@@ -280,7 +275,6 @@
     "title": "屏幕波纹效果",
     "titleEn": "Screen Water Wave Effect",
     "desc": "基于GrabPass的屏幕空间水面波纹后处理，通过法线扰动折射背景，模拟水面晃动的折光涟漪感。",
-    "cover": "assets/images-animated/shader_water_wave.avif",
     "gallery": [
       {
         "type": "image",
@@ -308,7 +302,6 @@
     "title": "风格化草地交互",
     "titleEn": "GPU Stylized Interactive Grass",
     "desc": "基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、角色交互压倒与LOD分级，性能高效。",
-    "cover": "assets/images-animated/shader_gpu_grass.avif",
     "gallery": [
       {
         "type": "image",
@@ -337,7 +330,6 @@
     "title": "雪地交互",
     "titleEn": "Interactive Snow (Tessellation)",
     "desc": "基于曲面细分（Tessellation）的雪地交互效果，角色行走时动态压出脚印凹坑，配合法线扰动还原真实积雪质感。",
-    "cover": "assets/images-animated/shader_snow_interact.avif",
     "gallery": [
       {
         "type": "image",
@@ -421,7 +413,6 @@
     "title": "自定义 PBR",
     "titleEn": "Custom Physically-Based Rendering",
     "desc": "从零实现基于Cook-Torrance BRDF的物理着色，含GGX法线分布、Smith几何遮蔽、Fresnel-Schlick近似，完整还原工业级PBR管线。",
-    "cover": "assets/images/shader_pbr.webp",
     "gallery": [
       {
         "type": "image",
@@ -580,7 +571,6 @@
     "title": "简单的卡通渲染",
     "titleEn": "Toon Shading",
     "desc": "简单的卡通渲染实现，阶梯化漫反射",
-    "cover": "assets/images/shader_toon.webp",
     "gallery": [
       {
         "type": "image",
@@ -731,7 +721,6 @@
     "title": "冰冻效果",
     "titleEn": "Ice Freezing Effect",
     "desc": "动态冰冻覆盖效果，基于World Position与噪声渐变控制冰层生长，搭配菲涅尔与法线扰动表现冰晶质感。",
-    "cover": "assets/images-animated/urp_ice2.avif",
     "gallery": [
       {
         "type": "image",
@@ -764,7 +753,6 @@
     "title": "反射与折射",
     "titleEn": "Reflection & Refraction",
     "desc": "基于Cubemap与GrabPass的反射/折射效果，含折射、菲涅尔混合，模拟玻璃球与水晶质感。",
-    "cover": "assets/images/shader_reflection.webp",
     "gallery": [
       {
         "type": "image",
@@ -792,7 +780,6 @@
     "title": "风格化玻璃",
     "titleEn": "Stylized Glass",
     "desc": "风格化玻璃Shader，含背景扭曲、菲涅尔边缘光与多层高光叠加，模拟卡通/写实风格透明玻璃质感。",
-    "cover": "assets/images/shader_glass.webp",
     "gallery": [
       {
         "type": "image",
@@ -821,7 +808,6 @@
     "title": "液体瓶",
     "titleEn": "Liquid Bottle",
     "desc": "液体瓶材质模拟晃动时液面动态变化与气泡漂浮，基于世界空间高度裁切与法线扰动实现真实液体感。",
-    "cover": "assets/images-animated/shader_liquid_bottle.avif",
     "gallery": [
       {
         "type": "image",
@@ -849,7 +835,6 @@
     "title": "Interior Mapping 室内映射",
     "titleEn": "Interior Mapping",
     "desc": "通过Cube贴图与切线空间运算在单平面上模拟室内房间，无需建模即可营造大量楼宇内饰，并扩展2D视角室内版本。",
-    "cover": "assets/images-animated/shader_interior.avif",
     "gallery": [
       {
         "type": "image",
@@ -897,7 +882,6 @@
     "title": "Parallax 视差映射",
     "titleEn": "Parallax Occlusion Mapping",
     "desc": "通过高度图与视线步进模拟表面凹凸感的视差映射（POM），在平面上呈现深度感极强的砖墙、地板等细节。",
-    "cover": "assets/images/urp_parallax.webp",
     "gallery": [
       {
         "type": "image",
@@ -925,7 +909,6 @@
     "title": "Triplanar 三向投影",
     "titleEn": "Triplanar Mapping",
     "desc": "三向投影贴图，无需UV即可在任意地形表面自然贴合纹理，适用于程序化地形、岩石等复杂模型。",
-    "cover": "assets/images/shader_triplanar1.webp",
     "gallery": [
       {
         "type": "image",
@@ -1035,7 +1018,6 @@
     "title": "能量球特效",
     "titleEn": "Energy Ball VFX",
     "desc": "科幻风格能量球Shader，结合菲涅尔轮廓光、噪声扰动UV、内部流动纹理，呈现脉动能量感。",
-    "cover": "assets/images-animated/shader_energyball.avif",
     "gallery": [
       {
         "type": "image",
@@ -1063,7 +1045,6 @@
     "title": "布料物理模拟",
     "titleEn": "Cloth Physics Simulation",
     "desc": "基于质点-弹簧模型的布料物理模拟，结合GPU计算并行求解约束，实时表现风力与碰撞响应。",
-    "cover": "assets/images-animated/shader_cloth.avif",
     "gallery": [
       {
         "type": "image",
@@ -1091,7 +1072,6 @@
     "title": "Bezier 绳索",
     "titleEn": "Bezier Rope",
     "desc": "基于贝塞尔曲线的程序化绳索Mesh生成，沿曲线挤出几何体，支持动态悬挂、流光等交互形态。",
-    "cover": "assets/images-animated/shader_rope.avif",
     "gallery": [
       {
         "type": "image",
@@ -1119,7 +1099,6 @@
     "title": "Bezier 曲线网格",
     "titleEn": "Bezier Curve Mesh",
     "desc": "沿贝塞尔曲线路径挤出任意截面形状生成连续网格，可用于道路、轨道、管道等程序化建模场景。",
-    "cover": "assets/images-animated/shader_bezier.avif",
     "gallery": [
       {
         "type": "image",
@@ -1198,7 +1177,6 @@
     "title": "遮罩效果集",
     "titleEn": "Mask Effects",
     "desc": "汇集球形遮罩、2D遮罩、Box遮罩等多种遮罩工具，用于光照区域限定、交互区域可视化等效果。",
-    "cover": "assets/images-animated/shader_mask.avif",
     "gallery": [
       {
         "type": "image",
@@ -1246,7 +1224,6 @@
     "title": "几何着色器效果",
     "titleEn": "Geometry Shader Effects",
     "desc": "利用Geometry Shader生成程序化几何体和粒子，含自定义基元生成与GPU粒子系统，展示几何管线扩展能力。",
-    "cover": "assets/images-animated/shader_geo_particle.avif",
     "gallery": [
       {
         "type": "image",
@@ -1279,7 +1256,6 @@
     "title": "UI 特效",
     "titleEn": "UI Shader Effects",
     "desc": "UI层Shader效果集，含旧照片滤镜（噪点、褪色、划痕）、UI溶解特效等，为HUD界面增添艺术表现力。",
-    "cover": "assets/images/shader_ui_oldphoto.webp",
     "gallery": [
       {
         "type": "image",
@@ -1307,7 +1283,6 @@
     "title": "SSR 屏幕空间反射",
     "titleEn": "Screen Space Reflection",
     "desc": "基于屏幕空间的反射技术，通过深度图与法线图实时计算反射结果，适用于水面、湿润地面等场景。",
-    "cover": "assets/images-animated/urp_ssr.avif",
     "gallery": [
       {
         "type": "image",
@@ -1335,7 +1310,6 @@
     "title": "SSPR 平面反射",
     "titleEn": "Screen Space Planar Reflection",
     "desc": "基于Compute Shader的屏幕空间平面反射，性能优于传统镜面相机方案，常用于水面/地面镜面反射。",
-    "cover": "assets/images-animated/urp_sspr.avif",
     "gallery": [
       {
         "type": "image",
@@ -1397,7 +1371,6 @@
     "title": "TAA 时间抗锯齿",
     "titleEn": "Temporal Anti-Aliasing",
     "desc": "基于历史帧重投影的时间抗锯齿方案，通过Jitter与速度缓冲消除锯齿，画面平滑稳定。",
-    "cover": "assets/images/urp_taa.webp",
     "gallery": [
       {
         "type": "image",
@@ -1427,7 +1400,6 @@
     "title": "Bloom 泛光",
     "titleEn": "Bloom Post-Processing",
     "desc": "自定义Bloom泛光后处理，基于亮度阈值提取发光区域后多级降采样再混合，还原高亮溢出的光晕感。",
-    "cover": "assets/images/shader_bloom.webp",
     "gallery": [
       {
         "type": "compare",
@@ -1462,7 +1434,6 @@
     "title": "Fast Volume Light 体积光",
     "titleEn": "Fast Volumetric Light",
     "desc": "后处理实现的快速体积光方案，适合移动端性能预算，通过射线步进与散射积分模拟丁达尔光效。",
-    "cover": "assets/images-animated/urp_volume_light.avif",
     "gallery": [
       {
         "type": "image",
@@ -1516,7 +1487,6 @@
     "title": "Box Blur",
     "titleEn": "Box Blur",
     "desc": "最基础的均值模糊算法，对周围像素等权均值采样，实现快速低成本的全屏模糊，适合低性能需求场景。",
-    "cover": "assets/images/shader_box_blur.webp",
     "gallery": [
       {
         "type": "compare",
@@ -1625,7 +1595,6 @@
     "title": "Motion Blur 运动模糊",
     "titleEn": "Motion Blur",
     "desc": "基于速度缓冲（Velocity Buffer）的屏幕空间运动模糊，根据物体运动向量对像素进行方向性拖影采样，模拟高速运动的视觉残影。",
-    "cover": "assets/images-animated/shader_motion_blur.avif",
     "gallery": [
       {
         "type": "image",
@@ -1654,7 +1623,6 @@
     "title": "深度图与深度扫描",
     "titleEn": "Depth Map & Depth Scan",
     "desc": "利用深度缓冲实现深度图可视化，以及基于深度的扫描波效果（科幻雷达感）。",
-    "cover": "assets/images-animated/shader_depth_scan.avif",
     "gallery": [
       {
         "type": "image",
@@ -1687,7 +1655,6 @@
     "title": "变焦效果",
     "titleEn": "Zoom Effect",
     "desc": "基于深度缓冲的放大镜/变焦后处理效果，可对屏幕局部区域进行实时缩放。",
-    "cover": "assets/images-animated/shader_zoom.avif",
     "gallery": [
       {
         "type": "image",
@@ -1715,7 +1682,6 @@
     "title": "屏幕空间 SSS",
     "titleEn": "Screen Space Sub-Surface Scattering",
     "desc": "屏幕空间次表面散射后处理，在不修改材质的前提下为全场景皮肤区域添加散射晕染效果，兼容URP渲染管线。",
-    "cover": "assets/images/shader_screen_sss.webp",
     "gallery": [
       {
         "type": "image",
@@ -1769,7 +1735,6 @@
     "title": "故障艺术 Glitch",
     "titleEn": "Bad TV / Glitch Effect",
     "desc": "模拟信号干扰的故障艺术后处理，含扫描线噪波、色差分离、块状错位等多重叠加，营造赛博朋克屏幕感。",
-    "cover": "assets/images-animated/shader_bad_tv.avif",
     "gallery": [
       {
         "type": "image",
@@ -1835,7 +1800,6 @@
     "title": "OIT 顺序无关透明",
     "titleEn": "Order Independent Transparency",
     "desc": "对比Alpha Blend、Depth Peeling与Weighted Blend三种OIT方案，解决透明物体排序问题，实现正确的透明度叠加。",
-    "cover": "assets/images/urp_oit_depthpeeling.webp",
     "gallery": [
       {
         "type": "grid",
@@ -1921,7 +1885,6 @@
     "title": "烘焙 RT",
     "titleEn": "Bake Render Texture (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，将场景内容烘焙到 RenderTexture 中。",
-    "cover": "assets/images/shader_cmd_bake1.webp",
     "gallery": [
       {
         "type": "image",
@@ -1954,7 +1917,6 @@
     "title": "局部后处理",
     "titleEn": "Local Post Processing (CommandBuffer)",
     "desc": "利用 CommandBuffer 自定义渲染 Pass，实现仅对指定区域或对象生效的局部后处理效果。",
-    "cover": "assets/images/shader_cmd_local_pp.webp",
     "gallery": [
       {
         "type": "image",
@@ -1982,7 +1944,6 @@
     "title": "软光栅化渲染器",
     "titleEn": "Software Rasterizer",
     "desc": "基于Unity实现的自定义软光栅化渲染器，涵盖背面剔除、视锥裁剪、透视纠正插值、MSAA等核心图形算法。",
-    "cover": "assets/images/softraster_1.webp",
     "gallery": [
       {
         "type": "image",
@@ -2020,7 +1981,6 @@
     "title": "雨滴水波模拟",
     "titleEn": "Rain Drop Water Ripple",
     "desc": "Houdini 中模拟雨滴打在水面上产生的涟漪扩散效果，基于粒子与流体求解器实现真实的波纹传播与衰减。",
-    "cover": "assets/images-animated/1693816134877.webp",
     "gallery": [
       {
         "type": "image",
@@ -2047,7 +2007,6 @@
     "title": "烟雾模拟",
     "titleEn": "Smoke Simulation",
     "desc": "Houdini 中基于体素的烟雾流体模拟，支持密度、温度、速度等场的交互，可用于游戏特效离线烘焙。",
-    "cover": "assets/images-animated/1693821659576.webp",
     "gallery": [
       {
         "type": "image",
@@ -2074,7 +2033,6 @@
     "title": "FFT 海水工具",
     "titleEn": "Water Wave Tools (FFT)",
     "desc": "自定义 HDA：基于 FFT 算法创建无缝循环海水动画，可调节波长、波高、波速、风向等参数，支持导出序列帧法线贴图供 Shader 实时采样。",
-    "cover": "assets/images-animated/1693818175779.webp",
     "gallery": [
       {
         "type": "image",
@@ -2107,7 +2065,6 @@
     "title": "噪声贴图生成器",
     "titleEn": "Noise Creator",
     "desc": "自定义 HDA：在 Houdini COP 中生成多种类型噪声贴图，支持 Perlin、Worley、Voronoi、Simplex 等，可用于游戏材质的程序化纹理制作。",
-    "cover": "assets/images/1693828818467.webp",
     "gallery": [
       {
         "type": "image",
@@ -2134,7 +2091,6 @@
     "title": "GPA 数据导入器",
     "titleEn": "GPA Data Importer",
     "desc": "自定义 HDA：将 Intel GPA 截帧工具导出的 CSV 顶点数据（UV、法线、顶点色等）写回 FBX 模型，解决 GPA 导出 OBJ 丢失顶点属性的问题。",
-    "cover": "assets/images/1693972063318.webp",
     "gallery": [
       {
         "type": "image",
@@ -2168,7 +2124,6 @@
     "title": "不重叠散点 / 陨石分布",
     "titleEn": "Non-Overlapping Scatter & Meteorite Distribution",
     "desc": "两个粒子散布 HDA：不重叠散点在 Scatter Align 基础上剔除互相穿插的 Point；陨石分布工具按物理规律生成随机陨石坑阵列，适用于程序化地形装饰。",
-    "cover": "assets/images/1704784939634.webp",
     "gallery": [
       {
         "type": "image",
@@ -2200,7 +2155,6 @@
     "title": "3D Texture → Volume 导入",
     "titleEn": "Import 3D Texture to Volume",
     "desc": "自定义 HDA：将 3D Texture 序列帧导入 Houdini 并转换为 Volume 体数据，方便在 Karma/Mantra 中渲染或进一步处理 VDB 体积。",
-    "cover": "assets/images/1704787356247.webp",
     "gallery": [
       {
         "type": "image",
@@ -2272,7 +2226,6 @@
     "title": "LcLShaderGUI",
     "titleEn": "LcLShaderGUI — Custom Shader Inspector",
     "desc": "自定义 Unity ShaderGUI 扩展，支持无限嵌套可折叠区域、Texture 缩略图、属性默认值重置、Vector Slider、Min/Max 限制、根据 Toggle 显隐属性、切换 Pass 等功能，大幅提升 Shader 参数编辑效率。",
-    "cover": "assets/images/unitytool_ShaderGUI.webp",
     "gallery": [
       {
         "type": "image",
@@ -2302,7 +2255,6 @@
     "title": "Shader 变体收集与剔除工具",
     "titleEn": "Shader Variant Collection & Stripping Tool",
     "desc": "Unity Editor 扩展工具集：变体收集界面可批量扫描场景并生成 ShaderVariantCollection；变体剔除工具基于 IPreprocessShaders 接口，在 Build 时按规则自动剔除冗余变体，显著减少包体大小与加载耗时。",
-    "cover": "assets/images/unitytool_1709883622784.webp",
     "gallery": [
       {
         "type": "image",
@@ -2345,7 +2297,6 @@
     "title": "Snapdragon Profiler 截帧数据可视化",
     "titleEn": "Snapdragon Profiler Data Visualizer",
     "desc": "Python 工具：解析 Snapdragon Profiler 截帧导出的数据文件，将 Draw Call、Shader 耗时、纹理采样等性能数据可视化展示，方便移动端 GPU 性能瓶颈分析。",
-    "cover": "assets/images-animated/unitytool_snapTools_compressed.avif",
     "gallery": [
       {
         "type": "image",
@@ -2372,7 +2323,6 @@
     "title": "RenderDoc CSV → FBX 转换工具",
     "titleEn": "RenderDoc CSV Convert To FBX Tool",
     "desc": "将 RenderDoc 导出的顶点 CSV 数据转换为 FBX 模型，在原版基础上新增自动映射所有顶点字段（位置、法线、UV、顶点色等）、修改字段时自动应用所有分量，方便逆向分析游戏渲染网格结构。",
-    "cover": "assets/images-animated/1709888519062.webp",
     "gallery": [
       {
         "type": "image",
@@ -2407,7 +2357,6 @@
     "title": "Unity Editor 工具集",
     "titleEn": "Unity Editor Tools",
     "desc": "自定义ShaderGUI扩展、Shader变体收集与剔除工具、LcLProfiler性能分析器等实用Editor扩展工具集。",
-    "cover": "assets/images/unitytools_shadergui.webp",
     "gallery": [
       {
         "type": "image",
