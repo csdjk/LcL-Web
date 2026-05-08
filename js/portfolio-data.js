@@ -1037,6 +1037,108 @@ const PORTFOLIO = [
     ]
   },
   {
+    "id": "vfx-magicball",
+    "category": "material",
+    "subCategory": "mat-fx",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "魔法球粒子特效",
+    "titleEn": "Magic Ball VFX",
+    "desc": "使用 Unity Visual Effect Graph 制作的魔法球粒子系统，多层粒子轨迹与发光叠加，呈现出炫目的魔法能量感。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_magicball.png",
+        "label": "Magic Ball"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-VisualEffectGraph/tree/master/Assets/Scenes/MagicBall",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "VFX",
+      "FX"
+    ]
+  },
+  {
+    "id": "vfx-portal",
+    "category": "material",
+    "subCategory": "mat-fx",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "传送门特效",
+    "titleEn": "Portal Effect VFX",
+    "desc": "基于 VFX Graph 实现的传送门视觉特效，粒子漩涡吸入动画配合边缘扭曲，模拟异次元空间穿越感。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_portal1.png",
+        "label": "Portal 1"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_portal2.png",
+        "label": "Portal 2"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_portal3.png",
+        "label": "Portal 3"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_portal4.png",
+        "label": "Portal 4"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-VisualEffectGraph/tree/master/Assets/Scenes/PortalEffect",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "VFX",
+      "FX"
+    ]
+  },
+  {
+    "id": "vfx-mesh2particle",
+    "category": "material",
+    "subCategory": "mat-fx",
+    "categoryLabel": "普通材质",
+    "size": "standard",
+    "title": "网格粒子化",
+    "titleEn": "Mesh To Particle VFX",
+    "desc": "利用 VFX Graph 将任意 3D 网格实时转换为粒子群，通过 GPU 并行驱动粒子位置，实现模型消散与聚合的视觉效果。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/vfx_mesh2particle.png",
+        "label": "Mesh To Particle"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LcL-VisualEffectGraph/tree/master/Assets/Scenes/MeshToParticle",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "VFX",
+      "FX"
+    ]
+  },
+  {
     "id": "shader-cloth",
     "category": "material",
     "subCategory": "mat-fx",
