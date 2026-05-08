@@ -405,6 +405,35 @@
     "featured": false
   },
   {
+    "id": "gpu-skinning",
+    "category": "anim",
+    "categoryLabel": "动画",
+    "size": "standard",
+    "title": "GPU蒙皮动画",
+    "titleEn": "GPU Skinning",
+    "desc": "将骨骼变换矩阵写入StructuredBuffer，在顶点着色器中直接完成蒙皮计算，把CPU密集的蒙皮运算转移至GPU，大幅降低CPU压力，实现数千蒙皮角色同屏流畅渲染。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/gpu_skinning.avif",
+        "label": "GPU Skinning"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "URP",
+      "GPU Skinning"
+    ],
+    "featured": false
+  },
+  {
     "id": "shader-pbr",
     "category": "material",
     "subCategory": "mat-pbr",
@@ -502,7 +531,7 @@
     "titleEn": "Sub-Surface Scattering",
     "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、球面高斯SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
     "gallery": [
-       {
+      {
         "type": "image",
         "src": "assets/images/shader_sg_sss.webp",
         "label": "球面高斯SSS"
@@ -528,6 +557,66 @@
     "tags": [
       "Unity",
       "SSS"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-stockings",
+    "size": "standard",
+    "title": "丝袜材质",
+    "titleEn": "Stockings Material",
+    "desc": "",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/stockings1.webp",
+        "label": "背面"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/stockings.webp",
+        "label": "正面"
+      },
+      
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "URP",
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-ChromaticDistortion",
+    "category": "postprocess",
+    "categoryLabel": "后处理",
+    "size": "standard",
+    "title": "色差畸变",
+    "titleEn": "Chromatic Distortion",
+    "desc": "基于后处理的镜头色差效果，模拟真实摄影镜头中不同波长光线折射率差异导致的色彩分离现象。对 RGB 三个通道施加各自独立的径向偏移，越靠近画面边缘色散越明显，可与径向扭曲叠加使用，常用于表现受损屏幕、赛博朋克镜头或故障艺术风格。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/ChromaticDistortion.avif",
+        "label": "ChromaticDistortion"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "URP",
+      "后处理"
     ],
     "featured": false
   },
@@ -559,6 +648,64 @@
     "tags": [
       "Unity",
       "镭射"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-sparkle-shiny",
+    "category": "shader",
+    "categoryLabel": "Shader",
+    "size": "standard",
+    "title": "闪片材质",
+    "titleEn": "Sparkle Shiny",
+    "desc": "",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images/sparkleShiny.webp",
+        "label": "Sparkle Shiny"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "URP",
+      "Shader"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-spark",
+    "category": "shader",
+    "categoryLabel": "Shader",
+    "size": "standard",
+    "title": "闪点材质",
+    "titleEn": "Spark",
+    "desc": "闪点粒子材质效果，模拟金属或晶体表面随机散布的高亮闪光点，通过噪声或随机分布驱动，每个亮点独立闪烁，营造出耀眼的星光碎片质感。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/spark.avif",
+        "label": "Spark"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "URP",
+      "Shader"
     ],
     "featured": false
   },
@@ -627,7 +774,7 @@
         "type": "image",
         "src": "assets/images-animated/shader_fresnel_outline.avif",
         "label": "菲涅尔描边"
-      },
+      }
     ],
     "links": [
       {
@@ -683,7 +830,6 @@
       "后处理"
     ]
   },
-
   {
     "id": "urp-cloud",
     "category": "material",
@@ -1005,7 +1151,36 @@
     ],
     "tags": [
       "Unity",
-      "UI"
+      "Effect"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-effect-fire",
+    "category": "shader",
+    "categoryLabel": "Shader",
+    "size": "standard",
+    "title": "火焰披风",
+    "titleEn": "Fire Cape Effect",
+    "desc": "火焰披风材质效果，将流动火焰纹理与角色披风网格结合，通过扰动噪声模拟火舌向上翻腾的动态感，边缘配合自发光与透明度渐变，实现逼真的燃烧披风视觉效果。",
+    "gallery": [
+      {
+        "type": "image",
+        "src": "assets/images-animated/effect_fire.avif",
+        "label": "Fire Cape"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "URP",
+      "Shader"
     ],
     "featured": false
   },
@@ -1062,7 +1237,7 @@
     "tags": [
       "Unity",
       "VFX",
-      "FX"
+      "Effect"
     ]
   },
   {
@@ -1096,7 +1271,7 @@
     "tags": [
       "Unity",
       "VFX",
-      "FX"
+      "Effect"
     ]
   },
   {
@@ -1125,7 +1300,7 @@
     "tags": [
       "Unity",
       "VFX",
-      "FX"
+      "Effect"
     ]
   },
   {
@@ -1220,6 +1395,11 @@
         "type": "image",
         "src": "assets/images-animated/shader_brush_world.webp",
         "label": "笔刷世界空间"
+      },
+      {
+        "type": "image",
+        "src": "assets/images-animated/shader_brush_uv.webp",
+        "label": "笔刷UV空间"
       }
     ],
     "links": [
@@ -2473,4 +2653,5 @@
       "ShaderGUI"
     ]
   }
+
 ];

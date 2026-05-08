@@ -110,11 +110,31 @@
     } catch(e) { return null; }
   }
 
+  // Detect whether an AVIF file is animated by checking the ftyp box major brand ("avis")
+  async function isAnimatedAvif(file) {
+    try {
+      const buf = await file.slice(0, 12).arrayBuffer();
+      const u8 = new Uint8Array(buf);
+      // ftyp box: [4B size][4B "ftyp"][4B major brand]
+      const brand = String.fromCharCode(u8[8], u8[9], u8[10], u8[11]);
+      return brand === 'avis';
+    } catch { return false; }
+  }
+
   async function fsCopyFile(file) {
     const root = rootDirHandle;
     if (!root) throw new Error('请先点击顶栏「📁 授权项目目录」按钮，选择 LcL-Web 根目录');
-    const isVideo = file.type.startsWith('video/') || /\.(mp4|webm|mov|avi)$/i.test(file.name);
-    const sd = isVideo ? 'videos' : 'images';
+    const isVideo   = file.type.startsWith('video/') || /\.(mp4|webm|mov|avi)$/i.test(file.name);
+    const isGif     = /\.gif$/i.test(file.name);
+    const isAvif    = /\.avif$/i.test(file.name);
+    let sd;
+    if (isVideo) {
+      sd = 'videos';
+    } else if (isGif || (isAvif && await isAnimatedAvif(file))) {
+      sd = 'images-animated';
+    } else {
+      sd = 'images';
+    }
     try {
       const assetsH = await root.getDirectoryHandle('assets');
       const subH    = await assetsH.getDirectoryHandle(sd, { create: true });
@@ -751,7 +771,7 @@
 
     async function handleDroppedFiles(files) {
       const mediaFiles = [...files].filter(f =>
-        /\.(png|jpg|jpeg|gif|webp|mp4|webm|mov|avi)$/i.test(f.name));
+        /\.(png|jpg|jpeg|gif|webp|avif|mp4|webm|mov|avi)$/i.test(f.name));
       if (!mediaFiles.length) return;
       let ok = 0;
       for (const file of mediaFiles) {
@@ -768,8 +788,19 @@
 
     filePickerInp.addEventListener('change', () => handleDroppedFiles(filePickerInp.files));
 
-    // Strip drag-and-drop
-    // stopPropagation prevents the drop from bubbling to document and causing page navigation
+    // previewSection (whole area incl. header) — catch any drop that misses the strip/slot
+    previewSection.addEventListener('dragover', e => {
+      if (e.dataTransfer.types.includes('Files')) { e.preventDefault(); e.stopPropagation(); strip.classList.add('strip-drag-active'); }
+    });
+    previewSection.addEventListener('dragleave', e => {
+      if (!previewSection.contains(e.relatedTarget)) strip.classList.remove('strip-drag-active');
+    });
+    previewSection.addEventListener('drop', async e => {
+      e.preventDefault(); e.stopPropagation(); strip.classList.remove('strip-drag-active');
+      await handleDroppedFiles(e.dataTransfer.files);
+    });
+
+    // Strip drag-and-drop (more specific handlers for visual feedback on strip itself)
     strip.addEventListener('dragover', e => {
       if (e.dataTransfer.types.includes('Files')) { e.preventDefault(); e.stopPropagation(); strip.classList.add('strip-drag-active'); }
     });
