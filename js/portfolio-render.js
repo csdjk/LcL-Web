@@ -411,10 +411,12 @@ function openViewer(title, mediaItems, opts) {
   titleEl.textContent = title;
   grid.innerHTML = '';
 
-  // Set layout mode based on item count and gallery flow option
+  // Set layout mode based on non-compare item count and gallery flow option
   const count = mediaItems.length;
+  const regularCount = mediaItems.filter(it => it.type !== 'compare').length;
   const useColumns = opts && opts.galleryColumns;
-  grid.dataset.layout = count === 1 ? 'single' : count === 2 ? 'two' : count === 3 ? 'three'
+  const layoutCount = regularCount > 0 ? regularCount : count; // fallback to total if all compare
+  grid.dataset.layout = layoutCount === 1 ? 'single' : layoutCount === 2 ? 'two' : layoutCount === 3 ? 'three'
     : (useColumns ? 'masonry-columns' : 'masonry');
 
   // Collect zoomable images for navigation

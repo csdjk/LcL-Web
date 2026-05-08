@@ -474,31 +474,52 @@
     "featured": false
   },
   {
-    "id": "shader-sss",
+    "id": "shader-translucency",
     "size": "standard",
-    "title": "次表面散射 SSS",
+    "title": "Translucency",
     "titleEn": "Sub-Surface Scattering",
-    "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、Shader Graph节点SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
+    "desc": "伪半透明(次表面散射)效果，基于视角与光照方向的简单混合，模拟玉石等半透材质的透光效果。",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images/shader_sss.webp",
-        "label": "SSS"
+        "label": "Translucency"
       },
       {
         "type": "image",
         "src": "assets/images/shader_sss2.webp",
-        "label": "SSS 2"
+        "label": "Translucency2"
+      }
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/csdjk/LearnUnityShader",
+        "icon": "github"
+      }
+    ],
+    "tags": [
+      "Unity",
+      "SSS"
+    ],
+    "featured": false
+  },
+  {
+    "id": "shader-sss",
+    "size": "standard",
+    "title": "次表面散射 SSS",
+    "titleEn": "Sub-Surface Scattering",
+    "desc": "多种SSS实现方案：预积分皮肤SSS、PBR皮肤扩展、球面高斯SSS，真实模拟皮肤/蜡烛/玉石等半透介质。",
+    "gallery": [
+       {
+        "type": "image",
+        "src": "assets/images/shader_sg_sss.webp",
+        "label": "球面高斯SSS"
       },
       {
         "type": "image",
         "src": "assets/images/shader_pbr_skin.webp",
-        "label": "皮肤PBR"
-      },
-      {
-        "type": "image",
-        "src": "assets/images/shader_sg_sss.webp",
-        "label": "Shader Graph SSS"
+        "label": "PBR-SSS(球面高斯SSS)"
       },
       {
         "type": "image",
@@ -641,7 +662,6 @@
     "title": "边缘检测",
     "titleEn": "Edge Detection",
     "desc": "基于Sobel/Roberts算子的屏幕空间边缘检测，可生成卡通轮廓线或水墨风描边，并支持遮挡信息融合。",
-    "cover": "assets/images-animated/shader_edge_detection.avif",
     "gallery": [
       {
         "type": "compare",
@@ -657,7 +677,7 @@
       },
       {
         "type": "image",
-        "src": "assets/images-animated/shader_edge_extract.webp",
+        "src": "assets/images/shader_edge_extract.webp",
         "label": "边缘提取"
       }
     ],
@@ -683,7 +703,6 @@
     "title": "模型云",
     "titleEn": "Model-based Cloud",
     "desc": "基于体积/Mesh模型的卡通风格云朵渲染，模拟次表面散射与边缘光，适合写实/二次元天空场景。",
-    "cover": "assets/images-animated/urp_cloud.avif",
     "gallery": [
       {
         "type": "image",

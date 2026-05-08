@@ -661,7 +661,8 @@
 
 /* Compare item in viewer fills full column */
 .viewer-item--compare {
-  column-span: all;
+  column-span: all;      /* columns 布局 */
+  grid-column: 1 / -1;  /* grid 布局 */
 }
 
 .viewer-item--compare .compare-slider {
