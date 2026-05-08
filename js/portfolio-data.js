@@ -1048,7 +1048,7 @@ const PORTFOLIO = [
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_magicball.png",
+        "src": "assets/images-animated/vfx_magicball.webp",
         "label": "Magic Ball"
       }
     ],
@@ -1077,22 +1077,22 @@ const PORTFOLIO = [
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_portal1.png",
+        "src": "assets/images-animated/vfx_portal1.webp",
         "label": "Portal 1"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_portal2.png",
+        "src": "assets/images-animated/vfx_portal2.webp",
         "label": "Portal 2"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_portal3.png",
+        "src": "assets/images/vfx_portal3.webp",
         "label": "Portal 3"
       },
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_portal4.png",
+        "src": "assets/images/vfx_portal4.webp",
         "label": "Portal 4"
       }
     ],
@@ -1121,7 +1121,7 @@ const PORTFOLIO = [
     "gallery": [
       {
         "type": "image",
-        "src": "assets/images-animated/vfx_mesh2particle.png",
+        "src": "assets/images-animated/vfx_mesh2particle.webp",
         "label": "Mesh To Particle"
       }
     ],
