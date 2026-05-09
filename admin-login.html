@@ -14,6 +14,12 @@
   --text: #d0d0e8; --text2: #7070a0; --text3: #404060;
   --radius: 8px; --font: 'Segoe UI', system-ui, sans-serif;
 }
+body[data-bg="cloudSea"] {
+  --bg:      #0e0804; --bg1: #1a0e08; --bg2: #261408;
+  --border:  rgba(232,115,64,0.18); --border-h: rgba(232,115,64,0.55);
+  --cyan:    #e87340; --cyan-dim: rgba(232,115,64,0.13);
+  --text:    #f0e0d0; --text2:    #c09278; --text3:    #6b4035;
+}
 html, body {
   height: 100%; background: var(--bg); color: var(--text);
   font-family: var(--font); font-size: 13px;
@@ -85,6 +91,7 @@ html, body {
 </style>
 </head>
 <body>
+<script>(function(){try{var c=JSON.parse(localStorage.getItem('lcl_bg_config')||'null');if(c&&c.bgId==='cloudSea')document.body.setAttribute('data-bg','cloudSea');}catch(e){}})();</script>
 <div class="login-box">
   <div class="login-logo">⟨ LCL Admin ⟩</div>
   <div class="login-sub">内容管理系统 · 请输入访问密码</div>

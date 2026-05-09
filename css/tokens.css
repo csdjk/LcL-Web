@@ -51,3 +51,55 @@
   /* ── Nav height ── */
   --nav-h: 68px;
 }
+
+/* ─── Cloud Sea warm cartoon theme ──────────────────────── */
+body[data-bg="cloudSea"] {
+  --cyan:            #e87340;
+  --cyan-dim:        rgba(232, 115, 64, 0.12);
+  --cyan-glow:       rgba(232, 115, 64, 0.45);
+  --purple:          #7ab8d4;
+  --purple-dim:      rgba(122, 184, 212, 0.15);
+  --purple-glow:     rgba(122, 184, 212, 0.45);
+  --bg-0:            #120a06;
+  --bg-1:            #1c1009;
+  --bg-2:            #26150c;
+  --bg-card:         rgba(255, 190, 110, 0.04);
+  --bg-card-hover:   rgba(232, 115, 64, 0.07);
+  --text-primary:    #f0e0d0;
+  --text-secondary:  #c09278;
+  --text-muted:      #7a5840;
+  --border:          1px solid rgba(232, 115, 64, 0.18);
+  --border-hover:    1px solid rgba(232, 115, 64, 0.55);
+  --border-subtle:   1px solid rgba(255, 220, 180, 0.06);
+  --glow-cyan:       0 0 30px rgba(232, 115, 64, 0.35), 0 0 60px rgba(232, 115, 64, 0.15);
+  --glow-card:       0 8px 40px rgba(0, 0, 0, 0.65);
+  --glow-text:       0 0 12px rgba(232, 115, 64, 0.7);
+}
+
+/* Override hardcoded cyan rgba values in layout.css */
+body[data-bg="cloudSea"] .hero-name-zh {
+  color: rgba(255, 220, 185, 0.92) !important;
+  text-shadow: 0 0 28px rgba(232, 115, 64, 0.45), 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+}
+body[data-bg="cloudSea"] .hero-subtitle {
+  color: rgba(255, 195, 150, 0.88) !important;
+  text-shadow: 0 0 16px rgba(232, 115, 64, 0.3) !important;
+}
+body[data-bg="cloudSea"] .hero-cta {
+  background: linear-gradient(135deg, rgba(232,115,64,0.25) 0%, rgba(122,184,212,0.20) 100%) !important;
+  border-color: rgba(232, 115, 64, 0.7) !important;
+  box-shadow: 0 0 20px rgba(232, 115, 64, 0.20), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+}
+body[data-bg="cloudSea"] .hero-cta:hover {
+  background: linear-gradient(135deg, rgba(232,115,64,0.38) 0%, rgba(122,184,212,0.30) 100%) !important;
+  box-shadow: var(--glow-cyan), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+body[data-bg="cloudSea"] .skill-tag--highlight {
+  border-color: rgba(232, 115, 64, 0.6) !important;
+  background:   rgba(232, 115, 64, 0.12) !important;
+  box-shadow:   0 0 10px rgba(232, 115, 64, 0.2) !important;
+}
+body[data-bg="cloudSea"] #nav {
+  background:         rgba(20, 10, 5, 0.72) !important;
+  border-bottom-color: rgba(232, 115, 64, 0.12) !important;
+}

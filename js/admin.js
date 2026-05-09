@@ -1442,6 +1442,23 @@
           {key:'colorSpread', label:'色彩范围', min:0.0, max:2.0,  step:0.05, def:1.0},
         ],
       },
+      {
+        id:'cloudSea', label:'🚂 云海列车', icon:'🚂', name:'云海列车', accent:'#e87340', rgb:'232,115,64',
+        params:[
+          {key:'speed',      label:'云速度',   min:0.5, max:10.0, step:0.1,  def:4.0},
+          {key:'bgHeight',   label:'背景云高', min:-1.0,max:1.0,  step:0.01, def:0.0},
+          {key:'bgDisp',     label:'背景振幅', min:0.0, max:1.0,  step:0.01, def:0.2},
+          {key:'fgHeight',   label:'前景云高', min:-0.5,max:0.5,  step:0.01, def:0.09},
+          {key:'fgDisp',     label:'前景振幅', min:0.0, max:2.0,  step:0.01, def:0.55},
+          {key:'fgTopY',     label:'前景上界', min:0.3, max:1.5,  step:0.01, def:1.0},
+          {key:'brightness', label:'亮度',     min:0.5, max:2.0,  step:0.05, def:1.0},
+          {key:'vignette',   label:'暗角',     min:0.0, max:1.0,  step:0.05, def:0.5},
+          {key:'smokeSpeed', label:'烟雾速度', min:1.0, max:20.0, step:0.5,  def:5.0},
+          {key:'smokeRise',  label:'烟雾上升', min:0.0, max:0.5,  step:0.01, def:0.33},
+          {key:'smokeTurb',  label:'烟雾湍流', min:0.0, max:1.5,  step:0.05, def:0.15},
+          {key:'smokeSpread',label:'烟雾扩散', min:0.0, max:2.0,  step:0.05, def:0.8},
+        ],
+      },
     ];
 
     let bgCfg;
@@ -1467,7 +1484,7 @@
     body.appendChild(selLabel);
 
     const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;';
+    grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;';
 
     function refreshCards() {
       grid.querySelectorAll('[data-bgid]').forEach(card => {
@@ -1488,7 +1505,12 @@
         'display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .18s;' +
         'border:2px solid var(--border);background:var(--bg);color:var(--text2);';
       card.innerHTML = `<span style="font-size:26px;line-height:1">${opt.icon}</span><span>${opt.name}</span>`;
-      card.addEventListener('click', () => { bgCfg.bgId = opt.id; refreshCards(); syncPreview(); });
+      card.addEventListener('click', () => {
+        bgCfg.bgId = opt.id;
+        if (opt.id === 'cloudSea') document.body.setAttribute('data-bg', 'cloudSea');
+        else document.body.removeAttribute('data-bg');
+        refreshCards(); syncPreview();
+      });
       grid.appendChild(card);
     });
     body.appendChild(grid);
