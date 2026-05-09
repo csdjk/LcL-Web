@@ -1581,6 +1581,7 @@
     // ── Section opacity + blur ──────────────────────────────────────────
     if (bgCfg.sectionOpacity == null) bgCfg.sectionOpacity = 0.88;
     if (bgCfg.sectionBlur    == null) bgCfg.sectionBlur    = 16;
+    if (bgCfg.panelFade      == null) bgCfg.panelFade      = 2;
 
     const opLabel = document.createElement('div');
     opLabel.className = 'bg-section-label';
@@ -1614,6 +1615,7 @@
 
     body.appendChild(makeSliderRow('内容区背景透明度（越大越不透明）', 0, 1, 0.01, bgCfg.sectionOpacity, 'var(--cyan)', v => { bgCfg.sectionOpacity = v; syncPreview(); }));
     body.appendChild(makeSliderRow('内容区模糊度 (px)', 0, 40, 1, bgCfg.sectionBlur, 'var(--cyan)', v => { bgCfg.sectionBlur = v; syncPreview(); }));
+    body.appendChild(makeSliderRow('边缘过渡范围 (%)', 0, 15, 0.5, bgCfg.panelFade, 'var(--cyan)', v => { bgCfg.panelFade = v; syncPreview(); }));
 
     // ── Save button ──────────────────────────────────────────────────────────
     const saveBtn = document.createElement('button');

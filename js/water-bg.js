@@ -554,6 +554,7 @@
   // ── Section overlay vars (declared before load so saved values override defaults) ──
   let sectionOpacity = 0.88;
   let sectionBlur    = 16;
+  let panelFade      = 2;   // % — edge fade of #content-panel mask
 
   // ── Load saved default background & params ─────────────────────────────────
   try {
@@ -576,6 +577,7 @@
     }
     if (bgCfg && bgCfg.sectionOpacity != null) sectionOpacity = bgCfg.sectionOpacity;
     if (bgCfg && bgCfg.sectionBlur    != null) sectionBlur    = bgCfg.sectionBlur;
+    if (bgCfg && bgCfg.panelFade      != null) panelFade      = bgCfg.panelFade;
   } catch(e) {}
 
   // ── Mouse tracking ─────────────────────────────────────────────────────────
@@ -592,6 +594,10 @@
       panel.style.background           = `rgba(${isCS ? '20,10,6' : '8,8,18'},${sectionOpacity})`;
       panel.style.backdropFilter       = bf;
       panel.style.webkitBackdropFilter = bf;
+      const f = panelFade + '%';
+      const mask = `linear-gradient(to bottom,transparent 0%,black ${f},black 100%)`;
+      panel.style.webkitMaskImage = mask;
+      panel.style.maskImage       = mask;
     }
   }
 
@@ -648,6 +654,7 @@
     }
     if (cfg.sectionOpacity != null) { sectionOpacity = cfg.sectionOpacity; applySectionOpacity(); }
     if (cfg.sectionBlur    != null) { sectionBlur    = cfg.sectionBlur;    applySectionOpacity(); }
+    if (cfg.panelFade      != null) { panelFade      = cfg.panelFade;      applySectionOpacity(); }
   });
 
   // ── GUI ────────────────────────────────────────────────────────────────────
@@ -766,6 +773,10 @@
     addRow(panel, '内容区模糊度', sectionBlur, blurDef, acc, v => {
       sectionBlur = v; applySectionOpacity();
     });
+    const fadeDef = {min:0, max:15, step:0.5};
+    addRow(panel, '边缘过渡范围 (%)', panelFade, fadeDef, acc, v => {
+      panelFade = v; applySectionOpacity();
+    });
 
     // Reset
     const btn = document.createElement('button');
@@ -784,6 +795,7 @@
       mouseInertia = 0.30;
       sectionOpacity = 0.88;
       sectionBlur = 16;
+      panelFade = 2;
       applySectionOpacity();
       Object.assign(bg.params, bg.defaults);
       bg.guiDefs.forEach(d => { if (d.u) bg.uniforms[d.u].value = bg.defaults[d.key]; });
