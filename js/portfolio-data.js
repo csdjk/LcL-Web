@@ -576,8 +576,7 @@
         "type": "image",
         "src": "assets/images/stockings.webp",
         "label": "正面"
-      },
-
+      }
     ],
     "links": [
       {
@@ -587,7 +586,7 @@
       }
     ],
     "tags": [
-      "URP",
+      "URP"
     ],
     "featured": false
   },
@@ -953,7 +952,7 @@
     "size": "standard",
     "title": "液体瓶",
     "titleEn": "Liquid Bottle",
-    "desc": "液体瓶材质模拟晃动时液面动态变化与气泡漂浮，基于世界空间高度裁切与法线扰动实现真实液体感。",
+    "desc": "液体瓶材质，模拟晃动时液面动态变化、泡沫漂浮与菲涅尔高光，结合瓶体厚度和高光反射，基于世界空间高度裁切与法线扰动实现真实液体与玻璃瓶视觉。",
     "gallery": [
       {
         "type": "image",
@@ -1162,7 +1161,7 @@
     "size": "standard",
     "title": "火焰披风",
     "titleEn": "Fire Cape Effect",
-    "desc": "火焰披风材质效果，将流动火焰纹理与角色披风网格结合，通过扰动噪声模拟火舌向上翻腾的动态感，边缘配合自发光与透明度渐变，实现逼真的燃烧披风视觉效果。",
+    "desc": "火焰流动材质模拟，通过动态扭曲、溶解消散与采样ramp图实现风格化的彩色火焰效果。",
     "gallery": [
       {
         "type": "image",
@@ -2080,40 +2079,34 @@
     "desc": "对比Alpha Blend、Depth Peeling与Weighted Blend三种OIT方案，解决透明物体排序问题，实现正确的透明度叠加。",
     "gallery": [
       {
-        "type": "grid",
-        "label": "简单场景对比",
-        "images": [
-          {
-            "src": "assets/images/urp_oit_alphablend.webp",
-            "label": "Alpha Blend"
-          },
-          {
-            "src": "assets/images/urp_oit_depthpeeling.webp",
-            "label": "Depth Peeling"
-          },
-          {
-            "src": "assets/images/urp_oit_weightedbend.webp",
-            "label": "Weighted Blend"
-          }
-        ]
+        "type": "image",
+        "src": "assets/images/urp_oit_alphablend.webp",
+        "label": "Alpha Blend"
       },
       {
-        "type": "grid",
-        "label": "复杂场景对比",
-        "images": [
-          {
-            "src": "assets/images/urp_oit_scene_alphablend.webp",
-            "label": "场景 Alpha Blend"
-          },
-          {
-            "src": "assets/images/urp_oit_scene_depthpeeling.webp",
-            "label": "场景 Depth Peeling"
-          },
-          {
-            "src": "assets/images/urp_oit_scene_weighted.webp",
-            "label": "场景 Weighted Blend"
-          }
-        ]
+        "type": "image",
+        "src": "assets/images/urp_oit_depthpeeling.webp",
+        "label": "Depth Peeling"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/urp_oit_weightedbend.webp",
+        "label": "Weighted Blend"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/urp_oit_scene_alphablend.webp",
+        "label": "场景 Alpha Blend"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/urp_oit_scene_depthpeeling.webp",
+        "label": "场景 Depth Peeling"
+      },
+      {
+        "type": "image",
+        "src": "assets/images/urp_oit_scene_weighted.webp",
+        "label": "场景 Weighted Blend"
       }
     ],
     "links": [
@@ -2659,5 +2652,4 @@
       "ShaderGUI"
     ]
   }
-
 ];

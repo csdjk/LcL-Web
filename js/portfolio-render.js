@@ -61,14 +61,8 @@ function buildCard(project) {
     } else if (itemType === 'video') {
       allMedia.push({ type: 'video', src: item.src, label: item.label });
     } else if (itemType === 'compare') {
-      // Use before image as mosaic preview
       if (item.before?.src) allImages.push({ src: item.before.src, label: item.label });
       allMedia.push({ type: 'compare', label: item.label, before: item.before, after: item.after });
-    } else if (itemType === 'grid') {
-      item.images?.forEach(img => {
-        allImages.push(img);
-        allMedia.push({ type: 'image', src: img.src, label: img.label });
-      });
     }
   });
   // primaryVideo: insert at front if not already included
