@@ -1735,7 +1735,7 @@
     "size": "video",
     "title": "星空裂缝",
     "titleEn": "Starfield Crack Effect",
-    "desc": "科幻风格星空裂缝特效，结合噪声扰动、程序化裂纹生长与粒子光晕，营造宇宙撕裂的震撼视觉。",
+    "desc": "科幻风格星空裂缝特效，营造宇宙撕裂的震撼视觉。",
     "gallery": [
       {
         "type": "video",
