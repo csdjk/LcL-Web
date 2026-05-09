@@ -301,7 +301,7 @@
     "size": "standard",
     "title": "风格化草地交互",
     "titleEn": "GPU Stylized Interactive Grass",
-    "desc": "基于GPU Instancing与几何着色器的大规模草地渲染，支持风力弯曲、角色交互压倒与LOD分级，性能高效。",
+    "desc": "基于GPU Instancing的大规模草地渲染，支持风力弯曲、角色交互压倒与LOD分级，性能高效。",
     "gallery": [
       {
         "type": "image",
@@ -380,7 +380,7 @@
     "category": "anim",
     "categoryLabel": "动画",
     "size": "standard",
-    "title": "VAT-RBD 顶点动画贴图",
+    "title": "VAT-RBD 顶点动画",
     "titleEn": "Vertex Animation Texture (Rigid Body)",
     "desc": "将Houdini RBD刚体破碎动画烘焙至贴图，运行时通过顶点采样还原动画，实现海量动态破碎而无需骨骼。",
     "gallery": [
@@ -411,18 +411,18 @@
     "size": "standard",
     "title": "GPU蒙皮动画",
     "titleEn": "GPU Skinning",
-    "desc": "将骨骼变换矩阵写入StructuredBuffer，在顶点着色器中直接完成蒙皮计算，把CPU密集的蒙皮运算转移至GPU，大幅降低CPU压力，实现数千蒙皮角色同屏流畅渲染。",
+    "desc": "将骨骼变换矩阵写入贴图，在顶点着色器中直接完成蒙皮计算，把CPU密集的蒙皮运算转移至GPU，大幅降低CPU压力，实现数千蒙皮角色同屏流畅渲染。",
     "gallery": [
       {
         "type": "image",
         "src": "assets/images-animated/gpu_skinning.avif",
-        "label": "GPU Skinning"
+        "label": "GPU Skinning (10000个对象)"
       }
     ],
     "links": [
       {
         "label": "GitHub",
-        "url": "https://github.com/csdjk/LearnUnityShader",
+        "url": "https://github.com/csdjk/LearnURP",
         "icon": "github"
       }
     ],
@@ -577,7 +577,7 @@
         "src": "assets/images/stockings.webp",
         "label": "正面"
       },
-      
+
     ],
     "links": [
       {
@@ -658,7 +658,7 @@
     "size": "standard",
     "title": "闪片材质",
     "titleEn": "Sparkle Shiny",
-    "desc": "",
+    "desc": "模拟珠光/亮片材质，随视角变化产生彩虹色高光闪烁效果",
     "gallery": [
       {
         "type": "image",
@@ -687,7 +687,7 @@
     "size": "standard",
     "title": "闪点材质",
     "titleEn": "Spark",
-    "desc": "闪点粒子材质效果，模拟金属或晶体表面随机散布的高亮闪光点，通过噪声或随机分布驱动，每个亮点独立闪烁，营造出耀眼的星光碎片质感。",
+    "desc": "闪点粒子材质效果，通过噪声或随机分布驱动，每个亮点独立闪烁，营造出耀眼的星光碎片质感。",
     "gallery": [
       {
         "type": "image",
@@ -1522,17 +1522,23 @@
   {
     "id": "shader-ui",
     "category": "material",
-    "subCategory": "mat-fx",
     "categoryLabel": "普通材质",
     "size": "standard",
-    "title": "UI 特效",
-    "titleEn": "UI Shader Effects",
-    "desc": "UI层Shader效果集，含旧照片滤镜（噪点、褪色、划痕）、UI溶解特效等，为HUD界面增添艺术表现力。",
+    "title": "旧照片滤镜",
+    "titleEn": "OldPhoto",
+    "desc": "旧照片滤镜",
     "gallery": [
       {
-        "type": "image",
-        "src": "assets/images/shader_ui_oldphoto.webp",
-        "label": "旧照片"
+        "type": "compare",
+        "label": "旧照片滤镜",
+        "before": {
+          "src": "assets/images/shader_original2.webp",
+          "label": "前"
+        },
+        "after": {
+          "src": "assets/images/shader_ui_oldphoto.webp",
+          "label": "后"
+        }
       }
     ],
     "links": [
@@ -1544,7 +1550,7 @@
     ],
     "tags": [
       "Unity",
-      "UI"
+      "后处理"
     ]
   },
   {
