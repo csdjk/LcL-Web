@@ -77,29 +77,86 @@ body[data-bg="cloudSea"] {
 }
 
 /* Override hardcoded cyan rgba values in layout.css */
+body[data-bg="cloudSea"] .hero-name-en {
+  color: #ffe8cc !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.75), 0 0 40px rgba(232, 115, 64, 0.35) !important;
+}
 body[data-bg="cloudSea"] .hero-name-zh {
-  color: rgba(255, 220, 185, 0.92) !important;
-  text-shadow: 0 0 28px rgba(232, 115, 64, 0.45), 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+  color: rgba(255, 225, 190, 0.92) !important;
+  text-shadow: 0 0 28px rgba(232, 115, 64, 0.5), 0 1px 4px rgba(0, 0, 0, 0.7) !important;
 }
 body[data-bg="cloudSea"] .hero-subtitle {
-  color: rgba(255, 195, 150, 0.88) !important;
-  text-shadow: 0 0 16px rgba(232, 115, 64, 0.3) !important;
+  color: rgba(255, 205, 160, 0.90) !important;
+  text-shadow: 0 0 16px rgba(232, 115, 64, 0.35) !important;
+}
+body[data-bg="cloudSea"] .hero-tag {
+  color: #e87340 !important;
+  border-color: rgba(232, 115, 64, 0.55) !important;
+  background: rgba(232, 115, 64, 0.10) !important;
+  box-shadow: 0 0 14px rgba(232, 115, 64, 0.22) !important;
 }
 body[data-bg="cloudSea"] .hero-cta {
-  background: linear-gradient(135deg, rgba(232,115,64,0.25) 0%, rgba(122,184,212,0.20) 100%) !important;
-  border-color: rgba(232, 115, 64, 0.7) !important;
-  box-shadow: 0 0 20px rgba(232, 115, 64, 0.20), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  background: linear-gradient(135deg, rgba(232,115,64,0.28) 0%, rgba(122,184,212,0.20) 100%) !important;
+  border-color: rgba(232, 115, 64, 0.75) !important;
+  box-shadow: 0 0 20px rgba(232, 115, 64, 0.25), inset 0 1px 0 rgba(255,255,255,0.12) !important;
 }
 body[data-bg="cloudSea"] .hero-cta:hover {
-  background: linear-gradient(135deg, rgba(232,115,64,0.38) 0%, rgba(122,184,212,0.30) 100%) !important;
+  background: linear-gradient(135deg, rgba(232,115,64,0.42) 0%, rgba(122,184,212,0.32) 100%) !important;
   box-shadow: var(--glow-cyan), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
 }
+body[data-bg="cloudSea"] .skill-tag {
+  border-color: rgba(232, 115, 64, 0.35) !important;
+  color: #d4a07a !important;
+}
+body[data-bg="cloudSea"] .skill-tag:hover {
+  border-color: #e87340 !important;
+  color: #e87340 !important;
+  background: rgba(232, 115, 64, 0.14) !important;
+}
 body[data-bg="cloudSea"] .skill-tag--highlight {
-  border-color: rgba(232, 115, 64, 0.6) !important;
-  background:   rgba(232, 115, 64, 0.12) !important;
-  box-shadow:   0 0 10px rgba(232, 115, 64, 0.2) !important;
+  border-color: rgba(232, 115, 64, 0.65) !important;
+  background:   rgba(232, 115, 64, 0.14) !important;
+  box-shadow:   0 0 12px rgba(232, 115, 64, 0.25) !important;
+  color: #e87340 !important;
 }
 body[data-bg="cloudSea"] #nav {
-  background:         rgba(20, 10, 5, 0.72) !important;
-  border-bottom-color: rgba(232, 115, 64, 0.12) !important;
+  background:         rgba(20, 10, 5, 0.75) !important;
+  border-bottom-color: rgba(232, 115, 64, 0.15) !important;
+  box-shadow: 0 1px 0 rgba(232, 115, 64, 0.12), 0 4px 20px rgba(0,0,0,0.35) !important;
+}
+body[data-bg="cloudSea"] #nav.scrolled {
+  box-shadow: 0 1px 0 rgba(232, 115, 64, 0.18), 0 4px 24px rgba(0,0,0,0.5) !important;
+}
+
+/* ── Portfolio card shadows ── */
+body[data-bg="cloudSea"] .portfolio-card:hover {
+  box-shadow:
+    0 0 18px 4px rgba(232, 115, 64, 0.28),
+    0 20px 50px rgba(0, 0, 0, 0.45) !important;
+}
+body[data-bg="cloudSea"] .card__mosaic-badge {
+  border-color: rgba(232, 115, 64, 0.40) !important;
+}
+body[data-bg="cloudSea"] .tag--category {
+  border-color: rgba(232, 115, 64, 0.30) !important;
+}
+body[data-bg="cloudSea"] .card__link-btn {
+  border-color: rgba(232, 115, 64, 0.35) !important;
+}
+body[data-bg="cloudSea"] .card__link-btn:hover {
+  background: rgba(232, 115, 64, 0.18) !important;
+  box-shadow: 0 0 12px rgba(232, 115, 64, 0.35) !important;
+}
+body[data-bg="cloudSea"] .card__live-btn {
+  box-shadow: 0 0 14px rgba(232, 115, 64, 0.65) !important;
+}
+body[data-bg="cloudSea"] .card__live-btn:hover {
+  box-shadow: 0 0 24px rgba(232, 115, 64, 1.0) !important;
+}
+body[data-bg="cloudSea"] .play-icon {
+  background: rgba(232, 115, 64, 0.18) !important;
+  border-color: rgba(232, 115, 64, 0.65) !important;
+}
+body[data-bg="cloudSea"] .portfolio-card:hover .play-icon {
+  background: rgba(232, 115, 64, 0.32) !important;
 }

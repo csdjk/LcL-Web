@@ -173,14 +173,14 @@ body {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--cyan);
-  border: 1px solid rgba(0,212,255,0.45);
+  border: 1px solid var(--cyan-glow);
   padding: 7px 20px;
   border-radius: 100px;
   margin-bottom: 32px;
   opacity: 0;
-  background: rgba(0,212,255,0.08);
+  background: var(--cyan-dim);
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 16px rgba(0,212,255,0.18);
+  box-shadow: 0 0 16px var(--cyan-glow);
 }
 
 .hero-name-en {
@@ -398,7 +398,7 @@ body {
   font-size: 0.72rem;
   padding: 5px 12px;
   border-radius: 4px;
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid var(--cyan-glow);
   color: var(--text-secondary);
   background: var(--cyan-dim);
   opacity: 0;
@@ -409,7 +409,7 @@ body {
 .skill-tag:hover {
   color: var(--cyan);
   border-color: var(--cyan);
-  background: rgba(0, 212, 255, 0.1);
+  background: var(--cyan-dim);
 }
 
 .skill-tag--highlight {
