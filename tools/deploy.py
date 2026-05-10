@@ -78,9 +78,8 @@ def guess_content_type(path: Path) -> str:
     return mime or "application/octet-stream"
 
 
+# HTML 和 JS/CSS 不缓存，每次都向服务器验证，确保用户立即获取最新版本
 # 图片/视频等静态资源缓存 7 天
-# JS/CSS 缓存 10 分钟，有更新最多等待 10 分钟生效
-# HTML 不缓存，每次都向服务器验证，确保用户立即获取最新页面
 _LONG_CACHE_EXTS  = {".webp", ".avif", ".png", ".jpg", ".jpeg", ".gif", ".mp4", ".webm"}
 _SHORT_CACHE_EXTS = {".js", ".css"}
 _NO_CACHE_EXTS    = {".html"}
@@ -88,12 +87,8 @@ _NO_CACHE_EXTS    = {".html"}
 def cache_control(path: Path) -> str:
     ext = path.suffix.lower()
     if ext in _LONG_CACHE_EXTS:
-        return "public, max-age=604800"          # 7 天
-    if ext in _NO_CACHE_EXTS:
-        return "no-cache"                        # 每次都向服务器验证是否有新版本
-    if ext in _SHORT_CACHE_EXTS:
-        return "public, max-age=600, must-revalidate"
-    return "public, max-age=3600"
+        return "public, max-age=259200"          # 3 天
+    return "no-cache"                            # HTML/JS/CSS 每次验证，立即生效
 
 
 def parse_args():
