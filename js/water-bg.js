@@ -546,7 +546,7 @@
      accent:'#ffb347', accentRgb:'255,179,71',  clickOnly:false},
     {id:'hyperspace', label:'⚡ 超空间', mat:hsMat, uniforms:hsU, params:hsParams, defaults:HS_DEFAULTS, guiDefs:HS_GUI,
      accent:'#ff9944', accentRgb:'255,153,68',  clickOnly:false},
-    {id:'cloudSea',   label:'🌅 云海',  mat:csMat, uniforms:csU, params:csParams, defaults:CS_DEFAULTS, guiDefs:CS_GUI,
+    {id:'cloudSea',   label:'🚂 云海',  mat:csMat, uniforms:csU, params:csParams, defaults:CS_DEFAULTS, guiDefs:CS_GUI,
      accent:'#e87340', accentRgb:'232,115,64',  clickOnly:false},
   ];
   let activeBgIdx = 3; // default: cloudSea
@@ -557,13 +557,14 @@
   let panelFade      = 2;   // % — edge fade of #content-panel mask
 
   // ── Load saved default background & params ─────────────────────────────────
-  try {
-    const bgCfg = JSON.parse(localStorage.getItem('lcl_bg_config') || 'null');
-    if (bgCfg && bgCfg.bgId) {
+  // Priority: localStorage (live preview / admin tweak) → BG_CONFIG (committed file)
+  function applyBgData(bgCfg) {
+    if (!bgCfg) return;
+    if (bgCfg.bgId) {
       const si = BG_LIST.findIndex(b => b.id === bgCfg.bgId);
       if (si >= 0) { activeBgIdx = si; if (BG_LIST[si].mat) mesh.material = BG_LIST[si].mat; }
     }
-    if (bgCfg && bgCfg.params) {
+    if (bgCfg.params) {
       BG_LIST.forEach(bg => {
         const saved = bgCfg.params[bg.id];
         if (!saved) return;
@@ -575,9 +576,23 @@
         });
       });
     }
-    if (bgCfg && bgCfg.sectionOpacity != null) sectionOpacity = bgCfg.sectionOpacity;
-    if (bgCfg && bgCfg.sectionBlur    != null) sectionBlur    = bgCfg.sectionBlur;
-    if (bgCfg && bgCfg.panelFade      != null) panelFade      = bgCfg.panelFade;
+    if (bgCfg.sectionOpacity != null) sectionOpacity = bgCfg.sectionOpacity;
+    if (bgCfg.sectionBlur    != null) sectionBlur    = bgCfg.sectionBlur;
+    if (bgCfg.panelFade      != null) panelFade      = bgCfg.panelFade;
+    if (bgCfg.names) {
+      BG_LIST.forEach(bg => { if (bgCfg.names[bg.id]) bg.label = bgCfg.names[bg.id]; });
+    }
+    if (bgCfg.hidden) {
+      BG_LIST.forEach(bg => { bg.hidden = !!bgCfg.hidden[bg.id]; });
+    }
+  }
+
+  try {
+    // 1. Apply committed config (bg-config.js)
+    if (typeof BG_CONFIG !== 'undefined') applyBgData(BG_CONFIG);
+    // 2. Override with localStorage (admin live edits / per-browser)
+    const lsCfg = JSON.parse(localStorage.getItem('lcl_bg_config') || 'null');
+    applyBgData(lsCfg);
   } catch(e) {}
 
   // ── Mouse tracking ─────────────────────────────────────────────────────────
@@ -655,6 +670,16 @@
     if (cfg.sectionOpacity != null) { sectionOpacity = cfg.sectionOpacity; applySectionOpacity(); }
     if (cfg.sectionBlur    != null) { sectionBlur    = cfg.sectionBlur;    applySectionOpacity(); }
     if (cfg.panelFade      != null) { panelFade      = cfg.panelFade;      applySectionOpacity(); }
+    if (cfg.names) {
+      let nameChanged = false;
+      BG_LIST.forEach(bg => { if (cfg.names[bg.id] && cfg.names[bg.id] !== bg.label) { bg.label = cfg.names[bg.id]; nameChanged = true; } });
+      if (nameChanged && document.getElementById('sn-panel')) buildPanel();
+    }
+    if (cfg.hidden) {
+      let hiddenChanged = false;
+      BG_LIST.forEach(bg => { const h = !!cfg.hidden[bg.id]; if (h !== !!bg.hidden) hiddenChanged = true; bg.hidden = h; });
+      if (hiddenChanged && document.getElementById('sn-panel')) buildPanel();
+    }
   });
 
   // ── GUI ────────────────────────────────────────────────────────────────────
@@ -708,12 +733,14 @@
     header.appendChild(htitle);
     panel.appendChild(header);
 
-    // Tab switcher
+    // Tab switcher — only show non-hidden backgrounds
+    const visibleList = BG_LIST.filter((b, i) => !b.hidden || i === activeBgIdx);
     const tabs = document.createElement('div');
     Object.assign(tabs.style, {
-      display:'grid', gridTemplateColumns:`repeat(${BG_LIST.length},1fr)`, gap:'6px', marginBottom:'14px',
+      display:'grid', gridTemplateColumns:`repeat(${visibleList.length},1fr)`, gap:'6px', marginBottom:'14px',
     });
-    BG_LIST.forEach((b, i) => {
+    visibleList.forEach((b) => {
+      const i = BG_LIST.indexOf(b);
       const tab = document.createElement('button');
       tab.textContent = b.label;
       const isActive = i === activeBgIdx;
@@ -835,7 +862,7 @@
   // Toggle button — uses active bg accent color
   function updateToggleStyle(){
     const bg = BG_LIST[activeBgIdx];
-    toggleBtn.textContent = bg.label[0]; // ✦ or ☁
+    toggleBtn.textContent = [...bg.label][0]; // first emoji/char, handles surrogate pairs
     toggleBtn.style.border = `1px solid rgba(${bg.accentRgb},0.45)`;
     toggleBtn.style.color  = bg.accent;
     toggleBtn.style.boxShadow = `0 0 12px rgba(${bg.accentRgb},0.25)`;

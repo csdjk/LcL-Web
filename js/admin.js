@@ -1462,9 +1462,30 @@
     ];
 
     let bgCfg;
-    try { bgCfg = JSON.parse(localStorage.getItem('lcl_bg_config') || '{}'); } catch(e) { bgCfg = {}; }
-    if (!bgCfg.bgId)     bgCfg.bgId = 'clouds';
-    if (!bgCfg.params)   bgCfg.params = {};
+    try {
+      // Start from committed bg-config.js, then deep-merge localStorage
+      const base = (typeof BG_CONFIG !== 'undefined') ? JSON.parse(JSON.stringify(BG_CONFIG)) : {};
+      const ls   = JSON.parse(localStorage.getItem('lcl_bg_config') || 'null') || {};
+      // Deep merge: ls overrides base, but bg-config.js params fill missing keys
+      bgCfg = {
+        bgId:          ls.bgId           || base.bgId           || 'clouds',
+        sectionOpacity:ls.sectionOpacity !== undefined ? ls.sectionOpacity : base.sectionOpacity,
+        sectionBlur:   ls.sectionBlur    !== undefined ? ls.sectionBlur    : base.sectionBlur,
+        panelFade:     ls.panelFade      !== undefined ? ls.panelFade      : base.panelFade,
+        params:  Object.assign({}, base.params  || {}, ls.params  || {}),
+        names:   Object.assign({}, base.names   || {}, ls.names   || {}),
+        hidden:  Object.assign({}, base.hidden  || {}, ls.hidden  || {}),
+      };
+      // Deep-merge per-bg params
+      const bpBase = base.params || {};
+      const bpLs   = ls.params   || {};
+      const mergedParams = {};
+      const allBgIds = new Set([...Object.keys(bpBase), ...Object.keys(bpLs)]);
+      allBgIds.forEach(id => {
+        mergedParams[id] = Object.assign({}, bpBase[id] || {}, bpLs[id] || {});
+      });
+      bgCfg.params = mergedParams;
+    } catch(e) { bgCfg = { bgId:'clouds', params:{}, names:{}, hidden:{} }; }
 
     // Ensure saved params have all keys (fill missing with defaults)
     BG_OPTIONS.forEach(opt => {
@@ -1486,14 +1507,21 @@
     const grid = document.createElement('div');
     grid.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;';
 
+    function bgDisplayName(opt) { return bgCfg.names[opt.id] || opt.name; }
+
     function refreshCards() {
       grid.querySelectorAll('[data-bgid]').forEach(card => {
         const opt = BG_OPTIONS.find(o => o.id === card.dataset.bgid);
         const active = card.dataset.bgid === bgCfg.bgId;
+        const hidden = bgCfg.hidden[opt.id];
         card.style.border     = active ? `2px solid ${opt.accent}` : '2px solid var(--border)';
         card.style.background = active ? `rgba(${opt.rgb},0.13)`   : 'var(--bg)';
         card.style.color      = active ? opt.accent                 : 'var(--text2)';
         card.style.fontWeight = active ? '600'                      : '400';
+        card.style.opacity    = hidden ? '0.45'                     : '';
+        card.title            = hidden ? '此背景已隐藏（主页不显示）' : '';
+        const nameEl = card.querySelector('.bgcard-name');
+        if (nameEl) nameEl.textContent = bgDisplayName(opt);
       });
       renderParamPanel();
     }
@@ -1504,7 +1532,14 @@
       card.style.cssText = 'padding:18px 8px 14px;border-radius:10px;cursor:pointer;font-size:12px;' +
         'display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .18s;' +
         'border:2px solid var(--border);background:var(--bg);color:var(--text2);';
-      card.innerHTML = `<span style="font-size:26px;line-height:1">${opt.icon}</span><span>${opt.name}</span>`;
+      card.innerHTML = `<span style="font-size:26px;line-height:1">${opt.icon}</span><span class="bgcard-name">${bgDisplayName(opt)}</span>`;
+      if (bgCfg.hidden[opt.id]) {
+        card.style.opacity = '0.45';
+        card.title = '此背景已隐藏（主页不显示）';
+      } else {
+        card.style.opacity = '';
+        card.title = '';
+      }
       card.addEventListener('click', () => {
         bgCfg.bgId = opt.id;
         if (opt.id === 'cloudSea') document.body.setAttribute('data-bg', 'cloudSea');
@@ -1530,8 +1565,74 @@
       const pLabel = document.createElement('div');
       pLabel.className = 'bg-section-label';
       pLabel.style.cssText += `color:${opt.accent};`;
-      pLabel.textContent = `${opt.icon} ${opt.name} 默认参数`;
+      pLabel.textContent = `${opt.icon} ${bgDisplayName(opt)} 默认参数`;
       paramWrap.appendChild(pLabel);
+
+      // ── Name editor ─────────────────────────────────────────────────────
+      const nameRow = document.createElement('div');
+      nameRow.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:14px;';
+      const nameLbl = document.createElement('span');
+      nameLbl.style.cssText = 'font-size:11px;color:var(--text3);white-space:nowrap;';
+      nameLbl.textContent = '背景名称：';
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.value = bgDisplayName(opt);
+      nameInput.placeholder = opt.name;
+      nameInput.style.cssText = `flex:1;font-size:12px;padding:4px 8px;border-radius:6px;` +
+        `border:1px solid rgba(${opt.rgb},0.35);background:rgba(${opt.rgb},0.07);` +
+        `color:var(--text1);outline:none;`;
+      nameInput.addEventListener('input', () => {
+        const v = nameInput.value.trim();
+        if (v) bgCfg.names[opt.id] = v; else delete bgCfg.names[opt.id];
+        localStorage.setItem('lcl_bg_config', JSON.stringify(bgCfg));
+        // Update section header and cards in real time
+        pLabel.textContent = `${opt.icon} ${bgDisplayName(opt)} 默认参数`;
+        const nameEl = grid.querySelector(`[data-bgid="${opt.id}"] .bgcard-name`);
+        if (nameEl) nameEl.textContent = bgDisplayName(opt);
+      });
+      const resetNameBtn = document.createElement('button');
+      resetNameBtn.title = '恢复默认名称';
+      resetNameBtn.style.cssText = `font-size:11px;padding:3px 8px;border-radius:6px;cursor:pointer;` +
+        `border:1px solid var(--border);background:var(--bg1);color:var(--text3);white-space:nowrap;`;
+      resetNameBtn.textContent = '↺ 默认';
+      resetNameBtn.addEventListener('click', () => {
+        delete bgCfg.names[opt.id];
+        localStorage.setItem('lcl_bg_config', JSON.stringify(bgCfg));
+        nameInput.value = opt.name;
+        pLabel.textContent = `${opt.icon} ${opt.name} 默认参数`;
+        const nameEl = grid.querySelector(`[data-bgid="${opt.id}"] .bgcard-name`);
+        if (nameEl) nameEl.textContent = opt.name;
+      });
+      nameRow.appendChild(nameLbl);
+      nameRow.appendChild(nameInput);
+      nameRow.appendChild(resetNameBtn);
+      paramWrap.appendChild(nameRow);
+
+      // ── Hide toggle ──────────────────────────────────────────────────────
+      const hideRow = document.createElement('div');
+      hideRow.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:16px;';
+      const hideLbl = document.createElement('label');
+      hideLbl.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);cursor:pointer;user-select:none;';
+      const hideCheck = document.createElement('input');
+      hideCheck.type = 'checkbox';
+      hideCheck.checked = !!bgCfg.hidden[opt.id];
+      hideCheck.style.cssText = 'accent-color:#e0744a;width:14px;height:14px;cursor:pointer;';
+      hideCheck.addEventListener('change', () => {
+        if (hideCheck.checked) bgCfg.hidden[opt.id] = true;
+        else delete bgCfg.hidden[opt.id];
+        localStorage.setItem('lcl_bg_config', JSON.stringify(bgCfg));
+        syncPreview();
+        // Update card
+        const cardEl = grid.querySelector(`[data-bgid="${opt.id}"]`);
+        if (cardEl) {
+          cardEl.style.opacity = hideCheck.checked ? '0.45' : '';
+          cardEl.title         = hideCheck.checked ? '此背景已隐藏（主页不显示）' : '';
+        }
+      });
+      hideLbl.appendChild(hideCheck);
+      hideLbl.appendChild(document.createTextNode('在主页背景切换中隐藏此背景'));
+      hideRow.appendChild(hideLbl);
+      paramWrap.appendChild(hideRow);
 
       const sliderGrid = document.createElement('div');
       sliderGrid.style.cssText = 'display:grid;grid-template-columns:repeat(2,1fr);gap:10px 20px;margin-bottom:14px;';
@@ -1621,9 +1722,14 @@
     const saveBtn = document.createElement('button');
     saveBtn.className = 'btn-primary';
     saveBtn.textContent = '💾 保存背景设置';
-    saveBtn.addEventListener('click', () => {
+    saveBtn.addEventListener('click', async () => {
       localStorage.setItem('lcl_bg_config', JSON.stringify(bgCfg));
-      toast('✓ 已保存 — 刷新主页后生效');
+      const fileContent = `// Background configuration — managed by admin panel\n// Edit via admin.html → 背景设置 → 保存背景设置\nconst BG_CONFIG = ${JSON.stringify(bgCfg, null, 2)};\n`;
+      if (rootDirHandle) {
+        await exportJsFile('bg-config.js', fileContent);
+      } else {
+        toast('✓ 已保存到本地缓存。授权项目目录后可写入 bg-config.js 提交服务器', '#ff9944');
+      }
     });
     body.appendChild(saveBtn);
 

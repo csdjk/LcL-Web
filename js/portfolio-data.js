@@ -1,4 +1,4 @@
-﻿const PORTFOLIO = [
+const PORTFOLIO = [
   {
     "id": "genshin",
     "category": "character",
